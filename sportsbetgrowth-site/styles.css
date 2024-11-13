@@ -13,7 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px;
+    padding: 20px;
     background-color: #003366;
     color: white;
     position: sticky;
@@ -189,6 +189,23 @@ body {
     height: auto;
 }
 
+/* About Section */
+.about-section {
+    padding: 40px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 1.2em;
+    color: #666;
+}
+
 /* Testimonials Section */
 .testimonials {
     padding: 40px;
@@ -211,6 +228,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 /* Blog Teasers Section */
 .blog-teasers {
     padding: 40px;
@@ -246,6 +264,28 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 40px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.faq-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 1.2em;
+    color: #666;
 }
 
 /* Footer */
@@ -292,5 +332,11 @@ footer {
     .image-section .text-container {
         max-width: 100%;
     }
+
+    .testimonials-slider {
+        flex-direction: column;
+        gap: 40px;
+    }
 }
+
 
