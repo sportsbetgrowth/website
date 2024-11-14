@@ -65,8 +65,3 @@ if (imageSectionButton) {
         }, 200);
     });
 }
-
-
-
-
-
