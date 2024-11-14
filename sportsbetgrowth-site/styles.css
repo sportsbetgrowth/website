@@ -266,27 +266,6 @@ body {
     border-radius: 5px;
 }
 
-/* FAQ Section */
-.faq-section {
-    padding: 40px;
-    background-color: #fff;
-    text-align: center;
-}
-
-.faq-item {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.faq-item h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-.faq-item p {
-    font-size: 1.2em;
-    color: #666;
-}
 
 /* Footer */
 footer {
