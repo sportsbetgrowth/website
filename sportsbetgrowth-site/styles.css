@@ -163,32 +163,6 @@ body {
     background-color: #009977;
 }
 
-/* Services Section */
-.services-section {
-    padding: 40px;
-    background-color: #fff;
-    text-align: center;
-}
-
-.service-cards {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.service-card {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-}
-
-.service-card img {
-    width: 100px;
-    height: auto;
-}
-
 /* About Section */
 .about-section {
     padding: 40px;
