@@ -60,16 +60,16 @@ body {
 }
 
 /* Mobile Navbar Styling */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .hamburger-menu {
         display: block;
-    }
+    } */
 
-    .nav-links {
+    /* .nav-links {
         display: flex;
         flex-direction: column;
         background-color: #023047; /* Same as header */
-        position: fixed;
+        /* position: fixed;
         top: 0;
         right: -100%;
         width: 250px;
@@ -77,23 +77,23 @@ body {
         padding-top: 20px;
         z-index: 10;
         transition: right 0.3s ease-in-out;
-    }
-
+    } */
+/* 
     .nav-links.open {
         right: 0;
-    }
+    } */
 
-    .nav-links a {
+    /* .nav-links a {
         padding: 15px;
         border-bottom: 1px solid #00cc99;
         color: white;
         text-decoration: none;
-    }
-
+    } */
+/* 
     .nav-links a:hover {
         color: #fb8500;
-    }
-}
+    } */ */
+/* } */
 
 /* Hero Section */
 .hero-section {
