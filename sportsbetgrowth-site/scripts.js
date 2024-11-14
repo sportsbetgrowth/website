@@ -32,6 +32,20 @@ navLinks.forEach(link => {
     });
 });
 
+// Hamburger Menu Toggle
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const navLinksContainer = document.querySelector('.nav-links');
+
+hamburgerMenu.addEventListener('click', () => {
+    navLinksContainer.classList.toggle('open');
+});
+
+// Close Menu When Link is Clicked
+navLinksContainer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinksContainer.classList.remove('open');
+    });
+});
 
 // Scroll to Top Button
 const scrollToTopBtn = document.createElement('button');
@@ -66,11 +80,4 @@ if (imageSectionButton) {
     });
 }
 
-// Hamburger Menu Toggle
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const navLinks = document.querySelector('.nav-links');
-
-hamburgerMenu.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-});
 
