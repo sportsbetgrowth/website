@@ -11,10 +11,10 @@ body {
 /* Navigation Bar */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #023047;
+    background-color: #003366;
     color: white;
     position: sticky;
     top: 0;
@@ -22,6 +22,8 @@ body {
 }
 
 .logo-container {
+    position: absolute;
+    left: 20px;
     display: flex;
     align-items: center;
 }
@@ -31,22 +33,16 @@ body {
     font-weight: bold;
 }
 
-/* Hamburger Menu */
-.hamburger-menu {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2em;
-    cursor: pointer;
-    z-index: 15;
-}
-
-/* Navigation Links */
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
 }
 
 .nav-links a {
@@ -56,45 +52,8 @@ body {
 }
 
 .nav-links a:hover {
-    color: #fb8500;
+    color: #00cc99;
 }
-
-/* Mobile Navbar Styling */
-@media (max-width: 768px) {
-    .hamburger-menu {
-        display: block;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-direction: column;
-        background-color: #023047; /* Same as header */
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 250px;
-        height: 100vh;
-        padding-top: 20px;
-        z-index: 10;
-        transition: right 0.3s ease-in-out;
-    }
-
-    .nav-links.open {
-        right: 0;
-    }
-
-    .nav-links a {
-        padding: 15px;
-        border-bottom: 1px solid #00cc99;
-        color: white;
-        text-decoration: none;
-    }
-
-    .nav-links a:hover {
-        color: #fb8500;
-    }
-}
-
 
 /* Hero Section */
 .hero-section {
@@ -352,59 +311,30 @@ footer {
     margin: 10px;
 }
 
-/* Mobile Navbar Styling */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .hamburger-menu {
-        display: block;
-    }
-
     .nav-links {
-        display: none; /* Hidden by default on mobile */
         flex-direction: column;
-        background-color: #023047; /* Matches header color */
-        position: fixed;
-        top: 60px;
-        right: 0;
-        width: 250px;
-        height: 100vh;
-        padding-top: 20px;
-        z-index: 10;
-        transition: transform 0.3s ease-in-out;
-        transform: translateX(100%);
+        position: static;
+        background-color: #003366;
     }
 
-    .nav-links.open {
-        transform: translateX(0); /* Slide in when open */
-        display: flex; /* Display flex to show items */
+    .service-cards {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .nav-links a {
-        padding: 15px;
-        border-bottom: 1px solid #00cc99;
-        color: white;
-        text-decoration: none;
+    .image-section {
+        flex-direction: column;
+        text-align: center;
     }
 
-    .nav-links a:hover {
-        color: #00cc99;
+    .image-section .text-container {
+        max-width: 100%;
     }
-}
 
-/* Restore Desktop Navbar Styling */
-.nav-links {
-    list-style: none;
-    display: flex; /* Ensure horizontal display for desktop */
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: white;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #00cc99;
+    .testimonials-slider {
+        flex-direction: column;
+        gap: 40px;
+    }
 }
