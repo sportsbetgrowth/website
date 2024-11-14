@@ -73,17 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (hamburgerMenu && navLinksContainer) {
         hamburgerMenu.addEventListener('click', () => {
+            // Toggle the 'open' class to show or hide the nav-links
             navLinksContainer.classList.toggle('open');
-
-            // Debugging - Log when the hamburger is clicked
-            console.log('Hamburger menu clicked');
-            console.log('navLinksContainer classList:', navLinksContainer.classList);
+            if (navLinksContainer.classList.contains('open')) {
+                navLinksContainer.style.display = 'flex';
+            } else {
+                navLinksContainer.style.display = 'none';
+            }
         });
 
-        // Close Menu When Link is Clicked
+        // Close the menu when a link is clicked
         navLinksContainer.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinksContainer.classList.remove('open');
+                navLinksContainer.style.display = 'none';
             });
         });
     }

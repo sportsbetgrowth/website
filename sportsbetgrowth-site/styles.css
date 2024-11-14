@@ -352,30 +352,39 @@ footer {
     margin: 10px;
 }
 
-/* Responsive adjustments */
+/* Mobile Navbar Styling */
 @media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+
     .nav-links {
+        display: none;
         flex-direction: column;
-        position: static;
-        background-color: #003366;
+        background-color: #023047; /* Same as header */
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 250px;
+        height: 100vh;
+        padding-top: 20px;
+        z-index: 10;
+        transition: display 0.3s ease-in-out;
     }
 
-    .service-cards {
-        flex-direction: column;
-        align-items: center;
+    .nav-links.open {
+        display: flex; /* Show the menu when open */
     }
 
-    .image-section {
-        flex-direction: column;
-        text-align: center;
+    .nav-links a {
+        padding: 15px;
+        border-bottom: 1px solid #00cc99;
+        color: white;
+        text-decoration: none;
     }
 
-    .image-section .text-container {
-        max-width: 100%;
-    }
-
-    .testimonials-slider {
-        flex-direction: column;
-        gap: 40px;
+    .nav-links a:hover {
+        color: #00cc99;
     }
 }
+
