@@ -55,6 +55,48 @@ body {
     color: #00cc99;
 }
 
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    z-index: 15;
+}
+
+/* Mobile Navbar Styling */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #023047; /* Same as header */
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        height: 100vh;
+        padding-top: 20px;
+        z-index: 10;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 15px 20px;
+        border-bottom: 1px solid #00cc99;
+    }
+}
+
 /* Hero Section */
 .hero-section {
     height: 90vh;
