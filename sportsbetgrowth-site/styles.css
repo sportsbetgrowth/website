@@ -11,10 +11,10 @@ body {
 /* Navigation Bar */
 .navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #003366;
+    background-color: #023047;
     color: white;
     position: sticky;
     top: 0;
@@ -22,8 +22,6 @@ body {
 }
 
 .logo-container {
-    position: absolute;
-    left: 20px;
     display: flex;
     align-items: center;
 }
@@ -33,16 +31,22 @@ body {
     font-weight: bold;
 }
 
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 15;
+}
+
+/* Navigation Links */
 .nav-links {
     list-style: none;
     display: flex;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-links li {
-    margin-left: 20px;
+    gap: 20px;
 }
 
 .nav-links a {
@@ -53,19 +57,6 @@ body {
 
 .nav-links a:hover {
     color: #00cc99;
-}
-
-/* Hamburger Menu */
-.hamburger-menu {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2em;
-    position: absolute;
-    right: 20px;
-    cursor: pointer;
-    z-index: 15;
 }
 
 /* Mobile Navbar Styling */
@@ -104,6 +95,7 @@ body {
         color: #00cc99;
     }
 }
+
 
 /* Hero Section */
 .hero-section {
