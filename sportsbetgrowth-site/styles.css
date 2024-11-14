@@ -338,13 +338,13 @@ footer {
 }
 
 .footer-links a {
-    color: #fb8500;
+    color: #fb8500 !important;
     text-decoration: none;
     margin: 0 10px;
 }
 
 .footer-links a:hover {
-    color: #fb8500;
+    color: #fb8500 !important;
 }
 
 .social-icons img {
