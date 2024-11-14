@@ -209,7 +209,7 @@ body {
 /* Testimonials Section */
 .testimonials {
     padding: 40px;
-    background-color: #003366;
+    background-color: #023047;
     color: white;
     text-align: center;
 }
@@ -316,7 +316,7 @@ footer {
     .nav-links {
         flex-direction: column;
         position: static;
-        background-color: #003366;
+        background-color: #023047;
     }
 
     .service-cards {
