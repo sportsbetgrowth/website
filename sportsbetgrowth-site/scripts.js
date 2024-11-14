@@ -32,20 +32,6 @@ navLinks.forEach(link => {
     });
 });
 
-// Hamburger Menu Toggle
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const navLinksContainer = document.querySelector('.nav-links');
-
-hamburgerMenu.addEventListener('click', () => {
-    navLinksContainer.classList.toggle('open');
-});
-
-// Close Menu When Link is Clicked
-navLinksContainer.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinksContainer.classList.remove('open');
-    });
-});
 
 // Scroll to Top Button
 const scrollToTopBtn = document.createElement('button');
@@ -80,20 +66,6 @@ if (imageSectionButton) {
     });
 }
 
-// Update Testimonials Section to Match Blog Teasers on Mobile
-const testimonialsSection = document.querySelector('.testimonials');
-const testimonialsCards = document.querySelectorAll('.testimonial');
-
-if (window.innerWidth <= 768) {
-    testimonialsCards.forEach(card => {
-        card.style.display = 'inline-block';
-        card.style.backgroundColor = '#f4f4f4';
-        card.style.padding = '20px';
-        card.style.margin = '20px';
-        card.style.borderRadius = '8px';
-        card.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
-    });
-}
 
 
 
