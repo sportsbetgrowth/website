@@ -75,18 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburgerMenu.addEventListener('click', () => {
             // Toggle the 'open' class to show or hide the nav-links
             navLinksContainer.classList.toggle('open');
-            if (navLinksContainer.classList.contains('open')) {
-                navLinksContainer.style.display = 'flex';
-            } else {
-                navLinksContainer.style.display = 'none';
-            }
         });
 
-        // Close the menu when a link is clicked
+        // Close the menu when a link is clicked (for better UX)
         navLinksContainer.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinksContainer.classList.remove('open');
-                navLinksContainer.style.display = 'none';
             });
         });
     }

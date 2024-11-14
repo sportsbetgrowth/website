@@ -359,9 +359,9 @@ footer {
     }
 
     .nav-links {
-        display: none;
+        display: none; /* Hidden by default on mobile */
         flex-direction: column;
-        background-color: #023047; /* Same as header */
+        background-color: #023047; /* Matches header color */
         position: fixed;
         top: 60px;
         right: 0;
@@ -369,11 +369,13 @@ footer {
         height: 100vh;
         padding-top: 20px;
         z-index: 10;
-        transition: display 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(100%);
     }
 
     .nav-links.open {
-        display: flex; /* Show the menu when open */
+        transform: translateX(0); /* Slide in when open */
+        display: flex; /* Display flex to show items */
     }
 
     .nav-links a {
@@ -387,4 +389,24 @@ footer {
         color: #00cc99;
     }
 }
+
+/* Restore Desktop Navbar Styling */
+.nav-links {
+    list-style: none;
+    display: flex; /* Ensure horizontal display for desktop */
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00cc99;
+}
+
 
