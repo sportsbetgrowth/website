@@ -332,19 +332,19 @@ body {
 /* Footer */
 footer {
     padding: 20px;
-    background-color: #023047;
+    background-color: #002244;
     color: white;
     text-align: center;
 }
 
 .footer-links a {
-    color: #fb8500 !important;
+    color: #00cc99;
     text-decoration: none;
     margin: 0 10px;
 }
 
 .footer-links a:hover {
-    color: #fb8500 !important;
+    color: #009977;
 }
 
 .social-icons img {
