@@ -66,25 +66,6 @@ if (imageSectionButton) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Hamburger Menu Toggle
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const navLinksContainer = document.querySelector('.nav-links');
-
-    if (hamburgerMenu && navLinksContainer) {
-        hamburgerMenu.addEventListener('click', () => {
-            // Toggle the 'open' class to show or hide the nav-links
-            navLinksContainer.classList.toggle('open');
-        });
-
-        // Close the menu when a link is clicked (for better UX)
-        navLinksContainer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinksContainer.classList.remove('open');
-            });
-        });
-    }
-});
 
 
 
