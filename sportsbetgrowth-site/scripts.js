@@ -10,18 +10,40 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Smooth Scroll for Links
+// Smooth Scroll for Anchor Links Only
 const navLinks = document.querySelectorAll('.nav-links a');
 
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        window.scrollTo({
-            top: targetSection.offsetTop - 50,
-            behavior: 'smooth'
-        });
+        const href = link.getAttribute('href');
+
+        // Apply smooth scrolling only if the link is an anchor within the current page
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop - 50,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// Hamburger Menu Toggle
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const navLinksContainer = document.querySelector('.nav-links');
+
+hamburgerMenu.addEventListener('click', () => {
+    navLinksContainer.classList.toggle('open');
+});
+
+// Close Menu When Link is Clicked
+navLinksContainer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinksContainer.classList.remove('open');
     });
 });
 
@@ -56,15 +78,23 @@ if (imageSectionButton) {
             imageSectionButton.classList.remove('clicked');
         }, 200);
     });
-} 
+}
 
-// Testimonials Interaction
-const testimonialCards = document.querySelectorAll('.testimonials-slider .testimonial');
-testimonialCards.forEach(card => {
-    card.addEventListener('click', () => {
-        card.classList.toggle('expanded');
+// Update Testimonials Section to Match Blog Teasers on Mobile
+const testimonialsSection = document.querySelector('.testimonials');
+const testimonialsCards = document.querySelectorAll('.testimonial');
+
+if (window.innerWidth <= 768) {
+    testimonialsCards.forEach(card => {
+        card.style.display = 'inline-block';
+        card.style.backgroundColor = '#f4f4f4';
+        card.style.padding = '20px';
+        card.style.margin = '20px';
+        card.style.borderRadius = '8px';
+        card.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
     });
-});
+}
+
 
 
 
