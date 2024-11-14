@@ -66,22 +66,21 @@ body {
     }
 
     .nav-links {
-        display: none;
+        display: flex;
         flex-direction: column;
         background-color: #023047; /* Same as header */
         position: fixed;
-        top: 60px;
-        right: 0;
+        top: 0;
+        right: -100%;
         width: 250px;
         height: 100vh;
         padding-top: 20px;
         z-index: 10;
-        transition: transform 0.3s ease-in-out;
-        transform: translateX(100%);
+        transition: right 0.3s ease-in-out;
     }
 
     .nav-links.open {
-        transform: translateX(0);
+        right: 0;
     }
 
     .nav-links a {

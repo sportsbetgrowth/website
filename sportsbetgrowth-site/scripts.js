@@ -74,6 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburgerMenu && navLinksContainer) {
         hamburgerMenu.addEventListener('click', () => {
             navLinksContainer.classList.toggle('open');
+
+            // Debugging - Log when the hamburger is clicked
+            console.log('Hamburger menu clicked');
+            console.log('navLinksContainer classList:', navLinksContainer.classList);
         });
 
         // Close Menu When Link is Clicked
