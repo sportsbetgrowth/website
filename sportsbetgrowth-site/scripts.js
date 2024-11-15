@@ -32,29 +32,6 @@ navLinks.forEach(link => {
     });
 });
 
-
-// Scroll to Top Button
-const scrollToTopBtn = document.createElement('button');
-scrollToTopBtn.id = 'scrollToTopBtn';
-scrollToTopBtn.innerText = '↑';
-scrollToTopBtn.classList.add('scrollToTop');
-document.body.appendChild(scrollToTopBtn);
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 200) {
-        scrollToTopBtn.style.display = 'block';
-    } else {
-        scrollToTopBtn.style.display = 'none';
-    }
-});
-
-scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
 // Button Interaction for Image Section
 const imageSectionButton = document.querySelector('.image-section .cta-button');
 if (imageSectionButton) {
@@ -65,3 +42,24 @@ if (imageSectionButton) {
         }, 200);
     });
 }
+
+// Ensure all DOM elements are loaded before running scripts
+document.addEventListener('DOMContentLoaded', () => {
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinksContainer = document.querySelector('.nav-links-container');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    if (hamburger && navLinksContainer) {
+        hamburger.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksContainer.classList.remove('active');
+            });
+        });
+    }
+});
