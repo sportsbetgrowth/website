@@ -84,13 +84,11 @@ function sendEmail() {
     const email = contactForm.email.value.trim();
     const message = contactForm.message.value.trim();
 
-    // Validate the form fields
     if (!name || !email || !message) {
         showAlert('Please fill in all fields before sending the message.', 'error');
         return;
     }
 
-    // Send email using EmailJS
     emailjs.send("service_dbir5n9", "template_xgdhzf6", {
         from_name: name,
         message: message,
@@ -101,17 +99,19 @@ function sendEmail() {
         showAlert('Message sent successfully! Thank you for contacting us.', 'success');
         contactForm.reset();
 
-        // Start cooldown timer
+        // Add user contact to Google Sheets
+        addToGoogleSheet(name, email, message);
+
+        // Start cooldown
         emailCooldown = true;
         setTimeout(() => {
             emailCooldown = false;
-        }, 60000); // Cooldown period: 60 seconds
+        }, 60000); // Cooldown: 60 seconds
     }, (error) => {
         console.error('FAILED...', error);
         showAlert('There was an error sending your message. Please try again later.', 'error');
     });
 }
-
 
 // Function to show custom alert messages with better formatting
 function showAlert(message, type) {
