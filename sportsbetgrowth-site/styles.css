@@ -8,7 +8,7 @@ body {
 
 .cta-button {
     padding: 10px 20px;
-    background-color: #00fdbe;
+    background-color: #FF5733;
     border: none;
     color: white;
     cursor: pointer;
@@ -17,7 +17,7 @@ body {
 }
 
 .cta-button:hover {
-    background-color: #009977;
+    background-color: #C70039;
     transform: scale(1.05);
 }
 
