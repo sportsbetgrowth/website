@@ -140,7 +140,7 @@ body {
     color: #ffffff;
 }
 
-.cta-button {
+/* .cta-button {
     padding: 15px 30px;
     background-color: #00cc99;
     border: none;
@@ -148,7 +148,7 @@ body {
     cursor: pointer;
     font-size: 1.2em;
     transition: background-color 0.3s, transform 0.2s;
-}
+} */
 
 .cta-button:hover {
     background-color: #009977;
