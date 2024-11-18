@@ -23,17 +23,28 @@ body {
 
 /* Custom Alert Styles */
 .custom-alert {
-    position: relative; /* Position relative to its parent */
-    margin-bottom: 15px; /* Space between the alert and "Contact Us" */
+    position: relative; /* Position relative to the form section */
+    margin: 0 auto 15px auto; /* Center the alert and add space below it */
     padding: 15px;
+    width: 300px; /* Match the width of the input boxes */
+    max-width: 100%; /* Ensure it doesn't exceed the container on smaller screens */
     color: white;
     background-color: #dc3545; /* Red for error messages */
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a clean look */
     font-family: Arial, sans-serif;
     font-size: 1em;
     text-align: center;
-    /* animation: fadeIn 0.5s ease; Fade-in animation for appearance */
+    animation: fadeIn 0.5s ease; /* Smooth fade-in effect */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Specific alert types */
