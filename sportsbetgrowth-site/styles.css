@@ -23,19 +23,19 @@ body {
 
 /* Custom Alert Styles */
 .custom-alert {
-    position: relative; /* Position relative to the form section */
-    margin: 0 auto 15px auto; /* Center the alert and add space below it */
+    position: relative; /* Position relative to its parent container */
+    margin: 0 auto 15px auto; /* Center and add spacing below */
     padding: 15px;
-    width: 300px; /* Match the width of the input boxes */
-    max-width: 100%; /* Ensure it doesn't exceed the container on smaller screens */
+    width: 100%; /* Default width matches its container */
+    max-width: 300px; /* Limit maximum width to align with input boxes */
     color: white;
-    background-color: #dc3545; /* Red for error messages */
+    background-color: #dc3545; /* Default error color */
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a clean look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     font-family: Arial, sans-serif;
     font-size: 1em;
     text-align: center;
-    animation: fadeIn 0.5s ease; /* Smooth fade-in effect */
+    animation: fadeIn 0.5s ease;
 }
 
 @keyframes fadeIn {
@@ -448,5 +448,10 @@ footer {
     .service-cards {
         flex-direction: column;
         align-items: center;
+    }
+
+    .custom-alert {
+        width: calc(100% - 40px); /* Align with form input boxes */
+        max-width: 100%; /* Remove max-width constraint on smaller screens */
     }
 }
