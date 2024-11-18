@@ -70,30 +70,12 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'YOUR_TRACKING_ID');
 
-// // Function to send email using EmailJS
-// function sendEmail() {
-//     const contactForm = document.getElementById('contact-form');
-
-//     emailjs.send("service_dbir5n9", "template_xgdhzf6", {
-//         from_name: contactForm.name.value,
-//         message: contactForm.message.value,
-//         reply_to: contactForm.email.value,
-//     })
-//     .then((response) => {
-//         console.log('SUCCESS!', response.status, response.text);
-//         alert('Message sent successfully!');
-//     }, (error) => {
-//         console.error('FAILED...', error);
-//         alert('There was an error sending your message. Please try again later.');
-//     });
-// }
-
 // Function to send email using EmailJS with improvements
 let emailCooldown = false;
 
 function sendEmail() {
     if (emailCooldown) {
-        alert('Please wait 60 seconds before sending another message.');
+        showAlert('Please wait 60 seconds before sending another message.');
         return;
     }
 
@@ -104,7 +86,7 @@ function sendEmail() {
 
     // Check if all fields are filled
     if (!name || !email || !message) {
-        alert('Please fill in all fields before sending the message.');
+        showAlert('Please fill in all fields before sending the message.');
         return;
     }
 
