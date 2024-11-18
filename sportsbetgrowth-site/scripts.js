@@ -71,11 +71,29 @@ gtag('js', new Date());
 gtag('config', 'YOUR_TRACKING_ID');
 
 // Function to send email using EmailJS
+function sendEmail() {
+    const contactForm = document.getElementById('contact-form');
+
+    emailjs.send("service_dbir5n9", "template_xgdhzf6", {
+        from_name: contactForm.name.value,
+        message: contactForm.message.value,
+        reply_to: contactForm.email.value,
+    })
+    .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('Message sent successfully!');
+    }, (error) => {
+        console.error('FAILED...', error);
+        alert('There was an error sending your message. Please try again later.');
+    });
+}
+
+// Function to send email using EmailJS with improvements
 let emailCooldown = false;
 
 function sendEmail() {
     if (emailCooldown) {
-        showAlert('Please wait 60 seconds before sending another message.', 'error');
+        alert('Please wait 60 seconds before sending another message.');
         return;
     }
 
@@ -84,8 +102,9 @@ function sendEmail() {
     const email = contactForm.email.value.trim();
     const message = contactForm.message.value.trim();
 
+    // Check if all fields are filled
     if (!name || !email || !message) {
-        showAlert('Please fill in all fields before sending the message.', 'error');
+        alert('Please fill in all fields before sending the message.');
         return;
     }
 
@@ -96,17 +115,18 @@ function sendEmail() {
     })
     .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
+        // Display a nicely formatted alert
         showAlert('Message sent successfully! Thank you for contacting us.', 'success');
+        // Clear the form fields
         contactForm.reset();
-
-        // Add user contact to Google Sheets
-        addToGoogleSheet(name, email, message);
-
         // Start cooldown
         emailCooldown = true;
         setTimeout(() => {
             emailCooldown = false;
-        }, 60000); // Cooldown: 60 seconds
+        }, 60000); // 60 seconds cooldown
+        
+        // Add user contact to Google Sheets
+        addToGoogleSheet(name, email, message);
     }, (error) => {
         console.error('FAILED...', error);
         showAlert('There was an error sending your message. Please try again later.', 'error');
