@@ -75,7 +75,7 @@ let emailCooldown = false;
 
 function sendEmail() {
     if (emailCooldown) {
-        showAlert('Please wait 60 seconds before sending another message.');
+        showAlert('Please wait 60 seconds before sending another message.', 'warning');
         return;
     }
 
@@ -86,7 +86,7 @@ function sendEmail() {
 
     // Check if all fields are filled
     if (!name || !email || !message) {
-        showAlert('Please fill in all fields before sending the message.');
+        showAlert('Please fill in all fields before sending the message.', 'info');
         return;
     }
 

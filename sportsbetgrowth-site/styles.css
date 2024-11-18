@@ -39,16 +39,30 @@ body {
 }
 
 /* Specific alert types */
-.custom-alert.success {
-    background-color: #28a745; /* Green for success */
+
+/* Warning Alerts (Orange) */
+.custom-alert.warning {
+    background-color: #ffc107; /* Yellow/orange background */
+    color: black; /* Dark text for contrast */
+    border: 1px solid #e0a800; /* Darker yellow border */
 }
 
-.custom-alert.error {
-    background-color: #dc3545; /* Red for error */
-}
-
+/* Info Alerts (Blue) */
 .custom-alert.info {
-    background-color: #17a2b8; /* Optional: Blue for informational messages */
+    background-color: #17a2b8; /* Blue background */
+    border: 1px solid #117a8b; /* Darker blue border */
+}
+
+/* Success Alerts (Green) */
+.custom-alert.success {
+    background-color: #28a745; /* Green background */
+    border: 1px solid #218838; /* Darker green border */
+}
+
+/* Error Alerts (Red) */
+.custom-alert.error {
+    background-color: #dc3545; /* Red background */
+    border: 1px solid #c82333; /* Darker red border */
 }
 
 /* Navigation Bar */
