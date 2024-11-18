@@ -116,7 +116,16 @@ function sendEmail() {
 }
 
 // Function to show custom alert messages with better formatting
+let alertActive = false; // Track if an alert is currently visible
+
 function showAlert(message, type = 'error') {
+    if (alertActive) {
+        return; // Exit if an alert is already active
+    }
+
+    // Set the alert as active
+    alertActive = true;
+
     // Locate the contact section and the "Contact Us" heading
     const contactSection = document.querySelector('.contact-section');
     const contactHeading = contactSection.querySelector('h2'); // The "Contact Us" heading
@@ -132,6 +141,7 @@ function showAlert(message, type = 'error') {
     // Automatically remove the alert after 5 seconds
     setTimeout(() => {
         alertBox.remove();
+        alertActive = false; // Reset the alert state
     }, 5000);
 }
 
