@@ -40,7 +40,7 @@ body {
 
 /* Specific alert types */
 .custom-alert.success {
-    background-color: #28a745; /* Green for success */
+    background-color: #009977; /* Green for success */
 }
 
 .custom-alert.error {
