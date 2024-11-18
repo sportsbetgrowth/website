@@ -23,19 +23,17 @@ body {
 
 /* Custom Alert Styles */
 .custom-alert {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
+    position: relative; /* Position relative to its parent */
+    margin-bottom: 15px; /* Space between the alert and "Contact Us" */
     padding: 15px;
+    color: white;
+    background-color: #dc3545; /* Red for error messages */
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     font-family: Arial, sans-serif;
-    font-size: 1em; /* Consistent font size */
-    text-align: center; /* Center-align text */
+    font-size: 1em;
+    text-align: center;
+    /* animation: fadeIn 0.5s ease; Fade-in animation for appearance */
 }
 
 /* Specific alert types */

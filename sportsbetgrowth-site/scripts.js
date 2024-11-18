@@ -116,11 +116,18 @@ function sendEmail() {
 }
 
 // Function to show custom alert messages with better formatting
-function showAlert(message, type) {
+function showAlert(message, type = 'error') {
+    // Locate the contact section and the "Contact Us" heading
+    const contactSection = document.querySelector('.contact-section');
+    const contactHeading = contactSection.querySelector('h2'); // The "Contact Us" heading
+
+    // Create the alert element
     const alertBox = document.createElement('div');
-    alertBox.className = `custom-alert ${type}`;
+    alertBox.className = `custom-alert ${type}`; // Add specific class (e.g., error, success)
     alertBox.textContent = message;
-    document.body.appendChild(alertBox);
+
+    // Insert the alert box just above the "Contact Us" heading
+    contactSection.insertBefore(alertBox, contactHeading);
 
     // Automatically remove the alert after 5 seconds
     setTimeout(() => {
