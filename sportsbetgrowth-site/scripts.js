@@ -115,23 +115,18 @@ function sendEmail() {
     });
 }
 
+// Function to show custom alert messages with better formatting
 function showAlert(message, type) {
-    const contactSection = document.querySelector('.contact-section');
-    const contactHeading = contactSection.querySelector('h2'); // Select the "Contact Us" heading
     const alertBox = document.createElement('div');
-
     alertBox.className = `custom-alert ${type}`;
     alertBox.textContent = message;
-
-    // Insert the alert directly above the "Contact Us" heading
-    contactSection.insertBefore(alertBox, contactHeading);
+    document.body.appendChild(alertBox);
 
     // Automatically remove the alert after 5 seconds
     setTimeout(() => {
         alertBox.remove();
     }, 5000);
 }
-
 
 // Function to add user contacts to Google Sheets
 function addToGoogleSheet(name, email, message) {
