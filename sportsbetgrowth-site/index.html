@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js" defer></script>
     <title>SportsBetGrowth</title>
     <meta name="description" content="SportsBetGrowth helps you succeed in sports betting with expert consulting and strategy guides.">
     <meta name="keywords" content="sports betting, consulting, strategy, success">
@@ -48,7 +47,7 @@
         <div class="text-container">
             <h2>Take Your Sports Betting to the Next Level</h2>
             <p>We provide the tools and insights you need to make smarter decisions and maximize your betting opportunities.</p>
-            <button class="cta-button" onclick="window.location.href='#services'">Learn More</button>
+            <button class="cta-button" onclick="window.location.href='services.html'">Learn More</button>
         </div>
     </section>
 
@@ -95,11 +94,11 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <h2>Contact Us</h2>
-        <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name" required style="width: 43ch; text-align: center;">
-            <input type="email" name="email" placeholder="Your Email" required style="width: 43ch; text-align: center;">
-            <textarea name="message" placeholder="Your Message" required style="width: 40ch; height: 10em; text-align: center;"></textarea>
-            <button type="submit">Send Message</button>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="button" class="cta-button" onclick="sendEmail()">Send Message</button>
         </form>
     </section>
 
@@ -122,11 +121,20 @@
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+
+    <!-- Load the EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- Initialize EmailJS -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'YOUR_TRACKING_ID');
+        // Immediately Invoked Function Expression (IIFE) to Initialize EmailJS
+        (function() {
+            emailjs.init("znZbIEmlDArafFtyn");
+        })();
     </script>
+
+    <!-- Link to your custom JavaScript file -->
+    <script src="scripts.js" defer></script>
+
 </body>
 </html>
