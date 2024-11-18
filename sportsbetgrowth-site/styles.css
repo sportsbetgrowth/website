@@ -34,14 +34,21 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     font-family: Arial, sans-serif;
+    font-size: 1em; /* Consistent font size */
+    text-align: center; /* Center-align text */
 }
 
+/* Specific alert types */
 .custom-alert.success {
-    background-color: #28a745;
+    background-color: #28a745; /* Green for success */
 }
 
 .custom-alert.error {
-    background-color: #dc3545;
+    background-color: #dc3545; /* Red for error */
+}
+
+.custom-alert.info {
+    background-color: #17a2b8; /* Optional: Blue for informational messages */
 }
 
 /* Navigation Bar */
@@ -304,6 +311,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
+    font-size: 16px; /* Ensures mobile browsers don't trigger zoom */
 }
 
 .contact-section textarea {
@@ -313,6 +321,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
+    font-size: 16px; /* Ensures mobile browsers don't trigger zoom */
 }
 
 /* Footer */

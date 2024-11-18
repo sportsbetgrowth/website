@@ -71,6 +71,24 @@ gtag('js', new Date());
 gtag('config', 'YOUR_TRACKING_ID');
 
 // Function to send email using EmailJS
+function sendEmail() {
+    const contactForm = document.getElementById('contact-form');
+
+    emailjs.send("service_dbir5n9", "template_xgdhzf6", {
+        from_name: contactForm.name.value,
+        message: contactForm.message.value,
+        reply_to: contactForm.email.value,
+    })
+    .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('Message sent successfully!');
+    }, (error) => {
+        console.error('FAILED...', error);
+        alert('There was an error sending your message. Please try again later.');
+    });
+}
+
+// Function to send email using EmailJS with improvements
 let emailCooldown = false;
 
 function sendEmail() {
@@ -106,6 +124,9 @@ function sendEmail() {
         setTimeout(() => {
             emailCooldown = false;
         }, 60000); // 60 seconds cooldown
+        
+        // Add user contact to Google Sheets
+        addToGoogleSheet(name, email, message);
     }, (error) => {
         console.error('FAILED...', error);
         showAlert('There was an error sending your message. Please try again later.', 'error');
@@ -124,3 +145,34 @@ function showAlert(message, type) {
         alertBox.remove();
     }, 5000);
 }
+
+// Function to add user contacts to Google Sheets
+function addToGoogleSheet(name, email, message) {
+    // Replace with your actual Google Apps Script Web App URL
+    const googleScriptURL = "https://script.google.com/macros/s/AKfycbzYDoxKbsFyqDr1RntWwJHjwciMLYpSplWoWohVxHUZVEcQu32hwElIKWHi0Tt1vUeo/exec";
+
+    // Make a POST request to the Google Apps Script
+    fetch(googleScriptURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message
+        }),
+        mode: 'no-cors' // Add this line to disable CORS check
+    })
+    .then(response => {
+        console.log('Request sent. Response status is opaque due to no-cors mode.');
+    })
+    .catch(error => {
+        console.error('Error adding to Google Sheets:', error);
+    });    
+}
+
+// Run the function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    loadNavbar();
+});
