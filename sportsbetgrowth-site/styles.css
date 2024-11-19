@@ -514,4 +514,16 @@ footer {
         width: calc(100% - 40px); 
         max-width: 100%; 
     }
+    
+    .blog-container {
+        padding: 15px;
+      }
+    
+      .blog-post h1 {
+        font-size: 2rem;
+      }
+    
+      .blog-post h2 {
+        font-size: 1.6rem;
+      }
 }
