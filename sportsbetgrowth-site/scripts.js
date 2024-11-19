@@ -43,23 +43,14 @@ if (imageSectionButton) {
     });
 }
 
-// Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
-    // Existing DOM-related logic (e.g., for the hamburger menu)
+    // Navigation toggle for mobile
     const hamburger = document.querySelector('.hamburger');
     const navLinksContainer = document.querySelector('.nav-links-container');
-    const navLinks = document.querySelectorAll('.nav-links a');
 
     if (hamburger && navLinksContainer) {
         hamburger.addEventListener('click', () => {
             navLinksContainer.classList.toggle('active');
-        });
-
-        // Close mobile menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinksContainer.classList.remove('active');
-            });
         });
     }
 
@@ -76,10 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error(error));
     }
 
-    // Load the header and footer
+    // Load header and footer dynamically
     loadContent('header', 'header.html');
     loadContent('footer', 'footer.html');
 });
+
 
 // Google Analytics Initialization
 window.dataLayer = window.dataLayer || [];
