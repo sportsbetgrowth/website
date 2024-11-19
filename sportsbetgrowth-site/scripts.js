@@ -43,35 +43,26 @@ if (imageSectionButton) {
     });
 }
 
+// Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
-    // Navigation toggle for mobile
+    // Hamburger Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinksContainer = document.querySelector('.nav-links-container');
+    const navLinks = document.querySelectorAll('.nav-links a');
 
     if (hamburger && navLinksContainer) {
         hamburger.addEventListener('click', () => {
             navLinksContainer.classList.toggle('active');
         });
-    }
 
-    // Function to load reusable components
-    function loadContent(selector, file) {
-        fetch(file)
-            .then(response => {
-                if (!response.ok) throw new Error(`Error loading ${file}`);
-                return response.text();
-            })
-            .then(data => {
-                document.querySelector(selector).innerHTML = data;
-            })
-            .catch(error => console.error(error));
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksContainer.classList.remove('active');
+            });
+        });
     }
-
-    // Load header and footer dynamically
-    loadContent('header', 'header.html');
-    loadContent('footer', 'footer.html');
 });
-
 
 // Google Analytics Initialization
 window.dataLayer = window.dataLayer || [];
@@ -180,7 +171,7 @@ function addToGoogleSheet(name, email, message) {
     });    
 }
 
-// // Run the function when the DOM is fully loaded
-// document.addEventListener('DOMContentLoaded', () => {
-//     loadNavbar();
-// });
+// Run the function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    loadNavbar();
+});
