@@ -378,7 +378,7 @@ footer {
 }
 
 /* ===== Blog Page Styles ===== */
-/* Blog-specific styles should go here */
+/* Container for the entire blog content */
 .blog-container {
     max-width: 800px;
     margin: 20px auto;
@@ -388,18 +388,54 @@ footer {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
+  /* Blog post title */
   .blog-post h1 {
     font-size: 2.4rem;
     margin-bottom: 10px;
     color: #333;
   }
   
+  /* Metadata (e.g., published date) */
   .blog-post .meta {
     font-size: 0.9rem;
     color: #666;
     margin-bottom: 20px;
   }
   
+  /* Section headers within the blog */
+  .blog-post h2 {
+    font-size: 1.8rem;
+    margin-top: 30px;
+    color: #007bff; /* Optional: Customize color */
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+  }
+  
+  /* Paragraph styling */
+  .blog-post p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Images within the blog */
+  .blog-post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Blockquote styling (optional) */
+  .blog-post blockquote {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #007bff;
+    padding-left: 15px;
+    margin: 20px 0;
+  }
 
 /* Responsive adjustments */
 @media (max-width: 800px) {
