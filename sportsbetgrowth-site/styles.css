@@ -23,15 +23,15 @@ body {
 
 /* Custom Alert Styles */
 .custom-alert {
-    position: relative; /* Position relative to its parent container */
-    margin: 0 auto 15px auto; /* Center and add spacing below */
+    position: relative; 
+    margin: 0 auto 15px auto;
     padding: 15px;
-    width: 100%; /* Default width matches its container */
-    max-width: 300px; /* Limit maximum width to align with input boxes */
+    width: 100%; 
+    max-width: 300px; 
     color: white;
-    background-color: #dc3545; /* Default error color */
+    background-color: #dc3545; 
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
     font-size: 1em;
     text-align: center;
@@ -51,27 +51,27 @@ body {
 
 /* Warning Alerts (Orange) */
 .custom-alert.warning {
-    background-color: #ffc107; /* Yellow/orange background */
-    color: black; /* Dark text for contrast */
-    border: 1px solid #e0a800; /* Darker yellow border */
+    background-color: #ffc107; 
+    color: black; 
+    border: 1px solid #e0a800;
 }
 
 /* Info Alerts (Blue) */
 .custom-alert.info {
-    background-color: #17a2b8; /* Blue background */
-    border: 1px solid #117a8b; /* Darker blue border */
+    background-color: #17a2b8; 
+    border: 1px solid #117a8b; 
 }
 
 /* Success Alerts (Green) */
 .custom-alert.success {
-    background-color: #28a745; /* Green background */
-    border: 1px solid #218838; /* Darker green border */
+    background-color: #28a745; 
+    border: 1px solid #218838; 
 }
 
 /* Error Alerts (Red) */
 .custom-alert.error {
-    background-color: #dc3545; /* Red background */
-    border: 1px solid #c82333; /* Darker red border */
+    background-color: #dc3545; 
+    border: 1px solid #c82333; 
 }
 
 /* Navigation Bar */
@@ -324,7 +324,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
-    font-size: 16px; /* Ensures mobile browsers don't trigger zoom */
+    font-size: 16px; 
 }
 
 .contact-section textarea {
@@ -334,7 +334,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
-    font-size: 16px; /* Ensures mobile browsers don't trigger zoom */
+    font-size: 16px;
 }
 
 /* Footer */
@@ -451,7 +451,7 @@ footer {
     }
 
     .custom-alert {
-        width: calc(100% - 40px); /* Align with form input boxes */
-        max-width: 100%; /* Remove max-width constraint on smaller screens */
+        width: calc(100% - 40px); 
+        max-width: 100%; 
     }
 }
