@@ -527,3 +527,42 @@ footer {
         font-size: 1.6rem;
       }
 }
+
+
+/* Blog Cards Container */
+.blog-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.blog-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: center;
+    padding: 20px;
+}
+
+.blog-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.blog-card h2 {
+    font-size: 1.6em;
+    margin: 15px 0;
+    color: #007bff;
+}
+
+.blog-card p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
