@@ -377,6 +377,30 @@ footer {
     display: flex;
 }
 
+/* ===== Blog Page Styles ===== */
+/* Blog-specific styles should go here */
+.blog-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blog-post h1 {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .blog-post .meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+
 /* Responsive adjustments */
 @media (max-width: 800px) {
     .nav-links {
