@@ -45,7 +45,7 @@ if (imageSectionButton) {
 
 // Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
-    // Hamburger Menu Toggle
+    // Existing DOM-related logic (e.g., for the hamburger menu)
     const hamburger = document.querySelector('.hamburger');
     const navLinksContainer = document.querySelector('.nav-links-container');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -62,6 +62,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Function to load reusable components
+    function loadContent(selector, file) {
+        fetch(file)
+            .then(response => {
+                if (!response.ok) throw new Error(`Error loading ${file}`);
+                return response.text();
+            })
+            .then(data => {
+                document.querySelector(selector).innerHTML = data;
+            })
+            .catch(error => console.error(error));
+    }
+
+    // Load the header and footer
+    loadContent('header', 'header.html');
+    loadContent('footer', 'footer.html');
 });
 
 // Google Analytics Initialization
