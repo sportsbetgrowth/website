@@ -48,7 +48,6 @@ body {
 }
 
 /* Specific alert types */
-
 /* Warning Alerts (Orange) */
 .custom-alert.warning {
     background-color: #ffc107; 
@@ -119,6 +118,23 @@ body {
 
 .nav-links a:hover {
     color: #00cc99;
+}
+
+/* Hamburger Button */
+.hamburger {
+    display: none;
+    font-size: 2em;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+}
+
+/* Mobile Navigation */
+.nav-links-container {
+    display: flex;
 }
 
 /* Hero Section */
@@ -202,36 +218,6 @@ body {
 
 .image-section .text-container p {
     font-size: 1.2em;
-    margin-bottom: 20px;
-}
-
-/* Services Page */
-.services-page {
-    padding: 20px;
-    text-align: center;
-}
-
-
-.service-cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    justify-items: center;
-    margin-top: 20px;
-}
-
-.service-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    text-align: center;
-    padding: 20px;
-}
-
-.service-card img {
-    width: 72px;
-    height: auto;
     margin-bottom: 20px;
 }
 
@@ -360,21 +346,33 @@ footer {
     margin: 10px;
 }
 
-/* Hamburger Button */
-.hamburger {
-    display: none;
-    font-size: 2em;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
+/* Services Page */
+.services-page {
+    padding: 20px;
+    text-align: center;
 }
 
-/* Mobile Navigation */
-.nav-links-container {
-    display: flex;
+.service-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.service-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: center;
+    padding: 20px;
+}
+
+.service-card img {
+    width: 72px;
+    height: auto;
+    margin-bottom: 20px;
 }
 
 /* Responsive adjustments */
