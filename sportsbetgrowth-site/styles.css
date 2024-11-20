@@ -225,8 +225,8 @@ body {
 /* Home Page - Blog Teasers Section */
 .blog-teasers {
     padding: 40px;
-    background-color: #004080;
-    color: white;
+    background-color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
 }
 
@@ -242,13 +242,14 @@ body {
 
 .blog-card {
     max-width: 400px;
-    background: #003366;
+    background: #023047;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: rgb(255, 255, 255);
 }
 
-/* Home Page - Blog Grid Section */
+/* Blog Page - Blog Grid Section */
 .blog-hero-section {
     height: 90vh;
     display: flex;
@@ -418,7 +419,7 @@ body {
     transition: background 0.3s;
 }
   
-.blog-post .read-more:hover {
+.services-post .read-more:hover {
     background: #00cc99;
 }
 
