@@ -29,7 +29,6 @@ body {
     padding: 0 15px; /* Optional padding for small screen breathing space */
   }
 
-
 /* Navigation Bar */
 .navbar {
     display: flex;
@@ -573,4 +572,3 @@ footer {
         max-width: 100%; 
     }
 }
-
