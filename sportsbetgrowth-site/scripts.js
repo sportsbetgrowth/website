@@ -53,6 +53,10 @@ function loadHTML(selector, filePath) {
 
 // Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
+    // Dynamically load the header and footer
+    loadHTML('header', 'header.html');
+    loadHTML('footer', 'footer.html'); // Optional if footer needs dynamic loading
+
     // Hamburger Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinksContainer = document.querySelector('.nav-links-container');
@@ -179,7 +183,7 @@ function addToGoogleSheet(name, email, message) {
     });    
 }
 
-// Run the function when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    loadNavbar();
-});
+// // Run the function when the DOM is fully loaded
+// document.addEventListener('DOMContentLoaded', () => {
+//     loadNavbar();
+// });
