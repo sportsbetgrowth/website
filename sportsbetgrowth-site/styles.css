@@ -30,59 +30,6 @@ body {
   }
 
 
-/* Custom Alert Styles */
-.custom-alert {
-    position: relative; 
-    margin: 0 auto 15px auto;
-    padding: 15px;
-    width: 100%; 
-    max-width: 300px; 
-    color: white;
-    background-color: #dc3545; 
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    font-size: 1em;
-    text-align: center;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Specific alert types */
-
-/* Warning Alerts (Orange) */
-.custom-alert.warning {
-    background-color: #ffc107; 
-    color: black; 
-    border: 1px solid #e0a800;
-}
-
-/* Info Alerts (Blue) */
-.custom-alert.info {
-    background-color: #17a2b8; 
-    border: 1px solid #117a8b; 
-}
-
-/* Success Alerts (Green) */
-.custom-alert.success {
-    background-color: #28a745; 
-    border: 1px solid #218838; 
-}
-
-/* Error Alerts (Red) */
-.custom-alert.error {
-    background-color: #dc3545; 
-    border: 1px solid #c82333; 
-}
-
 /* Navigation Bar */
 .navbar {
     display: flex;
@@ -147,7 +94,7 @@ body {
     display: flex;
 }
 
-/* Hero Section */
+/* Home Page - Hero Section */
 .hero-section {
     height: 90vh;
     display: flex;
@@ -194,7 +141,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Image Highlight Section */
+/* Home Page - Image Highlight Section */
 .image-section {
     display: flex;
     align-items: center;
@@ -231,7 +178,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* About Section */
+/* Home Page - About Section */
 .about-section {
     padding: 40px;
     background-color: #f4f4f4;
@@ -248,7 +195,7 @@ body {
     color: #666;
 }
 
-/* Testimonials Section */
+/* Home Page - Testimonials Section */
 .testimonials {
     padding: 40px;
     background-color: #003366;
@@ -274,7 +221,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Blog Teasers Section */
+/* Home Page - Blog Teasers Section */
 .blog-teasers {
     padding: 40px;
     background-color: #004080;
@@ -300,7 +247,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Blog Grid Section */
+/* Home Page - Blog Grid Section */
 .blog-hero-section {
     height: 90vh;
     display: flex;
@@ -342,6 +289,120 @@ body {
     color: #ffffff;
 }
 
+/* Home Page - Contact Section */
+.contact-section {
+    padding: 40px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.contact-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-section input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px; 
+}
+
+.contact-section textarea {
+    width: 300px;
+    height: 100px;  
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Home Page - Custom Alert Styles */
+.custom-alert {
+    position: relative; 
+    margin: 0 auto 15px auto;
+    padding: 15px;
+    width: 100%; 
+    max-width: 300px; 
+    color: white;
+    background-color: #dc3545; 
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Specific alert types */
+/* Warning Alerts (Orange) */
+.custom-alert.warning {
+    background-color: #ffc107; 
+    color: black; 
+    border: 1px solid #e0a800;
+}
+
+/* Info Alerts (Blue) */
+.custom-alert.info {
+    background-color: #17a2b8; 
+    border: 1px solid #117a8b; 
+}
+
+/* Success Alerts (Green) */
+.custom-alert.success {
+    background-color: #28a745; 
+    border: 1px solid #218838; 
+}
+
+/* Error Alerts (Red) */
+.custom-alert.error {
+    background-color: #dc3545; 
+    border: 1px solid #c82333; 
+}
+
+/* Services Page HTML */
+.services-page {
+    padding: 20px;
+    text-align: center;
+}
+
+.service-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 40px auto;
+}
+
+.service-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: center;
+    padding: 20px;
+}
+
+.service-card img {
+    width: 72px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Blog Page HTML */
 .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -389,39 +450,6 @@ body {
     background: #00cc99;
 }
 
-/* Contact Section */
-.contact-section {
-    padding: 40px;
-    background-color: #f4f4f4;
-    text-align: center;
-}
-
-.contact-section form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.contact-section input {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px; 
-}
-
-.contact-section textarea {
-    width: 300px;
-    height: 100px;  
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px;
-}
-
 /* Footer */
 footer {
     padding: 20px;
@@ -443,34 +471,6 @@ footer {
 .social-icons img {
     width: 30px;
     margin: 10px;
-}
-
-/* Services Page */
-.services-page {
-    padding: 20px;
-    text-align: center;
-}
-
-.service-cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin: 40px auto;
-}
-
-.service-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    text-align: center;
-    padding: 20px;
-}
-
-.service-card img {
-    width: 72px;
-    height: auto;
-    margin-bottom: 20px;
 }
 
 /* Responsive adjustments */
