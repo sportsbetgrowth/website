@@ -199,7 +199,7 @@ body {
 .testimonials {
     padding: 40px;
     background-color: #003366;
-    color: rgb(0, 0, 0);
+    color: white;
     text-align: center;
 }
 
@@ -215,7 +215,7 @@ body {
 
 .testimonial {
     max-width: 400px;
-    background:white;
+    background: #004080;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
