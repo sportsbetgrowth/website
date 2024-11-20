@@ -242,7 +242,7 @@ body {
 
 .blog-card {
     max-width: 400px;
-    background: white;
+    background: #003366;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -257,7 +257,6 @@ body {
     color: white;
     text-align: center;
     position: relative;
-    background: url('images/blog/blog-hero-background.jpg') no-repeat center center/cover;
 }
 
 .blog-hero-background-overlay {
