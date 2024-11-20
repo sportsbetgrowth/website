@@ -43,6 +43,14 @@ if (imageSectionButton) {
     });
 }
 
+// Load the header and footer dynamically
+function loadHTML(selector, filePath) {
+    fetch(filePath)
+        .then(response => response.text())
+        .then(data => document.querySelector(selector).innerHTML = data)
+        .catch(error => console.error('Error loading HTML:', error));
+}
+
 // Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
     // Hamburger Menu Toggle
