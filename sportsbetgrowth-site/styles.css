@@ -375,10 +375,10 @@ body {
 }
 
 /* Services Page HTML */
-.services-page {
+/* .services-page {
     padding: 20px;
     text-align: center;
-}
+} */
 
 .service-cards-container {
     display: grid;
