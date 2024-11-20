@@ -179,7 +179,7 @@ function addToGoogleSheet(name, email, message) {
     });    
 }
 
-// // Run the function when the DOM is fully loaded
-// document.addEventListener('DOMContentLoaded', () => {
-//     loadNavbar();
-// });
+// Run the function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    loadNavbar();
+});
