@@ -344,6 +344,13 @@ body {
 }
 
 /* Services Page HTML */
+.services-highlights h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #023047;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
