@@ -170,6 +170,10 @@ body {
 }
 
 /* Home Page - Blog Teasers Section */
+.blog-tesaser container{
+    text-align: center;
+}
+
 .carousel {
     display: flex;
     overflow-x: scroll;
