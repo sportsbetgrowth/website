@@ -174,21 +174,6 @@ body {
     text-align: center;
 }
 
-/* Carousel Container */
-.carousel {
-    display: flex;
-    overflow-x: auto; /* Enables horizontal scrolling */
-    gap: 20px; /* Space between items */
-    scroll-snap-type: x mandatory; /* Ensures snapping to each item */
-    padding: 20px 0;
-}
-
-.carousel-item {
-    scroll-snap-align: center; /* Centers the item when scrolled */
-    flex: 0 0 calc(100% / 3 - 20px); /* Adjusts size for 3 items per row */
-    max-width: 300px; /* Matches the size of services-post */
-}
-
 /* Blog Page - Blog Grid Section */
 .blog-hero-section {
     height: 90vh;
