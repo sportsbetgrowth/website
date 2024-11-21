@@ -94,6 +94,12 @@ body {
     display: flex;
 }
 
+/* Add bottom outline to sections */
+section {
+    border-bottom: 2px solid #009977; /* Creates the fine line */
+    padding-bottom: 20px; /* Adds space above the line for better visual balance */
+}
+
 /* Home Page - Hero Section */
 .hero-section {
     display: flex;
