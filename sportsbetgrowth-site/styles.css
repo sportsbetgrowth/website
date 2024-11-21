@@ -176,26 +176,26 @@ body {
 
 .carousel {
     display: flex;
-    overflow-x: scroll;
-    gap: 20px;
-    scroll-snap-type: x mandatory;
+    overflow-x: scroll; /* Allows horizontal scrolling */
+    gap: 20px; /* Adds spacing between items */
+    scroll-snap-type: x mandatory; /* Enables snapping to each item */
     padding: 20px 0;
 }
 
-/* .carousel-item {
-    scroll-snap-align: center;
-    flex: 0 0 calc(100% / 3 - 20px);
-    max-width: 300px;
-} */
+.carousel-item {
+    scroll-snap-align: center; /* Centers the active item */
+    flex: 0 0 calc(100% / 3 - 20px); /* Matches the grid size of services-post */
+    max-width: 300px; /* Ensures consistent width with services-post */
+}
 
-.carousel .blog-post, .carousel .services-post {
+/* .carousel .blog-post, .carousel .services-post {
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
     text-align: center;
-}
+} */
 
 .carousel-navigation {
     display: flex;
