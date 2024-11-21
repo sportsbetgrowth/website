@@ -182,11 +182,11 @@ body {
     padding: 20px 0;
 }
 
-.carousel-item {
+/* .carousel-item {
     scroll-snap-align: center;
     flex: 0 0 calc(100% / 3 - 20px);
     max-width: 300px;
-}
+} */
 
 .carousel .blog-post, .carousel .services-post {
     background: white;
