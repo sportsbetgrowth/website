@@ -24,10 +24,10 @@ body {
 
 /* Centralized Container Class */
 .container {
-    width: 90%; /* Allows content to take up 90% of the viewport width */
-    max-width: 1200px; /* Limits the width for large screens */
-    margin: 0 auto; /* Centers the container horizontally */
-    padding: 0 15px; /* Optional padding for small screen breathing space */
+    width: 90%; 
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 15px; 
   }
 
 /* Navigation Bar */
@@ -77,7 +77,7 @@ body {
     color: #00cc99;
 }
 
-/* Hamburger Button */
+/* Home Page - Hamburger Button */
 .hamburger {
     display: none;
     font-size: 2em;
@@ -89,39 +89,12 @@ body {
     right: 20px;
 }
 
-/* Mobile Navigation */
-.nav-links-container {
-    display: flex;
-}
-
-/* Home Page - Hero Section */
-.hero-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    padding: 40px 0;
-    color: white;
-}
-
-.hero-image img {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 10px;
-}
-
-.cta-button:hover {
-    background-color: #009977;
-    transform: scale(1.05);
-}
-
 /* Home Page - Image Highlight Section */
 .image-section {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
-    /* background-color: #fff; */
     gap: 40px;
 }
 
@@ -152,67 +125,9 @@ body {
     margin-bottom: 20px;
 }
 
-/* Home Page - About Section */
-.about-section {
-    padding: 40px;
-    background-color: #f4f4f4;
-    text-align: center;
-}
-
-.about-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.about-section p {
-    font-size: 1.2em;
-    color: #666;
-}
-
 /* Home Page - Blog Teasers Section */
 .container {
     text-align: center;
-}
-
-/* Blog Page - Blog Grid Section */
-.blog-hero-section {
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    position: relative;
-}
-
-.blog-hero-background-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 51, 102, 0.7);
-    z-index: 1;
-}
-
-.blog-hero-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.blog-hero-content h1 {
-    font-size: 3.5em;
-    margin-bottom: 20px;
-    color: #ffffff;
-}
-
-.blog-hero-content p {
-    font-size: 1.5em;
-    margin-bottom: 30px;
-    color: #ffffff;
 }
 
 /* Home Page - Contact Section */
@@ -275,26 +190,22 @@ body {
 }
 
 /* Specific alert types */
-/* Warning Alerts (Orange) */
 .custom-alert.warning {
     background-color: #ffc107; 
     color: black; 
     border: 1px solid #e0a800;
 }
 
-/* Info Alerts (Blue) */
 .custom-alert.info {
     background-color: #17a2b8; 
     border: 1px solid #117a8b; 
 }
 
-/* Success Alerts (Green) */
 .custom-alert.success {
     background-color: #28a745; 
     border: 1px solid #218838; 
 }
 
-/* Error Alerts (Red) */
 .custom-alert.error {
     background-color: #dc3545; 
     border: 1px solid #c82333; 
@@ -356,7 +267,6 @@ body {
     background: #00cc99;
 }
 
-
 /* Blog Page HTML */
 .blog-grid {
     display: grid;
@@ -405,7 +315,7 @@ body {
     background: #00cc99;
 }
 
-/* Footer */
+/* Footer Page HTML */
 footer {
     padding: 20px;
     background-color: #023047;
@@ -426,6 +336,11 @@ footer {
 .social-icons img {
     width: 30px;
     margin: 10px;
+}
+
+/* Mobile Navigation */
+.nav-links-container {
+    display: flex;
 }
 
 /* Responsive adjustments */
