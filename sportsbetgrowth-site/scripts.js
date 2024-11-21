@@ -44,36 +44,42 @@ if (imageSectionButton) {
 }
 
 // Load the header and footer dynamically
-function loadHTML(selector, filePath) {
+function loadHTML(selector, filePath, callback = null) {
     fetch(filePath)
         .then(response => response.text())
-        .then(data => document.querySelector(selector).innerHTML = data)
+        .then(data => {
+            document.querySelector(selector).innerHTML = data;
+            if (callback) callback(); // Execute the callback if provided
+        })
         .catch(error => console.error('Error loading HTML:', error));
 }
 
 // Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
     // Dynamically load the header and footer
-    loadHTML('header', 'header.html');
-    loadHTML('footer', 'footer.html'); // Optional if footer needs dynamic loading
+    loadHTML('header', 'header.html', () => {
+        // Add event listeners for the header after it's loaded
+        const hamburger = document.querySelector('.hamburger');
+        const navLinksContainer = document.querySelector('.nav-links-container');
+        const navLinks = document.querySelectorAll('.nav-links a');
 
-    // Hamburger Menu Toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navLinksContainer = document.querySelector('.nav-links-container');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    if (hamburger && navLinksContainer) {
-        hamburger.addEventListener('click', () => {
-            navLinksContainer.classList.toggle('active');
-        });
-
-        // Close mobile menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinksContainer.classList.remove('active');
+        if (hamburger && navLinksContainer) {
+            hamburger.addEventListener('click', () => {
+                navLinksContainer.classList.toggle('active');
             });
-        });
-    }
+
+            // Close mobile menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinksContainer.classList.remove('active');
+                });
+            });
+        } else {
+            console.error('Hamburger or nav-links-container not found.');
+        }
+    });
+
+    loadHTML('footer', 'footer.html'); // Load footer if needed
 });
 
 // Google Analytics Initialization
