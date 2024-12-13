@@ -50,16 +50,15 @@ body {
     margin-left: 10px;
 }
 
-/* .logo {
+.logo {
     font-size: 1.5em;
     font-weight: bold;
-} */
+}
 
 .logo-video {
-    width: 2px; /* Adjust the width as needed */
-    height: 2px !important;
-    border-radius: 8px; /* Optional: Adds rounded corners for a polished look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+    max-height: 40px; /* Ensures it doesn’t exceed the header size */
+    max-width: 100%; /* Prevents horizontal overflow */
+    object-fit: contain; /* Ensures the video is scaled within its container */
 }
 
 .nav-links {
