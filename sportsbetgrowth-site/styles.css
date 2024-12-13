@@ -43,11 +43,12 @@ body {
     z-index: 10;
 }
 
-/* .logo-container {
+.logo-container {
+    height: 2px !important;
     display: flex;
     align-items: center;
     margin-left: 10px;
-} */
+}
 
 /* .logo {
     font-size: 1.5em;
