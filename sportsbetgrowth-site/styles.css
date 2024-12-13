@@ -43,23 +43,30 @@ body {
     z-index: 10;
 }
 
-.logo-container {
-    height: 2px !important;
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
+.video {
+    height: 10px; /* Set the desired height */
+    object-fit: contain;
+    overflow-clip-margin: content-box;
+    overflow: clip;
 }
 
-.logo {
-    font-size: 1.5em;
-    font-weight: bold;
+.logo-container {
+    display: flex;
+    align-items: center; /* Aligns logo vertically with the navbar */
+    margin-left: 10px; /* Optional: Adjust left margin for spacing */
 }
 
 .logo-video {
-    max-height: 40px; /* Ensures it doesn’t exceed the header size */
-    max-width: 100%; /* Prevents horizontal overflow */
-    object-fit: contain; /* Ensures the video is scaled within its container */
+    height: 40px; /* Set the desired height */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the video scales properly */
+    overflow: hidden; /* Ensure no content spills out */
 }
+/* 
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+} */
 
 .nav-links {
     list-style: none;
