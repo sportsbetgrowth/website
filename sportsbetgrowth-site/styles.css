@@ -44,15 +44,21 @@ body {
 }
 
 .logo-container {
-    position: absolute;
-    left: 20px;
-    display: flex;
-    align-items: center;
+    position: relative;
+    width: 150px; /* Adjust width as needed */
+    height: auto;
 }
 
 .logo {
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.logo-video {
+    width: 100%; /* Ensures the video fits within the container */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
 }
 
 .nav-links {
