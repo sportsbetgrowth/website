@@ -43,16 +43,16 @@ body {
     z-index: 10;
 }
 
-.logo-container {
+/* .logo-container {
     display: flex;
     align-items: center;
-    margin-left: 10px; /* Adjust spacing from the left edge */
-}
+    margin-left: 10px;
+} */
 
-.logo {
+/* .logo {
     font-size: 1.5em;
     font-weight: bold;
-}
+} */
 
 .logo-video {
     width: 2px; /* Adjust the width as needed */
