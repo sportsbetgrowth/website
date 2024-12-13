@@ -44,9 +44,9 @@ body {
 }
 
 .logo-container {
-    position: relative;
-    width: 150px; /* Adjust width as needed */
-    height: auto;
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Adjust spacing from the left edge */
 }
 
 .logo {
