@@ -55,8 +55,8 @@ body {
 }
 
 .logo-video {
-    width: 40px; /* Adjust the width as needed */
-    height: 10px; /* Maintain aspect ratio */
+    width: 2px; /* Adjust the width as needed */
+    height: 2px; /* Maintain aspect ratio */
     border-radius: 8px; /* Optional: Adds rounded corners for a polished look */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
 }
