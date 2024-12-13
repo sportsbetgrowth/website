@@ -50,7 +50,7 @@ body {
 }
 
 .logo-video {
-    height: 80px; /* Set the desired height */
+    height: 40px; /* Set the desired height */
     width: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Ensure the video scales properly */
     overflow: hidden; /* Ensure no content spills out */
