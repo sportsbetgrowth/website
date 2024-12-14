@@ -51,7 +51,6 @@ body {
     color: #00cc99;
     transition: color 0.3s;
     text-align: center;
-    
 }
 
 .nav-links-container {
@@ -60,10 +59,9 @@ body {
 }
 
 .logo-image {
-    /* justify-content: left; */
-    /* padding: 40px; */
-    height: 160px;
-    width: 160px;
+    padding: 40px;
+    height: 100px;
+    width: 100px;
 }
 
 /* Styles the actual text in the link so it doesn't appear as off blue link */
@@ -94,7 +92,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 200px;
     gap: 40px;
 }
 
@@ -111,18 +109,21 @@ body {
 
 .image-section .text-container {
     flex: 1;
-    max-width: 500px;
-    text-align: center;
+    max-width: 600px;
+    text-align: left;
 }
 
 .image-section .text-container h2 {
-    font-size: 2em;
+    font-size: 4em;
     margin-bottom: 20px;
+    color: #00cc99;
+    font-family: 'Poppins';
 }
 
 .image-section .text-container p {
     font-size: 1.2em;
     margin-bottom: 20px;
+    font-family: 'Raleway'
 }
 
 /* Home Page - Blog Teasers Section */
@@ -244,12 +245,15 @@ body {
 .services-post h2 {
     margin: 15px 0;
     font-size: 1.5em;
-    color: #333;
+    color: #00cc99;
+    font-family: 'Poppins';
+    /* font-weight: 700; */
 }
   
 .services-post p {
     padding: 0 15px;
-    color: #666;
+    color:  #023047;
+    font-family: 'Raleway'
 }
   
 .services-post .read-more {
@@ -379,12 +383,47 @@ footer {
     }
 
     .image-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        gap: 40px;
         flex-direction: column;
         text-align: center;
     }
-
+    
+    .image-section .image-container {
+        flex: 1;
+        max-width: 500px;
+        padding: 5px;
+    }
+    
+    .image-section .image-container img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
     .image-section .text-container {
+        flex: 1;
+        max-width: 600px;
+        text-align: center;
         max-width: 100%;
+        padding: 30px;
+    }
+    
+    .image-section .text-container h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #00cc99;
+        font-family: 'Poppins';
+    }
+    
+    .image-section .text-container p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        color: #023047;
+        font-family: 'Raleway'
     }
 
     .testimonials-slider {
