@@ -33,9 +33,9 @@ body {
 /* Navigation Bar */
 .navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 30px;
+    padding: 5px 0;
     background-color: #023047;
     color: white;
     position: sticky;
