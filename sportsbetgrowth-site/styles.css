@@ -53,6 +53,9 @@ body {
     width: 160px; /* Maintain aspect ratio */
     max-width: 100%; /* Prevent the image from overflowing */
     object-fit: contain; /* Ensures the image scales without cropping */
+    align-items: center;
+    padding: 40px;
+    gap: 40px;
 }
 
 /* 
