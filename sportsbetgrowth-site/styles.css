@@ -30,6 +30,7 @@ body {
     padding: 0 15px; 
   }
 
+
 /* Navigation Bar */
 .navbar {
     align-items: center;
@@ -50,10 +51,12 @@ body {
     color: #00cc99;
     transition: color 0.3s;
     text-align: center;
+    
 }
 
 .nav-links-container {
     text-align: center;
+    display: flex;
 }
 
 .logo-image {
@@ -68,6 +71,8 @@ body {
     text-decoration: none;
     color: #00cc99;
     transition: color 0.3s;
+    font-family: 'Poppins';
+    font-weight: 500; /* Bold weight for better emphasis */
 }
 
 
@@ -82,7 +87,6 @@ body {
     position: absolute;
     right: 20px;
     color: #00cc99;
-    text-align: center;
 }
 
 /* Home Page - Image Highlight Section */
@@ -334,31 +338,26 @@ footer {
     margin: 10px;
 }
 
-/* Mobile Navigation */
-.nav-links-container {
-    display: flex;
-}
-
 /* Responsive adjustments */
 @media (max-width: 800px) {
     .nav-links {
+        display: flex;
         flex-direction: column;
         position: static;
         background-color: #023047;
-        width: 100%;
-        color: white;
+        margin: 15px 0;
+        padding: 10px 20px;
     }
 
     .nav-links-container {
         display: none;
         position: absolute;
         top: 100%;
-        right: 0;
         width: 100%;
         background-color: #023047; /* Match color of navbar */
         flex-direction: column;
         align-items: center;
-        color: white;
+        justify-content: center; /* Center links vertically */
     }
 
     .nav-links-container.active {
@@ -368,12 +367,15 @@ footer {
     .nav-links li {
         margin: 10px 0;
     }
+    
 
     .nav-links a {
-        padding: 15px;
-        width: 100%;
-        text-align: center;
-        display: block;
+        text-decoration: none; /* Remove underlines */
+        color:  #00cc99; /* White text */
+        font-size: 20px; /* Larger font for visibility */
+        text-align: center; /* Center text inside each link */
+        font-family: 'Poppins';
+        font-weight: 700; /* Bold weight for better emphasis */
     }
 
     .image-section {
