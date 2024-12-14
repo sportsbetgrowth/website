@@ -49,8 +49,8 @@ body {
 }
 
 .logo-image {
-    height: auto; /* Set an appropriate height for the navbar */
-    width: auto; /* Maintain aspect ratio */
+    height: 160px; /* Set an appropriate height for the navbar */
+    width: 160px; /* Maintain aspect ratio */
     max-width: 100%; /* Prevent the image from overflowing */
     object-fit: contain; /* Ensures the image scales without cropping */
 }
