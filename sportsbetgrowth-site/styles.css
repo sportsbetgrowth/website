@@ -47,7 +47,8 @@ body {
 
 .logo-container {
     display: flex;
-    align-items: center; /* Center the logo vertically within the navbar */
+    align-items: center;
+    padding-left: 15px; /* Match the hero section padding */
 }
 
 .logo-image {
