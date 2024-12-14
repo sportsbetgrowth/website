@@ -48,7 +48,7 @@ body {
 .logo-container {
     display: flex;
     align-items: center;
-    padding-left: 15px; /* Match the hero section padding */
+    padding: 0 15px;  /* Match the hero section padding */
 }
 
 .logo-image {
