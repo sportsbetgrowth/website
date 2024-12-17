@@ -43,9 +43,9 @@ body {
 
 /* Navigation Bar */
 .navbar {
+    display: flex;
     align-items: center;
     background-color: #023047;
-    display: flex;
     height: 80px;
     position: sticky;
     text-align: center;
@@ -76,13 +76,6 @@ body {
     transition: color 0.3s;
     font-family: 'Poppins';
     font-weight: 500; /* Bold weight for better emphasis */
-}
-
-.logo-image {
-    height: 100px;
-    width: 100px;
-    margin: 0 auto;
-    padding: 0 350px; 
 }
 
 /* Home Page - Hamburger Button */
@@ -393,7 +386,6 @@ footer {
     .nav-links li {
         margin: 10px 0;
     }
-    
 
     .nav-links a {
         text-decoration: none; /* Remove underlines */
