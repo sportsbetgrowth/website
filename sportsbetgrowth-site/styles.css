@@ -44,12 +44,20 @@ body {
 /* Navigation Bar */
 .navbar {
     display: flex;
-    align-items: center;
-    background-color: #023047;
+    justify-content: space-between; /* Space between logo and links */
+    align-items: center;            /* Vertically center items */
+    background-color: #023047;      /* Navy Blue */
     height: 80px;
     position: sticky;
-    text-align: center;
+    top: 0;
+    z-index: 1000;                  /* Ensure it stays on top */
+    padding: 0 150px;               
 }
+/* 
+.logo-container{
+    position: absolute;  
+    padding-left: 350px ;      
+} */
 
 .nav-links {
     display: flex;
@@ -62,11 +70,11 @@ body {
 }
 
 .nav-links-container {
-    text-align: center;
+    flex: 1;                        /* Allow the container to take full width */
     display: flex;
-    justify-content: center; /* Center the links horizontally inside the container */
-    align-items: center; /* Vertically center the links */
-    margin: 0 auto; /* Push the container to the center */
+    justify-content: center;        /* Center the nav-links horizontally */
+    align-items: center;
+    margin: 0 auto;                 /* Auto margins center it perfectly */
 }
 
 /* Styles the actual text in the link so it doesn't appear as off blue link */
