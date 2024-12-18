@@ -24,7 +24,7 @@ body {
 
 .read-more{
     font-family: 'Poppins';
-    font-weight: 500; /* Bold weight for better emphasis */
+    font-weight: 500;
 }
 
 /* Centralized Container Class */
@@ -43,16 +43,14 @@ body {
 /* Navigation Bar */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Space between logo and links */
-    align-items: center;            /* Vertically center items */
-    background-color: #023047;      /* Navy Blue */
+    justify-content: space-between; 
+    align-items: center;            
+    background-color: #023047;     
     height: 80px;
     position: sticky;
     top: 0;
-    z-index: 1000;                  /* Ensure it stays on top */
+    z-index: 1000;
 }
-
-
 
 .nav-links {
     display: flex;
@@ -65,11 +63,11 @@ body {
 }
 
 .nav-links-container {
-    flex: 1;                        /* Allow the container to take full width */
+    flex: 1;                       
     display: flex;
-    justify-content: center;        /* Center the nav-links horizontally */
+    justify-content: center;        
     align-items: center;
-    margin: 0 auto;                 /* Auto margins center it perfectly */
+    margin: 0 auto;                 
 }
 
 /* Styles the actual text in the link so it doesn't appear as off blue link */
@@ -78,7 +76,7 @@ body {
     color: #00cc99;
     transition: color 0.3s;
     font-family: 'Poppins';
-    font-weight: 500; /* Bold weight for better emphasis */
+    font-weight: 500;
 }
 
 /* Home Page - Hamburger Button */
@@ -391,12 +389,12 @@ footer {
     }
 
     .nav-links a {
-        text-decoration: none; /* Remove underlines */
-        color:  #00cc99; /* White text */
-        font-size: 20px; /* Larger font for visibility */
-        text-align: center; /* Center text inside each link */
+        text-decoration: none; 
+        color:  #00cc99;
+        font-size: 20px; 
+        text-align: center; 
         font-family: 'Poppins';
-        font-weight: 700; /* Bold weight for better emphasis */
+        font-weight: 700;
     }
 
     .image-section {
