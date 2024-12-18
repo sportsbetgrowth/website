@@ -42,42 +42,58 @@ body {
 
 /* Navigation Bar */
 .navbar {
+    background-color: #023047;    
+    color: white;
     display: flex;
-    justify-content: space-between; 
-    align-items: center;            
-    background-color: #023047;     
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    position: relative;
     height: 80px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+}
+
+.navbar .logo {
+    margin-right: auto;
+}
+
+.navbar .logo img {
+    object-fit: contain;
+    display: block;
 }
 
 .nav-links {
+    list-style: none;
     display: flex;
-    gap: 20px; 
-    list-style: none; 
-    color: #00cc99;
-    transition: color 0.3s;
-    text-align: center;
-    padding: 400px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.nav-links-container {
-    flex: 1;                       
-    display: flex;
-    justify-content: center;        
-    align-items: center;
-    margin: 0 auto;                 
+.nav-links li {
+    margin: 0 10px;
 }
 
-/* Styles the actual text in the link so it doesn't appear as off blue link */
 .nav-links a {
     text-decoration: none;
-    color: #00cc99;
+    color: white;
+    font-size: 16px;
     transition: color 0.3s;
-    font-family: 'Poppins';
-    font-weight: 500;
 }
+
+.nav-links a:hover {
+    color: #f0a500;
+}
+
+
+/* Ensure links and logo are vertically centered */
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 
 /* Home Page - Hamburger Button */
 .hamburger {
@@ -139,7 +155,7 @@ body {
 /* Home Page - Contact Section */
 .contact-section {
     padding: 40px;
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
     text-align: center;
 }
 
@@ -157,16 +173,21 @@ body {
     border-radius: 5px;
     text-align: center;
     font-size: 16px; 
+    background-color: #00cc99;
+    font-family: 'Raleway'
+    
 }
 
 .contact-section textarea {
     width: 300px;
+    background-color: #00cc99;
     height: 100px;  
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
     font-size: 16px;
+    font-family: 'Raleway'
 }
 
 .contact-section h2{
@@ -360,24 +381,34 @@ footer {
     .navbar{
         justify-content: center;
     }
+
+    .hamburger {
+        display: block;
+    }
+
     .nav-links {
+        margin: 0;
+        padding: 0; /* Remove internal padding for proper centering */
         display: flex;
         flex-direction: column;
+        align-items: center; /* Center links horizontally */
+        justify-content: center; /* Center links vertically */
         position: static;
         background-color: #023047;
-        margin: 15px 0;
-        padding: 10px 20px;
+        width: 0%;
     }
 
     .nav-links-container {
         display: none;
         position: absolute;
+        left: 0;
         top: 100%;
         width: 100%;
         background-color: #023047; /* Match color of navbar */
         flex-direction: column;
         align-items: center;
         justify-content: center; /* Center links vertically */
+        z-index: 10;
     }
 
     .nav-links-container.active {
@@ -449,10 +480,6 @@ footer {
     .blog-teasers-slider {
         flex-direction: column;
         gap: 40px;
-    }
-
-    .hamburger {
-        display: block;
     }
 
     .custom-alert {
