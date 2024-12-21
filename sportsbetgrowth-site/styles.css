@@ -22,6 +22,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     transition: all 0.3s ease; /* Smooth hover effect */
     cursor: pointer; /* Pointer cursor for interactivity */
+    align-items: center;
 }
 
 .cta-button:hover {
@@ -148,9 +149,10 @@ body {
     gap: 40px;
 }
 
-.image-section .image-container {
+.image-section .text-container {
     flex: 1;
-    max-width: 500px;
+    max-width: 600px;
+    text-align: left;
 }
 
 .image-section .image-container img {
@@ -159,23 +161,27 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.image-section .text-container {
-    flex: 1;
-    max-width: 600px;
-    text-align: left;
-}
-
 .image-section .text-container h2 {
-    font-size: 4em;
+    font-size: clamp(3.0rem, 3.75vw, 4rem); /* Adjusts between 1.5rem and 3rem */
+    line-height: 1.2; /* Consistent spacing */
+    text-align: center; /* Center text if needed */
+    font-family: 'Raleway', sans-serif; /* Use your preferred font */
     margin-bottom: 20px;
     color: #023047;
-    font-family: 'Raleway';
 }
 
 .image-section .text-container p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    font-family: 'Raleway'
+    /* margin-bottom: 20px;
+    font-size: clamp(1rem, 2vw, 1.5rem); /* Adjusts between 1rem and 1.5rem */
+    line-height: 1.5; /* Readable spacing */
+    text-align: center; /* Align text */
+    margin: 0 auto; /* Center block with auto margins */
+    max-width: 600px; /* Optional: limit text width for readability */
+    font-family: Raleway
+}
+
+.image-section .cta-button {
+    align-items: center;
 }
 
 /* Home Page - Blog Teasers Section */
@@ -434,8 +440,26 @@ footer {
         text-align: center;
     }
 
-    .navbar{
-        justify-content: center;
+    .image-section .text-container {
+        flex: 1;
+        max-width: 600px;
+        text-align: center;
+
+    }
+
+    .image-section .text-container p {
+        padding: 15px;
+    }
+
+    .image-section .cta-button {
+        align-items: center;
+        padding: 20px;
+    }
+    
+    .navbar .logo {
+        position: absolute; /* Remove from document flow */
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Adjust for true center */
     }
 
     .nav-links {
@@ -479,9 +503,4 @@ footer {
     .nav-links li {
         margin: 10px 0;
     }
-    
-    .image-container{
-        align-items: center;
-    }
-    
 }
