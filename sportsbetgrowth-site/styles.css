@@ -8,7 +8,7 @@ body {
 
 .cta-button {
     display: inline-block;
-    padding: 15px 30px; /* Adjust for desired size */
+    padding: 15px 30px;
     font-size: 16px; /* Font size for readability */
     font-family: 'Raleway', sans-serif; /* Match the font style */
     font-weight: 600; /* Bold text */
@@ -143,16 +143,22 @@ body {
 /* Home Page - Image Highlight Section */
 .image-section {
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 100px;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 90%; 
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 15px; 
+    text-align: center;
     gap: 40px;
 }
 
 .image-section .text-container {
     flex: 1;
     max-width: 600px;
-    text-align: left;
+    text-align: center;
 }
 
 .image-section .image-container img {
@@ -162,26 +168,25 @@ body {
 }
 
 .image-section .text-container h2 {
-    font-size: clamp(3.0rem, 3.75vw, 4rem); /* Adjusts between 1.5rem and 3rem */
-    line-height: 1.2; /* Consistent spacing */
-    text-align: center; /* Center text if needed */
-    font-family: 'Raleway', sans-serif; /* Use your preferred font */
+    font-size: clamp(3.0rem, 3.4vw, 3.5rem);
+    line-height: 1.2; 
+    font-family: 'Raleway', sans-serif; 
     margin-bottom: 20px;
     color: #023047;
 }
 
 .image-section .text-container p {
-    /* margin-bottom: 20px;
-    font-size: clamp(1rem, 2vw, 1.5rem); /* Adjusts between 1rem and 1.5rem */
-    line-height: 1.5; /* Readable spacing */
-    text-align: center; /* Align text */
-    margin: 0 auto; /* Center block with auto margins */
-    max-width: 600px; /* Optional: limit text width for readability */
+    padding: 15px;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
     font-family: Raleway
 }
 
 .image-section .cta-button {
     align-items: center;
+    padding: 20px;
 }
 
 /* Home Page - Blog Teasers Section */
@@ -192,7 +197,6 @@ body {
 /* Home Page - Contact Section */
 .contact-section {
     padding: 40px;
-    /* background-color: #f4f4f4; */
     text-align: center;
 }
 
@@ -204,20 +208,21 @@ body {
 }
 
 .contact-section input {
+    color: #023047;
     width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
     font-size: 16px; 
-    background-color: #00cc99;
+    background-color: #FFFFFF;
     font-family: 'Raleway'
-    
 }
 
 .contact-section textarea {
+    color: #023047;
     width: 300px;
-    background-color: #00cc99;
+    background-color: #FFFFFF;
     height: 100px;  
     padding: 10px;
     border: 1px solid #ccc;
@@ -319,6 +324,7 @@ footer {
     }
 
     .image-section {
+        display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
@@ -328,13 +334,19 @@ footer {
         margin: 0 auto;
         padding: 0 15px; 
         text-align: center;
+        gap: 40px;
+    }
+
+    .image-section .image-container img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .image-section .text-container {
         flex: 1;
         max-width: 600px;
         text-align: center;
-
     }
 
     .image-section .text-container p {
