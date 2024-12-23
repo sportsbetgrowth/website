@@ -203,6 +203,7 @@ body {
     max-width: 1200px; 
     margin: 0 auto;
     padding: 0 15px; 
+    text-align: center;
     gap: 40px;
     padding-bottom: 64px;
 }
@@ -494,8 +495,15 @@ footer {
     width: 100%;
     height: auto;
 }
-  
+
 .services-post h2 {
+    font-size: 1.5em;
+    color: #00cc99;
+    font-family: 'Poppins';
+    text-align: center;
+}
+
+.services-post h3 {
     font-size: 1.5em;
     color: #00cc99;
     font-family: 'Poppins';
