@@ -73,28 +73,29 @@ body {
 
 .title-with-circles {
     display: flex;
-    align-items: center; /* Aligns items (circles and text) vertically */
-    justify-content: center; /* Centers the entire group */
-    gap: 10px; /* Adds spacing between the circles and text */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px; /* Space between title and the first paragraph */
+}
+
+.circle-icon {
+    width: 30px; /* Adjust circle size */
+    height: 30px;
+    object-fit: contain; /* Ensures the image maintains its aspect ratio */
 }
 
 .title-with-circles h2 {
     margin: 0;
-    font-size: 1.8em; /* Adjust font size as needed */
+    font-size: 2em; /* Adjust font size as needed */
     font-weight: bold;
     line-height: 1; /* Ensures no extra vertical space in the text */
     position: relative;
     top: 8px; /* Adjust the vertical positioning slightly */
 }
 
-.circle-icon {
-    width: 20px; /* Adjust circle size */
-    height: 20px;
-    object-fit: contain; /* Ensures the image maintains its aspect ratio */
-}
-
 .highlights-text-container h2{
-    font-size: clamp(1.5rem, 2.4vw, 3.0rem);
+    font-size: clamp(1.35rem, 2.4vw, 3.0rem);
     font-family: 'Poppins';
     color: #023047;
     text-align: left;
@@ -103,13 +104,23 @@ body {
     padding-bottom: 15px;
 }
 
-.highlights-text-container p{
+/* .highlights-text-container p{
     font-family: 'Raleway';
     color: #023047;
     padding: 0 15px;
     line-height: 1.5;
     text-align: left;
     margin: 0 auto;
+} */
+
+.highlights-text-container p {
+    font-size: 1em; /* Slightly smaller than the heading */
+    /* color:#023047; */
+    margin: 0 auto 10px; /* Vertical space between paragraphs */
+    max-width: 700px; /* Limits the width for better readability */
+    line-height: 1.6; /* Improves readability with proper spacing */
+    text-align: center; /* Keeps it aligned with the heading */
+    font-family: Raleway;
 }
 
 /* Navigation Bar */
@@ -192,7 +203,6 @@ body {
     max-width: 1200px; 
     margin: 0 auto;
     padding: 0 15px; 
-    text-align: center;
     gap: 40px;
     padding-bottom: 64px;
 }
@@ -206,8 +216,8 @@ body {
 .image-section .image-container img {
     width: 100%;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(255, 110, 74, 0.5), 
-                0 6px 20px rgba(255, 110, 74, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 204, 153, 0.5), 
+                0 6px 20px rgba(0, 204, 153, 0.3); /* Caribbean Green glow */
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -380,14 +390,14 @@ footer {
         padding: 0 15px; 
         text-align: center;
         gap: 40px;
-        padding-bottom: 64px;
+        padding-bottom: 32px;
     }
 
     .image-section .image-container img {
         width: 100%;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(255, 110, 74, 0.5), 
-        0 6px 20px rgba(255, 110, 74, 0.3); /* Outrageous orange glow */
+        box-shadow: 0 4px 8px rgba(0, 204, 153, 0.5), 
+                    0 6px 20px rgba(0, 204, 153, 0.3); /* Caribbean Green glow */
         transition: transform 0.2s, box-shadow 0.2s;
     }
 
