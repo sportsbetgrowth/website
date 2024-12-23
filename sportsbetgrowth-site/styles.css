@@ -66,9 +66,50 @@ body {
     text-align: center;
 }
 
-.highlights-text-container{
+.highlights-text-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.title-with-circles {
+    display: flex;
+    align-items: center; /* Aligns items (circles and text) vertically */
+    justify-content: center; /* Centers the entire group */
+    gap: 10px; /* Adds spacing between the circles and text */
+}
+
+.title-with-circles h2 {
+    margin: 0;
+    font-size: 1.8em; /* Adjust font size as needed */
+    font-weight: bold;
+    line-height: 1; /* Ensures no extra vertical space in the text */
+    position: relative;
+    top: 8px; /* Adjust the vertical positioning slightly */
+}
+
+.circle-icon {
+    width: 20px; /* Adjust circle size */
+    height: 20px;
+    object-fit: contain; /* Ensures the image maintains its aspect ratio */
+}
+
+.highlights-text-container h2{
+    font-size: clamp(1.5rem, 2.4vw, 3.0rem);
     font-family: 'Poppins';
     color: #023047;
+    text-align: left;
+    padding: 0 15px;
+    margin: 0 auto;
+    padding-bottom: 15px;
+}
+
+.highlights-text-container p{
+    font-family: 'Raleway';
+    color: #023047;
+    padding: 0 15px;
+    line-height: 1.5;
+    text-align: left;
+    margin: 0 auto;
 }
 
 /* Navigation Bar */
@@ -154,7 +195,6 @@ body {
     text-align: center;
     gap: 40px;
     padding-bottom: 64px;
-    /* padding-top: 64px; */
 }
 
 .image-section .text-container {
@@ -166,7 +206,9 @@ body {
 .image-section .image-container img {
     width: 100%;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(255, 110, 74, 0.5), 
+                0 6px 20px rgba(255, 110, 74, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .image-section .text-container h2 {
@@ -189,11 +231,6 @@ body {
 .image-section .cta-button {
     align-items: center;
     padding: 20px;
-}
-
-/* Home Page - Blog Teasers Section */
-.container {
-    text-align: center;
 }
 
 /* Home Page - Contact Section */
@@ -293,6 +330,12 @@ footer {
     background-color: #023047;
     color: white;
     text-align: center;
+    text-decoration: none;
+    color: #00CC99;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Raleway';
+    font-weight: 400;
 }
 
 .footer-links a {
@@ -343,7 +386,9 @@ footer {
     .image-section .image-container img {
         width: 100%;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(255, 110, 74, 0.5), 
+        0 6px 20px rgba(255, 110, 74, 0.3); /* Outrageous orange glow */
+        transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .image-section .text-container {
@@ -441,14 +486,14 @@ footer {
 }
   
 .services-post h2 {
-    margin: 15px 0;
     font-size: 1.5em;
     color: #00cc99;
     font-family: 'Poppins';
+    text-align: center;
 }
   
 .services-post p {
-    padding: 0 15px;
+    text-align: center;
     color:  #023047;
     font-family: 'Raleway'
 }
