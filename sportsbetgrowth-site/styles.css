@@ -153,6 +153,8 @@ body {
     padding: 0 15px; 
     text-align: center;
     gap: 40px;
+    padding-bottom: 64px;
+    /* padding-top: 64px; */
 }
 
 .image-section .text-container {
@@ -300,7 +302,7 @@ footer {
 }
 
 .footer-links a:hover {
-    color: #009977;
+    color: #FF5733;
 }
 
 .social-icons img {
@@ -335,6 +337,7 @@ footer {
         padding: 0 15px; 
         text-align: center;
         gap: 40px;
+        padding-bottom: 64px;
     }
 
     .image-section .image-container img {
@@ -462,7 +465,7 @@ footer {
 }
   
 .services-post .read-more:hover {
-    background: #00cc99;
+    background: #FF5733;
 }
 
 /* Blog Page HTML */
@@ -514,5 +517,5 @@ footer {
 }
   
 .blog-post .read-more:hover {
-    background: #00cc99;
+    background: #FF5733;
 }
