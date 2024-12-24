@@ -1,3 +1,79 @@
+/* Navigation Bar */
+.navbar {
+    background-color: #023047;    
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    position: relative;
+    height: 80px;
+}
+
+/* Ensure links and logo are vertically centered */
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo {
+    margin-right: auto;
+    
+}
+
+.navbar .logo img {
+    object-fit: contain;
+    display: block;
+}
+
+/* Ensure logo is contained within a block-level element */
+.logo {
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+/* Hide inverse logo initially */
+.logo .logo-image {
+    transition: opacity 0.3s ease;
+}
+
+/* On hover, switch to the inverse logo */
+.logo:hover .logo-image {
+    content: url('images/Sportsbetgrowth-inverse.png');
+}
+
+/* Style the NavLinks */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Style the NavLinks */
+.nav-links li {
+    margin: -10px 10px;
+}
+
+/* Style the NavLinks */
+.nav-links a {
+    text-decoration: none;
+    color:  #00CC99;
+    font-size: 20px; 
+    text-align: center; 
+    font-family: 'Raleway';
+    font-weight: 400;
+}
+
+.nav-links a:hover {
+    color: #FF5733;
+}
+
+
 /* General Styles */
 body {
     margin: 0;
@@ -115,79 +191,6 @@ body {
     font-family: Raleway;
 }
 
-/* Navigation Bar */
-.navbar {
-    background-color: #023047;    
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-    position: relative;
-    height: 80px;
-}
-
-.navbar .logo {
-    margin-right: auto;
-    
-}
-
-.navbar .logo img {
-    object-fit: contain;
-    display: block;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.nav-links li {
-    margin: -10px 10px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color:  #00CC99;
-    font-size: 20px; 
-    text-align: center; 
-    font-family: 'Raleway';
-    font-weight: 400;
-}
-
-.nav-links a:hover {
-    color: #FF5733;
-}
-
-
-/* Ensure links and logo are vertically centered */
-.navbar .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Ensure logo is contained within a block-level element */
-.logo {
-    display: inline-block;
-    transition: all 0.3s ease; /* Smooth transition */
-}
-
-/* Hide inverse logo initially */
-.logo .logo-image {
-    transition: opacity 0.3s ease;
-}
-
-/* On hover, switch to the inverse logo */
-.logo:hover .logo-image {
-    content: url('images/Sportsbetgrowth-inverse.png'); /* Inverse logo path */
-}
-
 
 /* Home Page - Hamburger Button */
 .hamburger {
@@ -255,7 +258,6 @@ body {
 }
 
 /* Home Page - Our Work Highlight Section */
-
 #our-work {
     padding: 50px 0;
     background-color: #f9f9f9;
@@ -464,44 +466,6 @@ footer {
     .hamburger {
         display: block;
     }
-
-    .image-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        flex-direction: column;
-        width: 90%; 
-        max-width: 1200px; 
-        margin: 0 auto;
-        padding: 0 15px; 
-        text-align: center;
-        gap: 40px;
-        padding-bottom: 32px;
-    }
-
-    .image-section .image-container img {
-        width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 204, 153, 0.5), 
-                    0 6px 20px rgba(0, 204, 153, 0.3); /* Caribbean Green glow */
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .image-section .text-container {
-        flex: 1;
-        max-width: 600px;
-        text-align: center;
-    }
-
-    .image-section .text-container p {
-        padding: 15px;
-    }
-
-    .image-section .cta-button {
-        align-items: center;
-        padding: 20px;
-    }
     
     .navbar .logo {
         position: absolute; /* Remove from document flow */
@@ -549,6 +513,44 @@ footer {
 
     .nav-links li {
         margin: 10px 0;
+    }
+
+    .image-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        width: 90%; 
+        max-width: 1200px; 
+        margin: 0 auto;
+        padding: 0 15px; 
+        text-align: center;
+        gap: 40px;
+        padding-bottom: 32px;
+    }
+
+    .image-section .image-container img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 204, 153, 0.5), 
+                    0 6px 20px rgba(0, 204, 153, 0.3); /* Caribbean Green glow */
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .image-section .text-container {
+        flex: 1;
+        max-width: 600px;
+        text-align: center;
+    }
+
+    .image-section .text-container p {
+        padding: 15px;
+    }
+
+    .image-section .cta-button {
+        align-items: center;
+        padding: 20px;
     }
 }
 
