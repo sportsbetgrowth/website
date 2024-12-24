@@ -262,6 +262,82 @@ body {
     padding: 20px;
 }
 
+/* Home Page - Our Work Highlight Section */
+
+#our-work {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
+#our-work .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#our-work h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+#our-work p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+#our-work .work-gallery {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#our-work .work-item {
+    flex: 1 1 calc(33.333% - 20px);
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 2px solid #eee; /* Aligns all borders */
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#our-work .work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+#our-work .work-item img {
+    width: auto;
+    height: 120px; /* Enforces consistent height */
+    max-width: 100%; /* Prevents overflow */
+    object-fit: contain; /* Keeps proportions intact */
+}
+
+#our-work .work-item:hover img {
+    opacity: 0.9;
+}
+
+#our-work .work-item h3 {
+    font-size: 1.25rem;
+    margin: 15px 0 5px;
+    color: #333;
+}
+
+#our-work .work-item p {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0 15px 15px;
+}
+
 /* Home Page - Contact Section */
 .contact-section {
     padding: 40px;
