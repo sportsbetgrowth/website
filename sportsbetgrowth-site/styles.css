@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Raleway', sans-serif;
     background-color: #f4f4f4;
     color: #333;
 }
@@ -137,6 +137,7 @@ body {
 
 .navbar .logo {
     margin-right: auto;
+    
 }
 
 .navbar .logo img {
@@ -171,11 +172,28 @@ body {
     color: #FF5733;
 }
 
+
 /* Ensure links and logo are vertically centered */
 .navbar .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+/* Ensure logo is contained within a block-level element */
+.logo {
+    display: inline-block;
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Hide inverse logo initially */
+.logo .logo-image {
+    transition: opacity 0.3s ease;
+}
+
+/* On hover, switch to the inverse logo */
+.logo:hover .logo-image {
+    content: url('images/Sportsbetgrowth-inverse.png'); /* Inverse logo path */
 }
 
 
@@ -467,6 +485,24 @@ footer {
 }
 
 /* Services Page HTML */
+#services-highlights-wrapper {
+    background-color: #ffffff; /* White background that spans the full width */
+    width: 100%; /* Ensure the background spans the entire width of the page */
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+}
+
+#services-highlights {
+    max-width: 1200px; /* Constrain the content to the same width as the homepage */
+    margin: 0 auto; /* Center the content within the wrapper */
+    padding: 20px 15px; /* Maintain padding for content spacing */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+#services-highlights {
+    background-color: #FFFFFF; /* White background */
+}
+
 .services-highlights h2 {
     text-align: center;
     font-size: 2.5em;
