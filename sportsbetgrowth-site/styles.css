@@ -334,6 +334,101 @@ body {
     margin: 0 15px 15px;
 }
 
+/* Testimonials Sections */
+
+.testimonials {
+  background: #f9f9f9;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.testimonials .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.testimonial-slider {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.testimonial-card {
+  display: none;
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  margin: 10px auto;
+  border-radius: 8px;
+  text-align: left;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.testimonial-card.active {
+  display: block;
+}
+
+.testimonial-card p {
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.testimonial-card h4 {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.testimonial-nav {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-nav .indicators {
+  display: flex;
+  gap: 10px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  background: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.indicator.active {
+  background: #333;
+}
+
+.testimonial-nav button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #888;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.testimonial-nav button:hover {
+  color: #000;
+}
+
 /* Home Page - Contact Section */
 .contact-section {
     padding: 40px;
@@ -564,6 +659,19 @@ footer {
     .image-section .cta-button {
         align-items: center;
         padding: 20px;
+    }
+
+    .testimonial-card {
+        height: auto; /* Allow height to adjust for smaller screens */
+        padding: 20px;
+    }
+
+    .testimonial-card p {
+        font-size: 0.9rem;
+    }
+
+    .testimonial-card h4 {
+        font-size: 0.8rem;
     }
 }
 

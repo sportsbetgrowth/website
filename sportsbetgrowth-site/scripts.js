@@ -189,6 +189,41 @@ function addToGoogleSheet(name, email, message) {
     });    
 }
 
+const testimonials = document.querySelectorAll('.testimonial-card');
+const indicators = document.querySelectorAll('.indicator');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+let currentIndex = 0;
+
+function updateTestimonials(index) {
+  testimonials.forEach((testimonial, i) => {
+    testimonial.classList.toggle('active', i === index);
+  });
+  indicators.forEach((indicator, i) => {
+    indicator.classList.toggle('active', i === index);
+  });
+}
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+  updateTestimonials(currentIndex);
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % testimonials.length;
+  updateTestimonials(currentIndex);
+});
+
+indicators.forEach(indicator => {
+  indicator.addEventListener('click', () => {
+    currentIndex = parseInt(indicator.dataset.index, 10);
+    updateTestimonials(currentIndex);
+  });
+});
+
+// Initialize first testimonial
+updateTestimonials(currentIndex);
+
 // // Run the function when the DOM is fully loaded
 // document.addEventListener('DOMContentLoaded', () => {
 //     loadNavbar();
