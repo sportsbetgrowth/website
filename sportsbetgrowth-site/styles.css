@@ -3,8 +3,8 @@
     position: relative; /* Allow the navbar to scroll with the page */
     top: auto; /* Reset top positioning */
     left: auto; /* Reset left positioning */
-    width: 100%; /* Full width of the container */
     height: 100px; /* Maintain consistent height */
+    width: 100%; /* Full width of the container */
     background-color: #023047; /* Navbar background color */
     z-index: 1000; /* Keep it above content */
     display: flex;
@@ -14,10 +14,6 @@
     box-sizing: border-box; /* Include padding in width calculation */
 }
 
-.hamburger {
-    display: none; /* Hide the hamburger on larger screens */
-}
-
 /* Ensure links and logo are vertically centered */
 .navbar .container {
     display: flex;
@@ -25,30 +21,15 @@
     justify-content: space-between;
 }
 
+/* Style the Logo in the Navbar */
 .navbar .logo {
     margin-right: auto;
-    
 }
 
+/* Style the Logo in the Navbar */
 .navbar .logo img {
     object-fit: contain;
     display: block;
-}
-
-/* Ensure logo is contained within a block-level element */
-.logo {
-    display: inline-block;
-    transition: all 0.3s ease;
-}
-
-/* Hide inverse logo initially */
-.logo .logo-image {
-    transition: opacity 0.3s ease;
-}
-
-/* On hover, switch to the inverse logo */
-.logo:hover .logo-image {
-    content: url('images/Sportsbetgrowth-inverse.png');
 }
 
 /* Style the NavLinks */
@@ -77,10 +58,31 @@
     font-weight: 400;
 }
 
+/* Style the NavLinks */
 .nav-links a:hover {
     color: #FF5733;
 }
 
+/* Ensure the hamburger does not appear on dekstop */
+.hamburger {
+    display: none;
+}
+
+/* Ensure logo is contained within a block-level element */
+.logo {
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+/* Hide inverse logo initially */
+.logo .logo-image {
+    transition: opacity 0.3s ease;
+}
+
+/* On hover, switch to the inverse logo */
+.logo:hover .logo-image {
+    content: url('images/Sportsbetgrowth-inverse.png');
+}
 
 /* General Styles */
 body {
@@ -90,46 +92,46 @@ body {
     color: #333;
 }
 
+
 .cta-button {
     display: inline-block;
     padding: 15px 30px;
-    font-size: 16px; /* Font size for readability */
-    font-family: 'Raleway', sans-serif; /* Match the font style */
-    font-weight: 600; /* Bold text */
-    color: #fff; /* White text color */
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: #fff;
     background: #00CC99;
     text-transform: uppercase;
-    letter-spacing: 1px; /* Slightly spaced-out letters */
-    text-decoration: none; /* Remove underline */
-    border: none; /* No border */
-    border-radius: 50px; /* Fully rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: all 0.3s ease; /* Smooth hover effect */
-    cursor: pointer; /* Pointer cursor for interactivity */
+    letter-spacing: 1px;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; 
+    cursor: pointer;
     align-items: center;
 }
 
 .cta-button:hover {
     background: #FF5733;
-    /* transform: scale(1.05); */
 }
 
 .cta-button-green {
     display: inline-block;
-    padding: 15px 30px; /* Adjust for desired size */
-    font-size: 16px; /* Font size for readability */
-    font-family: 'Raleway', sans-serif; /* Match the font style */
-    font-weight: 600; /* Bold text */
-    color: #fff; /* White text color */
+    padding: 15px 30px; 
+    font-size: 16px; 
+    font-family: 'Raleway', sans-serif; 
+    font-weight: 600;
+    color: #fff; 
     background: #00CC99;
-    text-transform: uppercase; /* Capitalized text */
-    letter-spacing: 1px; /* Slightly spaced-out letters */
-    text-decoration: none; /* Remove underline */
-    border: none; /* No border */
-    border-radius: 50px; /* Fully rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: all 0.3s ease; /* Smooth hover effect */
-    cursor: pointer; /* Pointer cursor for interactivity */
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    text-decoration: none; 
+    border: none;
+    border-radius: 50px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    cursor: pointer; 
 }
   
 .cta-button-green:hover {
@@ -166,28 +168,25 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 15px; /* Space between title and the first paragraph */
+    margin-bottom: 15px;
 }
 
 .circle-icon {
-    width: 30px; /* Adjust circle size */
+    width: 30px;
     height: 30px;
-    object-fit: contain; /* Ensures the image maintains its aspect ratio */
+    object-fit: contain; 
 }
 
 .title-with-circles h2 {
     margin: 0;
-    font-size: 2em; /* Adjust font size as needed */
+    font-size: 2em;
     font-weight: bold;
-    line-height: 1; /* Ensures no extra vertical space in the text */
+    line-height: 1;
     position: relative;
-    top: 8px; /* Adjust the vertical positioning slightly */
+    top: 8px; 
 }
 
 .highlights-text-container h2{
-    /* font-size: clamp(1.35rem, 2.4vw, 3.0rem);
-    font-family: 'Poppins'; */
-    /* color: #023047; */
     font-size: 2.5rem;
     text-align: center;
     padding: 0 15px;
@@ -197,12 +196,11 @@ body {
 
 
 .highlights-text-container p {
-    font-size: 1em; /* Slightly smaller than the heading */
-    /* color:#023047; */
-    margin: 0 auto 10px; /* Vertical space between paragraphs */
-    max-width: 700px; /* Limits the width for better readability */
-    line-height: 1.6; /* Improves readability with proper spacing */
-    text-align: center; /* Keeps it aligned with the heading */
+    font-size: 1em;
+    margin: 0 auto 10px; 
+    max-width: 700px; 
+    line-height: 1.6; 
+    text-align: center;
     font-family: Raleway;
 }
 
@@ -232,7 +230,7 @@ body {
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 204, 153, 0.5), 
-                0 6px 20px rgba(0, 204, 153, 0.3); /* Caribbean Green glow */
+                0 6px 20px rgba(0, 204, 153, 0.3);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -278,13 +276,13 @@ body {
 
 #our-work .work-gallery {
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping of items */
+    flex-wrap: wrap; 
     justify-content: space-between;
-    gap: 20px; /* Space between cards */
+    gap: 20px; 
 }
 
 #our-work .work-item {
-    flex: 1 1 calc(33.333% - 20px); /* Default: 3 cards per row */
+    flex: 1 1 calc(33.333% - 20px);
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
@@ -299,9 +297,9 @@ body {
 
 #our-work .work-item img {
     width: auto;
-    height: 120px; /* Enforces consistent height */
-    max-width: 100%; /* Prevents overflow */
-    object-fit: contain; /* Keeps proportions intact */
+    height: 120px; 
+    max-width: 100%; 
+    object-fit: contain; 
 }
 
 #our-work .work-item:hover img {
@@ -322,7 +320,7 @@ body {
 
 /* Testimonials Sections */
 .testimonials {
-    background: #fff; /* Changed background to pure white */
+    background: #fff;
     padding: 60px 20px;
     text-align: center;
 }
@@ -346,11 +344,11 @@ body {
 .testimonial-card {
     display: none;
     width: 100%;
-    height: flex; /* Set a fixed height to ensure consistent size */
+    height: flex; 
     max-width: 600px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #f4f4f4; /* Changed background color */
+    background-color: #f4f4f4;
     margin: 10px auto;
     border-radius: 8px;
     text-align: center;
@@ -359,7 +357,6 @@ body {
     overflow-wrap: break-word;
 }
 
-  
 .testimonial-card.active {
     display: block;
 }
@@ -375,7 +372,7 @@ body {
     font-size: 1rem;
     font-style: italic;
     line-height: 1.5;
-    max-height: 220px; /* Adjust to ensure content fits */
+    max-height: 220px;
     overflow: hidden;
 }
 
@@ -565,38 +562,38 @@ footer {
         border: none;
         color: #00cc99;
         cursor: pointer;
-        position: absolute; /* Keep it relative to the navbar */
-        top: 50%; /* Center vertically within the navbar */
-        right: 0px;
-        transform: translateY(-50%); /* Correct for vertical centering */
-        z-index: 1001; /* Ensure it's above the navbar content */
+        position: absolute; 
+        top: 50%; 
+        right: 15px;
+        transform: translateY(-50%); 
+        z-index: 1001;
     }
     
     .navbar .logo {
-        position: absolute; /* Remove from document flow */
-        left: 50%; /* Center horizontally */
-        transform: translateX(-50%); /* Adjust for true center */
+        position: absolute; 
+        left: 50%; 
+        transform: translateX(-50%);
     }
 
     .no-scroll {
-        overflow: hidden; /* Disable scrolling */
-        height: 100%; /* Prevent vertical resizing */
+        overflow: hidden; 
+        height: 100%;
     }
 
     .nav-links {
         margin: 0;
-        padding: 0; /* Remove internal padding for proper centering */
+        padding: 0; 
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center links horizontally */
-        justify-content: center; /* Center links vertically */
+        align-items: center; 
+        justify-content: center;
         position: static;
         background-color: #023047;
         width: 0%;
     }
 
     .nav-links-container.active {
-        display: flex; /* Show container when active */
+        display: flex; 
         opacity: 1;
         visibility: visible;
     }
@@ -611,28 +608,28 @@ footer {
     }
     
     .nav-links-container {
-        display: none; /* Initially hidden */
-        position: fixed; /* Fix to the viewport */
+        display: none; 
+        position: fixed; 
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #023047; /* Match navbar background color */
-        flex-direction: column; /* Stack links vertically */
-        justify-content: center; /* Center links vertically */
-        align-items: center; /* Center links horizontally */
-        z-index: 999; /* Ensure it's on top */
-        padding: 0; /* Remove any default padding */
-        transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth appearance */
-        opacity: 0; /* Start hidden */
-        visibility: hidden; /* Fully hidden off-screen */
+        background-color: #023047; 
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center; 
+        z-index: 999; 
+        padding: 0; 
+        transition: opacity 0.3s ease, visibility 0.3s ease; 
+        opacity: 0; 
+        visibility: hidden; 
     }
     
     .nav-links a {
         color: #00cc99;
         font-size: 1.5rem;
         text-decoration: none;
-        margin: 10px 0; /* Space between links */
+        margin: 10px 0; 
         text-align: center;
         font-family: 'Raleway', sans-serif;
     }
@@ -646,11 +643,11 @@ footer {
     }
 
     #our-work .work-item {
-        flex: 1 1 100%; /* Stack cards vertically */
+        flex: 1 1 100%; 
     }
 
     #our-work .work-gallery {
-        gap: 15px; /* Adjust spacing for smaller screens */
+        gap: 15px; 
     }
 
     .image-section {
@@ -672,7 +669,7 @@ footer {
         width: 100%;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 204, 153, 0.5), 
-                    0 6px 20px rgba(0, 204, 153, 0.3); /* Caribbean Green glow */
+                    0 6px 20px rgba(0, 204, 153, 0.3);
         transition: transform 0.2s, box-shadow 0.2s;
     }
 
@@ -692,7 +689,7 @@ footer {
     }
 
     .testimonial-card {
-        height: auto; /* Fixed height for mobile as well */
+        height: auto;
         padding: 20px;
     }
 
@@ -708,21 +705,21 @@ footer {
 
 /* Services Page HTML */
 #services-highlights-wrapper {
-    background-color: #ffffff; /* White background that spans the full width */
-    width: 100%; /* Ensure the background spans the entire width of the page */
-    margin: 0; /* Remove any default margin */
-    padding: 0; /* Remove any default padding */
+    background-color: #ffffff;
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
 }
 
 #services-highlights {
-    max-width: 1200px; /* Constrain the content to the same width as the homepage */
-    margin: 0 auto; /* Center the content within the wrapper */
-    padding: 20px 15px; /* Maintain padding for content spacing */
-    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px 15px; 
+    box-sizing: border-box;
 }
 
 #services-highlights {
-    background-color: #FFFFFF; /* White background */
+    background-color: #FFFFFF;
 }
 
 .services-highlights h2 {
