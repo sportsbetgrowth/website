@@ -470,7 +470,7 @@ body {
 .latest-blogs {
     padding: 2rem 1rem;
     background-color: #f9f9f9;
-  }
+}
 
 .latest-blogs .section-heading {
     font-size: 2rem;
@@ -494,6 +494,13 @@ body {
     text-align: center;
 }
 
+.latest-blogs .blog-author-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
 .latest-blogs .blog-title {
     font-size: 1.5rem;
     color: #333;
@@ -503,7 +510,21 @@ body {
 .latest-blogs .blog-summary {
     font-size: 1rem;
     color: #666;
+    margin-bottom: 0.5rem;
+}
+.latest-blogs .blog-meta {
+    font-size: 0.9rem;
+    color: #999;
     margin-bottom: 1rem;
+}
+
+.latest-blogs .blog-author {
+    font-weight: bold;
+    color: #333;
+}
+
+.latest-blogs .blog-date {
+    font-style: italic;
 }
 
 .latest-blogs .read-more {
@@ -529,7 +550,7 @@ body {
     font-weight: bold;
 }
 
-.latest-blogs .read-all-blogs:hover {
+  .latest-blogs .read-all-blogs:hover {
     text-decoration: underline;
 }
 
