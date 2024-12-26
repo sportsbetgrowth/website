@@ -58,12 +58,12 @@ function loadHTML(selector, filePath, callback = null) {
 document.addEventListener('DOMContentLoaded', () => {
     // Dynamically load the header and footer
     loadHTML('header', 'header.html', () => {
-        // Add event listeners for the header after it's loaded
         const hamburger = document.querySelector('.hamburger');
         const navLinksContainer = document.querySelector('.nav-links-container');
         const navLinks = document.querySelectorAll('.nav-links a');
 
         if (hamburger && navLinksContainer) {
+            // Toggle menu visibility and icon
             hamburger.addEventListener('click', () => {
                 navLinksContainer.classList.toggle('active');
                 if (navLinksContainer.classList.contains('active')) {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Close mobile menu when a link is clicked
+            // Close menu when a link is clicked
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     navLinksContainer.classList.remove('active');

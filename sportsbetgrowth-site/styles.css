@@ -1,13 +1,16 @@
 /* Navigation Bar */
 .navbar {
-    background-color: #023047;    
-    color: white;
+    position: relative; /* Allow the navbar to scroll with the page */
+    top: auto; /* Reset top positioning */
+    left: auto; /* Reset left positioning */
+    width: 100%; /* Full width of the container */
+    height: 80px; /* Maintain consistent height */
+    background-color: #023047; /* Navbar background color */
+    z-index: 1000; /* Keep it above content */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0;
-    position: relative;
-    height: 80px;
+    padding: 10px; /* Add some horizontal padding */
 }
 
 /* Ensure links and logo are vertically centered */
@@ -198,20 +201,6 @@ body {
     font-family: Raleway;
 }
 
-
-/* Home Page - Hamburger Button */
-.hamburger {
-    display: none;
-    font-size: 2em;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    right: 10px;
-    color: #00cc99;
-}
-
 /* Home Page - Image Highlight Section */
 .image-section {
     display: flex;
@@ -241,14 +230,6 @@ body {
                 0 6px 20px rgba(0, 204, 153, 0.3); /* Caribbean Green glow */
     transition: transform 0.2s, box-shadow 0.2s;
 }
-
-/* .image-section .text-container h2 {
-    font-size: clamp(3.0rem, 3.4vw, 3.5rem);
-    line-height: 1.2; 
-    font-family: 'Raleway', sans-serif; 
-    margin-bottom: 20px;
-    color: #023047;
-} */
 
 .image-section .text-container p {
     padding: 15px;
@@ -574,6 +555,16 @@ footer {
 
     .hamburger {
         display: block;
+        font-size: 2em;
+        background: none;
+        border: none;
+        color: #00cc99;
+        cursor: pointer;
+        position: absolute; /* Keep it relative to the navbar */
+        top: 50%; /* Center vertically within the navbar */
+        right: 35px; /* Align to the right */
+        transform: translateY(-50%); /* Correct for vertical centering */
+        z-index: 1001; /* Ensure it's above the navbar content */
     }
     
     .navbar .logo {
@@ -596,28 +587,48 @@ footer {
 
     .nav-links-container.active {
         display: flex;
+        opacity: 1;
+        visibility: visible;
     }
 
+    .nav-links-container.active + .hamburger {
+        visibility: hidden;
+    }
+
+    .nav-links-container.active .hamburger {
+        visibility: visible;
+        z-index: 1002;
+    }
+    
     .nav-links-container {
-        display: none;
-        position: absolute;
+        display: none; /* Initially hidden */
+        position: fixed; /* Fix to the viewport */
+        top: 0;
         left: 0;
-        top: 100%;
         width: 100%;
-        background-color: #023047; /* Match color of navbar */
+        height: 100%;
+        background-color: #023047; /* Match navbar background color */
         flex-direction: column;
         align-items: center;
         justify-content: center; /* Center links vertically */
-        z-index: 10;
+        z-index: 999; /* Ensure it's on top */
+        padding: 20px;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        opacity: 0; /* Start hidden */
+        visibility: hidden; /* Fully hidden off-screen */
+    }
+    
+    .nav-links a {
+        color: #00cc99;
+        font-size: 1.5rem;
+        text-decoration: none;
+        margin: 15px 0; /* Spacing between links */
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
     }
 
-    .nav-links a {
-        text-decoration: none; 
-        color:  #00cc99;
-        font-size: 20px; 
-        text-align: center; 
-        font-family: 'Raleway';
-        font-weight: 500;
+    .nav-links a:hover {
+        color: #FF5733;
     }
 
     .nav-links li {
