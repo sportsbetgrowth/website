@@ -66,12 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (hamburger && navLinksContainer) {
             hamburger.addEventListener('click', () => {
                 navLinksContainer.classList.toggle('active');
+                if (navLinksContainer.classList.contains('active')) {
+                    hamburger.innerHTML = '&times;'; // Change to 'X'
+                } else {
+                    hamburger.innerHTML = '&#9776;'; // Change back to Hamburger
+                }
             });
 
             // Close mobile menu when a link is clicked
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     navLinksContainer.classList.remove('active');
+                    hamburger.innerHTML = '&#9776;';
                 });
             });
         } else {
