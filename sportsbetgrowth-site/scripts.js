@@ -61,15 +61,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const hamburger = document.querySelector('.hamburger');
         const navLinksContainer = document.querySelector('.nav-links-container');
         const navLinks = document.querySelectorAll('.nav-links a');
+        const body = document.body;
 
         if (hamburger && navLinksContainer) {
-            // Toggle menu visibility and icon
+            // Toggle menu visibility and body scroll
             hamburger.addEventListener('click', () => {
                 navLinksContainer.classList.toggle('active');
                 if (navLinksContainer.classList.contains('active')) {
                     hamburger.innerHTML = '&times;'; // Change to 'X'
+                    body.classList.add('no-scroll'); // Disable scrolling
                 } else {
                     hamburger.innerHTML = '&#9776;'; // Change back to Hamburger
+                    body.classList.remove('no-scroll'); // Enable scrolling
                 }
             });
 
@@ -78,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.addEventListener('click', () => {
                     navLinksContainer.classList.remove('active');
                     hamburger.innerHTML = '&#9776;';
+                    body.classList.remove('no-scroll'); // Enable scrolling
                 });
             });
         } else {

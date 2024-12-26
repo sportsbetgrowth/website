@@ -4,13 +4,14 @@
     top: auto; /* Reset top positioning */
     left: auto; /* Reset left positioning */
     width: 100%; /* Full width of the container */
-    height: 80px; /* Maintain consistent height */
+    height: 100px; /* Maintain consistent height */
     background-color: #023047; /* Navbar background color */
     z-index: 1000; /* Keep it above content */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px; /* Add some horizontal padding */
+    padding: 0 10px; /* Adjust padding to prevent overflow */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .hamburger {
@@ -566,7 +567,7 @@ footer {
         cursor: pointer;
         position: absolute; /* Keep it relative to the navbar */
         top: 50%; /* Center vertically within the navbar */
-        right: 35px; /* Align to the right */
+        right: 0px;
         transform: translateY(-50%); /* Correct for vertical centering */
         z-index: 1001; /* Ensure it's above the navbar content */
     }
@@ -575,6 +576,11 @@ footer {
         position: absolute; /* Remove from document flow */
         left: 50%; /* Center horizontally */
         transform: translateX(-50%); /* Adjust for true center */
+    }
+
+    .no-scroll {
+        overflow: hidden; /* Disable scrolling */
+        height: 100%; /* Prevent vertical resizing */
     }
 
     .nav-links {
