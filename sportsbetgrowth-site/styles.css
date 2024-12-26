@@ -13,6 +13,10 @@
     padding: 10px; /* Add some horizontal padding */
 }
 
+.hamburger {
+    display: none; /* Hide the hamburger on larger screens */
+}
+
 /* Ensure links and logo are vertically centered */
 .navbar .container {
     display: flex;
