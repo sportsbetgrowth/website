@@ -590,7 +590,7 @@ footer {
     }
 
     .nav-links-container.active {
-        display: flex;
+        display: flex; /* Show container when active */
         opacity: 1;
         visibility: visible;
     }
@@ -612,12 +612,12 @@ footer {
         width: 100%;
         height: 100%;
         background-color: #023047; /* Match navbar background color */
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; /* Stack links vertically */
         justify-content: center; /* Center links vertically */
+        align-items: center; /* Center links horizontally */
         z-index: 999; /* Ensure it's on top */
-        padding: 20px;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        padding: 0; /* Remove any default padding */
+        transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth appearance */
         opacity: 0; /* Start hidden */
         visibility: hidden; /* Fully hidden off-screen */
     }
@@ -626,7 +626,7 @@ footer {
         color: #00cc99;
         font-size: 1.5rem;
         text-decoration: none;
-        margin: 15px 0; /* Spacing between links */
+        margin: 10px 0; /* Space between links */
         text-align: center;
         font-family: 'Raleway', sans-serif;
     }
