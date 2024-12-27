@@ -266,5 +266,43 @@ async function loadBlog() {
     }
 }
 
-// Load blog content on page load
-window.onload = loadBlog;
+async function loadBlogs() {
+    try {
+        // Fetch blogs from the backend
+        const response = await fetch('http://127.0.0.1:5000/blogs');
+        if (!response.ok) {
+            console.error('Failed to fetch blogs:', response.status);
+            return;
+        }
+
+        const blogs = await response.json();
+        console.log('Fetched blogs:', blogs); // Debugging log
+
+        const blogContainer = document.querySelector('.blog-grid');
+        if (!blogContainer) {
+            console.error('No blog grid container found.');
+            return;
+        }
+
+        // Populate the blog posts
+        blogs.forEach(blog => {
+            const blogPost = `
+                <article class="blog-post">
+                    <h2>${blog.title}</h2>
+                    <p>${blog.content.slice(0, 100)}...</p>
+                    <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
+                </article>
+            `;
+            blogContainer.innerHTML += blogPost;
+        });
+    } catch (error) {
+        console.error('Error loading blogs:', error);
+    }
+}
+
+// Ensure the script runs when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('.blog-grid')) {
+        loadBlogs();
+    }
+});
