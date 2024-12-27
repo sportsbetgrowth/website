@@ -306,3 +306,16 @@ document.addEventListener('DOMContentLoaded', () => {
         loadBlogs();
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded triggered'); // Debug log
+
+    const blogContainer = document.querySelector('.blog-grid');
+    if (!blogContainer) {
+        console.error('No blog grid container found. Blogs cannot be loaded.');
+        return;
+    }
+
+    console.log('Loading blogs...');
+    loadBlogs();
+});
