@@ -200,7 +200,7 @@ function addToGoogleSheet(name, email, message) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const blogGrid = document.querySelector('.blog-grid.container');
+    const blogGrid = document.querySelector('.latest-blogs.blogs-grid.container');
 
     if (blogGrid) {
         fetch('http://127.0.0.1:5000/blogs') // Flask server endpoint
@@ -210,12 +210,13 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(blogs => {
                 blogGrid.innerHTML = blogs.map(blog => `
-                    <article class="blog-post">
-                        <img src="${blog.image}" alt="${blog.title}">
-                        <h2>${blog.title}</h2>
-                        <p>${blog.content.substring(0, 100)}...</p>
+                    <div class="blog-item">
+                        <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
+                        <h3 class="blog-title">${blog.title}</h3>
+                        <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
+                        <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
                         <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
-                    </article>
+                    </div>
                 `).join('');
             })
             .catch(error => {
