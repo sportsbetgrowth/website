@@ -276,11 +276,11 @@ async function loadBlogs() {
         }
 
         const blogs = await response.json();
-        console.log('Fetched blogs:', blogs); // Debugging log
+        console.log('Fetched blogs:', blogs); // Debug log
 
         const blogContainer = document.querySelector('.blog-grid');
         if (!blogContainer) {
-            console.error('No blog grid container found.');
+            console.error('No blog grid container found. Blogs cannot be loaded.');
             return;
         }
 
@@ -288,8 +288,10 @@ async function loadBlogs() {
         blogs.forEach(blog => {
             const blogPost = `
                 <article class="blog-post">
+                    <img src="${blog.image}" alt="${blog.title}" />
                     <h2>${blog.title}</h2>
                     <p>${blog.content.slice(0, 100)}...</p>
+                    <p>By ${blog.author} | ${blog.date}</p>
                     <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
                 </article>
             `;
@@ -307,15 +309,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOMContentLoaded triggered'); // Debug log
 
-    const blogContainer = document.querySelector('.blog-grid');
-    if (!blogContainer) {
-        console.error('No blog grid container found. Blogs cannot be loaded.');
-        return;
-    }
-
-    console.log('Loading blogs...');
-    loadBlogs();
-});
