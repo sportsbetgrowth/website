@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogGrid = document.querySelector('.latest-blogs.blogs-grid.container');
 
     if (blogGrid) {
-        fetch('http://127.0.0.1:5000/blogs') // Flask server endpoint
+        fetch('http://192.168.10.43:5000/blogs') // Updated URL
             .then(response => {
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 return response.json();
