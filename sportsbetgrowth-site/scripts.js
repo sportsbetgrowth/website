@@ -199,37 +199,72 @@ function addToGoogleSheet(name, email, message) {
     });    
 }
 
-const testimonials = document.querySelectorAll('.testimonial-card');
-const indicators = document.querySelectorAll('.indicator');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
-let currentIndex = 0;
+document.addEventListener('DOMContentLoaded', () => {
+    const blogGrid = document.querySelector('.blog-grid.container');
 
-function updateTestimonials(index) {
-  testimonials.forEach((testimonial, i) => {
-    testimonial.classList.toggle('active', i === index);
-  });
-  indicators.forEach((indicator, i) => {
-    indicator.classList.toggle('active', i === index);
-  });
+    if (blogGrid) {
+        fetch('http://127.0.0.1:5000/blogs') // Flask server endpoint
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                return response.json();
+            })
+            .then(blogs => {
+                blogGrid.innerHTML = blogs.map(blog => `
+                    <article class="blog-post">
+                        <img src="${blog.image}" alt="${blog.title}">
+                        <h2>${blog.title}</h2>
+                        <p>${blog.content.substring(0, 100)}...</p>
+                        <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
+                    </article>
+                `).join('');
+            })
+            .catch(error => {
+                console.error('Error fetching blogs:', error);
+                blogGrid.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
+            });
+    }
+});
+
+function initializeTestimonials() {
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    const indicators = document.querySelectorAll('.indicator');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let currentIndex = 0;
+
+    if (testimonials.length > 0 && indicators.length > 0 && prevBtn && nextBtn) {
+        function updateTestimonials(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.classList.toggle('active', i === index);
+            });
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+            updateTestimonials(currentIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % testimonials.length;
+            updateTestimonials(currentIndex);
+        });
+
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', () => {
+                currentIndex = parseInt(indicator.dataset.index, 10);
+                updateTestimonials(currentIndex);
+            });
+        });
+
+        // Initialize first testimonial
+        updateTestimonials(currentIndex);
+    } else {
+        console.warn('Testimonial section not found. Skipping testimonial functionality.');
+    }
 }
 
-prevBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-  updateTestimonials(currentIndex);
-});
-
-nextBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % testimonials.length;
-  updateTestimonials(currentIndex);
-});
-
-indicators.forEach(indicator => {
-  indicator.addEventListener('click', () => {
-    currentIndex = parseInt(indicator.dataset.index, 10);
-    updateTestimonials(currentIndex);
-  });
-});
-
-// Initialize first testimonial
-updateTestimonials(currentIndex);
+// Call the function
+initializeTestimonials();
