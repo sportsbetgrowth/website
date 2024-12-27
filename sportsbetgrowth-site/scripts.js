@@ -234,7 +234,37 @@ indicators.forEach(indicator => {
 // Initialize first testimonial
 updateTestimonials(currentIndex);
 
-// // Run the function when the DOM is fully loaded
-// document.addEventListener('DOMContentLoaded', () => {
-//     loadNavbar();
-// });
+// Code for fetching blogs
+async function loadBlog() {
+    // Get blog ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const blogId = urlParams.get('id');
+
+    if (!blogId) {
+        document.querySelector('.blog-detail').innerHTML = "<p>Invalid blog ID.</p>";
+        return;
+    }
+
+    try {
+        // Fetch blog details from backend
+        const response = await fetch(`http://127.0.0.1:5000/blogs/${blogId}`);
+        if (response.ok) {
+            const blog = await response.json();
+
+            // Populate blog detail
+            document.querySelector('.blog-title').textContent = blog.title;
+            document.querySelector('.blog-author').textContent = blog.author;
+            document.querySelector('.blog-date').textContent = blog.date;
+            document.querySelector('.blog-content').innerHTML = blog.content;
+            document.querySelector('.blog-banner-img').src = blog.image;
+        } else {
+            document.querySelector('.blog-detail').innerHTML = "<p>Blog not found.</p>";
+        }
+    } catch (error) {
+        console.error("Error fetching the blog:", error);
+        document.querySelector('.blog-detail').innerHTML = "<p>Something went wrong. Please try again later.</p>";
+    }
+}
+
+// Load blog content on page load
+window.onload = loadBlog;
