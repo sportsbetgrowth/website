@@ -258,31 +258,73 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logic for blog-detail.html - Populate Blog Details
     if (window.location.pathname.includes('blog-detail.html')) {
         const urlParams = new URLSearchParams(window.location.search);
-        const blogId = urlParams.get('id'); // Get the blog ID from the URL query
-
+        const blogId = parseInt(urlParams.get('id'), 10); // Get blog ID from the URL query
+    
         if (blogId) {
-            fetch(`http://192.168.10.43:5000/blogs/${blogId}`)
+            fetch('http://127.0.0.1:5000/blogs') // Replace with your backend URL
                 .then(response => {
-                    if (!response.ok) throw new Error('Failed to fetch blog data.');
+                    if (!response.ok) throw new Error('Failed to fetch blogs.');
                     return response.json();
                 })
-                .then(blog => {
+                .then(blogs => {
+                    // Find the current blog
+                    const currentBlogIndex = blogs.findIndex(blog => blog.id === blogId);
+                    if (currentBlogIndex === -1) {
+                        throw new Error('Blog not found.');
+                    }
+                    const currentBlog = blogs[currentBlogIndex];
+    
                     // Populate blog details
-                    document.querySelector('.blog-banner-img').src = blog.image;
-                    document.querySelector('.blog-banner-img').alt = blog.title;
-                    document.querySelector('.blog-title').textContent = blog.title;
-                    document.querySelector('.blog-author').textContent = blog.author;
-                    document.querySelector('.blog-date').textContent = blog.date;
-                    document.querySelector('.blog-content').innerHTML = `<p>${blog.content}</p>`;
+                    document.querySelector('.blog-banner-img').src = currentBlog.image;
+                    document.querySelector('.blog-banner-img').alt = currentBlog.title;
+                    document.querySelector('.blog-title').textContent = currentBlog.title;
+                    document.querySelector('.blog-author').textContent = currentBlog.author;
+                    document.querySelector('.blog-date').textContent = currentBlog.date;
+                    document.querySelector('.blog-content').innerHTML = `<p>${currentBlog.content}</p>`;
+    
+                    // Handle Previous and Next Post Links
+                    const prevPostLink = document.querySelector('.prev-post');
+                    const nextPostLink = document.querySelector('.next-post');
+    
+                    // Previous Post
+                    if (currentBlogIndex > 0) {
+                        const prevBlog = blogs[currentBlogIndex - 1];
+                        prevPostLink.href = `blog-detail.html?id=${prevBlog.id}`;
+                        prevPostLink.textContent = `← ${prevBlog.title}`;
+                    } else {
+                        prevPostLink.style.display = 'none'; // Hide if no previous blog
+                    }
+    
+                    // Next Post
+                    if (currentBlogIndex < blogs.length - 1) {
+                        const nextBlog = blogs[currentBlogIndex + 1];
+                        nextPostLink.href = `blog-detail.html?id=${nextBlog.id}`;
+                        nextPostLink.textContent = `${nextBlog.title} →`;
+                    } else {
+                        nextPostLink.style.display = 'none'; // Hide if no next blog
+                    }
+    
+                    // Handle Related Posts
+                    const relatedGrid = document.querySelector('.related-grid');
+                    if (relatedGrid) {
+                        // Filter blogs to exclude the current blog
+                        const relatedBlogs = blogs.filter(blog => blog.id !== blogId).slice(0, 2); // Show up to 2 related blogs
+                        relatedGrid.innerHTML = relatedBlogs.map(blog => `
+                            <div class="related-item">
+                                <h3>${blog.title}</h3>
+                                <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
+                            </div>
+                        `).join('');
+                    }
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.error('Error fetching blogs:', error);
                     document.body.innerHTML = '<p>Blog not found or failed to load.</p>';
                 });
         } else {
             document.body.innerHTML = '<p>No blog ID provided in the URL.</p>';
         }
-    }
+    }    
 });
 
 function initializeTestimonials() {
