@@ -177,6 +177,9 @@ function showAlert(message, type = 'error') {
     }, 5000);
 }
 
+
+
+
 // Function to add user contacts to Google Sheets
 function addToGoogleSheet(name, email, message) {
     // Replace with your actual Google Apps Script Web App URL
@@ -203,20 +206,20 @@ function addToGoogleSheet(name, email, message) {
     });    
 }
 
+function fetchBlogs(url) {
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            return response.json();
+        });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Existing functionality for other parts of the site...
-
-    // Dynamically load the latest blogs into the "Latest Blogs" section
+    // Populate Latest Blogs for index.html
     const latestBlogsContainer = document.querySelector('.latest-blogs .blogs-grid');
-
     if (latestBlogsContainer) {
-        fetch('http://192.168.10.43:5000/blogs') // Backend URL
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                return response.json();
-            })
+        fetchBlogs('http://192.168.10.43:5000/blogs')
             .then(blogs => {
-                // Display only the first three blogs
                 const latestBlogs = blogs.slice(0, 3);
                 latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
                     <div class="blog-item">
@@ -233,8 +236,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 latestBlogsContainer.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
             });
     }
-});
 
+    // Populate All Blogs for blog.html
+    const blogGrid = document.querySelector('.blog-grid.container');
+    if (blogGrid) {
+        fetchBlogs('http://192.168.10.43:5000/blogs')
+            .then(blogs => {
+                blogGrid.innerHTML = blogs.map(blog => `
+                    <article class="blog-post">
+                        <img src="${blog.image}" alt="${blog.title}" class="blog-banner-img">
+                        <h2>${blog.title}</h2>
+                        <p>${blog.content.substring(0, 200)}...</p>
+                        <p>By ${blog.author} | ${blog.date}</p>
+                        <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
+                    </article>
+                `).join('');
+            })
+            .catch(error => {
+                console.error('Error fetching blogs:', error);
+                blogGrid.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
+            });
+    }
+});
 
 function initializeTestimonials() {
     const testimonials = document.querySelectorAll('.testimonial-card');
