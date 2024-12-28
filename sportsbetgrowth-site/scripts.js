@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const blogId = parseInt(urlParams.get('id'), 10); // Get blog ID from the URL query
     
         if (blogId) {
-            fetch('http://127.0.0.1:5000/blogs') // Replace with your backend URL
+            fetch('http://192.168.10.43:5000/blogs') // Replace with your backend URL
                 .then(response => {
                     if (!response.ok) throw new Error('Failed to fetch blogs.');
                     return response.json();
