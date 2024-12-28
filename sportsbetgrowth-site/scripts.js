@@ -177,9 +177,6 @@ function showAlert(message, type = 'error') {
     }, 5000);
 }
 
-
-
-
 // Function to add user contacts to Google Sheets
 function addToGoogleSheet(name, email, message) {
     // Replace with your actual Google Apps Script Web App URL
@@ -217,6 +214,7 @@ function fetchBlogs(url) {
 document.addEventListener('DOMContentLoaded', () => {
     // Populate Latest Blogs for index.html
     const latestBlogsContainer = document.querySelector('.latest-blogs .blogs-grid');
+
     if (latestBlogsContainer) {
         fetchBlogs('http://192.168.10.43:5000/blogs')
             .then(blogs => {
@@ -238,7 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Populate All Blogs for blog.html
-    const blogGrid = document.querySelector('.blog-grid.container');
+    const blogGrid = document.querySelector('.blogs-grid.container');
+
     if (blogGrid) {
         fetchBlogs('http://192.168.10.43:5000/blogs')
             .then(blogs => {
