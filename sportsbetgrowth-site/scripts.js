@@ -212,13 +212,12 @@ function fetchBlogs(url) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Populate Latest Blogs for index.html
+    // Logic for index.html - Populate Latest Blogs
     const latestBlogsContainer = document.querySelector('.latest-blogs .blogs-grid');
-
     if (latestBlogsContainer) {
         fetchBlogs('http://192.168.10.43:5000/blogs')
             .then(blogs => {
-                const latestBlogs = blogs.slice(0, 3);
+                const latestBlogs = blogs.slice(0, 3); // Only the first 3 blogs
                 latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
                     <div class="blog-item">
                         <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
@@ -235,9 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Populate All Blogs for blog.html
+    // Logic for blog.html - Populate All Blogs
     const blogGrid = document.querySelector('.blogs-grid.container');
-
     if (blogGrid) {
         fetchBlogs('http://192.168.10.43:5000/blogs')
             .then(blogs => {
@@ -255,6 +253,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching blogs:', error);
                 blogGrid.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
             });
+    }
+
+    // Logic for blog-detail.html - Populate Blog Details
+    if (window.location.pathname.includes('blog-detail.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const blogId = urlParams.get('id'); // Get the blog ID from the URL query
+
+        if (blogId) {
+            fetch(`http://192.168.10.43:5000/blogs/${blogId}`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to fetch blog data.');
+                    return response.json();
+                })
+                .then(blog => {
+                    // Populate blog details
+                    document.querySelector('.blog-banner-img').src = blog.image;
+                    document.querySelector('.blog-banner-img').alt = blog.title;
+                    document.querySelector('.blog-title').textContent = blog.title;
+                    document.querySelector('.blog-author').textContent = blog.author;
+                    document.querySelector('.blog-date').textContent = blog.date;
+                    document.querySelector('.blog-content').innerHTML = `<p>${blog.content}</p>`;
+                })
+                .catch(error => {
+                    console.error(error);
+                    document.body.innerHTML = '<p>Blog not found or failed to load.</p>';
+                });
+        } else {
+            document.body.innerHTML = '<p>No blog ID provided in the URL.</p>';
+        }
     }
 });
 
