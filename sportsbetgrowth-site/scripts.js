@@ -3,10 +3,14 @@
 // Navigation Menu Scroll Effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
+    if (navbar) {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
     } else {
-        navbar.classList.remove('scrolled');
+        console.warn('Navbar element not found. Scroll effect skipped.');
     }
 });
 
@@ -200,16 +204,21 @@ function addToGoogleSheet(name, email, message) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const blogGrid = document.querySelector('.latest-blogs.blogs-grid.container');
+    // Existing functionality for other parts of the site...
 
-    if (blogGrid) {
-        fetch('http://192.168.10.43:5000/blogs') // Updated URL
+    // Dynamically load the latest blogs into the "Latest Blogs" section
+    const latestBlogsContainer = document.querySelector('.latest-blogs .blogs-grid');
+
+    if (latestBlogsContainer) {
+        fetch('http://192.168.10.43:5000/blogs') // Backend URL
             .then(response => {
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 return response.json();
             })
             .then(blogs => {
-                blogGrid.innerHTML = blogs.map(blog => `
+                // Display only the first three blogs
+                const latestBlogs = blogs.slice(0, 3);
+                latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
                     <div class="blog-item">
                         <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
                         <h3 class="blog-title">${blog.title}</h3>
@@ -221,10 +230,11 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Error fetching blogs:', error);
-                blogGrid.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
+                latestBlogsContainer.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
             });
     }
 });
+
 
 function initializeTestimonials() {
     const testimonials = document.querySelectorAll('.testimonial-card');
