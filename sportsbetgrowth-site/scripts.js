@@ -235,23 +235,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Logic for blog.html - Populate All Blogs
-    const blogGrid = document.querySelector('.blogs-grid.container');
-    if (blogGrid) {
-        fetchBlogs('http://172.20.10.6:5000/blogs')
+    const blogsContainer = document.getElementById('blogs-container');
+    if (blogsContainer) {
+        fetch('http://172.20.10.6:5000/blogs') // Replace with your backend URL
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to fetch blogs.');
+                return response.json();
+            })
             .then(blogs => {
-                blogGrid.innerHTML = blogs.map(blog => `
-                    <article class="blog-post">
+                blogsContainer.innerHTML = blogs.map(blog => `
+                    <div class="blog-item">
                         <img src="${blog.image}" alt="${blog.title}" class="blog-banner-img">
-                        <h2>${blog.title}</h2>
-                        <p>${blog.content.substring(0, 200)}...</p>
-                        <p>By ${blog.author} | ${blog.date}</p>
+                        <h2 class="blog-title">${blog.title}</h2>
+                        <p class="blog-summary">${blog.content.substring(0, 200)}...</p>
+                        <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
                         <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
-                    </article>
+                    </div>
                 `).join('');
             })
             .catch(error => {
                 console.error('Error fetching blogs:', error);
-                blogGrid.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
+                blogsContainer.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
             });
     }
 
