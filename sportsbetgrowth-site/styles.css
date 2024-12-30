@@ -608,25 +608,19 @@ body {
 
 /* Footer Page HTML */
 footer {
+    text-align: center;
     padding: 20px;
-    background-color: #023047;
-    color: white;
-    text-align: center;
-    text-decoration: none;
+    background: #023047;
+    color: #ffffff;
+}
+
+footer a {
     color: #00CC99;
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Raleway';
-    font-weight: 400;
-}
-
-.footer-links a {
-    color: #00cc99;
     text-decoration: none;
-    margin: 0 10px;
+    font-weight: 600;
 }
 
-.footer-links a:hover {
+footer a:hover {
     color: #FF5733;
 }
 
