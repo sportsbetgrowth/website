@@ -472,6 +472,7 @@ body {
     background-color: #f9f9f9;
 }
 
+/* Home Page - Latest Blogs Styling */
 .latest-blogs .section-heading {
     font-size: 2rem;
     color: #00CC99;
@@ -512,6 +513,7 @@ body {
     color: #666;
     margin-bottom: 0.5rem;
 }
+
 .latest-blogs .blog-meta {
     font-size: 0.9rem;
     color: #999;
@@ -555,6 +557,7 @@ body {
 }
 
 /* Home Page - Custom Alert Styles */
+/* One to understand if it's still in use */
 .custom-alert {
     position: relative; 
     margin: 0 auto 15px auto;
@@ -571,6 +574,7 @@ body {
     animation: fadeIn 0.5s ease;
 }
 
+/* One to understand if it's still in use */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -874,12 +878,12 @@ footer {
 }
 
 /* Blog Page HTML */
-.blog-grid {
+/* .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     margin: 40px auto;
-}
+} */
   
 .blog-post {
     background: #fff;
