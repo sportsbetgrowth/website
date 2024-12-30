@@ -858,17 +858,24 @@ footer a:hover {
   
 .services-post .read-more {
     display: inline-block;
-    margin: 15px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FFFFFF; /* White */
+    background: #FF5733; /* Outrageous Orange */
     padding: 10px 20px;
-    background: #023047;
-    color: #fff;
+    border-radius: 8px;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Consistent spacing */
 }
   
 .services-post .read-more:hover {
-    background: #FF5733;
+    background: #FFD700; /* Gold */
+    color: #023047; /* Dark Blue on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
 }
 
 /* Blog Detail Page HTML */
@@ -981,22 +988,30 @@ footer a:hover {
 /* Blog Container Styling */
 .blogs-section .blogs-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 40px;
-    background-color: #F4F4F4; /* White Smoke */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible columns */
+    gap: 20px; /* Proper spacing between cards */
+    padding: 20px; /* Internal spacing for the container */
+    margin: 0 auto; /* Center the container */
+    width: 100%; /* Ensure container fits within the viewport */
+    max-width: 1200px; /* Optional: Set a max-width for larger screens */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 /* Blog Card Styling */
 .blogs-section .blog-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Consistent spacing inside cards */
+    align-items: center; /* Center content horizontally */
     background-color: #FFFFFF; /* White */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
     border: 3px solid #00CC99; /* Caribbean Green */
+    padding: 20px;
+    height: 100%; /* Ensure cards expand uniformly */
+    box-sizing: border-box; /* Include padding in size calculation */
 }
 
 .blogs-section .blog-item:hover {
@@ -1079,4 +1094,388 @@ footer a:hover {
         font-size: 0.9rem;
         padding: 8px 16px;
     }
+    .blogs-section .blogs-container {
+        grid-template-columns: 1fr; /* Single-column layout on mobile */
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
 }
+
+/* Latest Blogs Container Styling */
+.latest-blogs .blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible columns */
+    gap: 20px; /* Ensure proper spacing between cards */
+    padding: 20px;
+    background-color: #F4F4F4; /* White Smoke */
+    border-radius: 12px;
+    width: 100%; /* Ensure container respects parent width */
+    box-sizing: border-box; /* Prevent padding from affecting layout */
+}
+
+/* Blog Card Styling */
+.latest-blogs .blog-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure consistent spacing */
+    background-color: #FFFFFF; /* White */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid #00CC99; /* Caribbean Green */
+    padding: 20px;
+    height: 100%; /* Allow cards to stretch uniformly */
+    width: 100%; /* Ensure cards fit within the grid columns */
+    box-sizing: border-box; /* Include padding in size calculations */
+}
+
+/* Blog Image Styling */
+.latest-blogs .blog-banner-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 3px solid #FFD700; /* Gold */
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.latest-blogs .blog-item:hover .blog-banner-img {
+    transform: scale(1.05);
+}
+
+/* Blog Title Styling */
+.latest-blogs .blog-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #023047; /* Dark Blue */
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Blog Summary Styling */
+.latest-blogs .blog-summary {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    color: #666; /* Neutral Gray for text contrast */
+    margin-bottom: 15px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Blog Metadata Styling */
+.latest-blogs .blog-meta {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.875rem;
+    color: #888; /* Neutral Gray */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Call-to-Action Button */
+.latest-blogs .read-more {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FFFFFF; /* White */
+    background: #FF5733; /* Outrageous Orange */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: auto; /* Push button to the bottom */
+    text-align: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+    align-self: center; /* Center horizontally */
+}
+
+.latest-blogs .read-more:hover {
+    background: #FFD700; /* Gold */
+    transform: scale(1.05);
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .latest-blogs .blogs-grid {
+        grid-template-columns: 1fr; /* Single-column layout on mobile */
+    }
+
+    .latest-blogs .blog-title {
+        font-size: 1.25rem;
+    }
+
+    .latest-blogs .blog-summary {
+        font-size: 0.9rem;
+    }
+
+    .latest-blogs .read-more {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+/* "Read All Blogs" Link Styling */
+.read-all-blogs {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FFFFFF !important; /* Ensure the text is white and visible */
+    background: #00CC99; /* Caribbean Green */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 40px auto 20px; /* Adequate spacing above and below */
+    text-align: center;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.read-all-blogs:hover {
+    background: #FFD700; /* Gold */
+    color: #023047 !important; /* Dark Blue for hover text */
+    transform: scale(1.05);
+}
+
+/* Center the "Read All Blogs" Link */
+.latest-blogs {
+    text-align: center; /* Center align the link within the section */
+}
+
+/* Hero Section Styling */
+.blog-hero-section {
+    position: relative;
+    width: 100%;
+    height: 550px; /* Taller for more impact */
+    background: linear-gradient(to bottom right, #00CC99, #023047); /* Caribbean Green to Dark Blue */
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); /* Angled bottom for adventurous look */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* Parallax Background Image */
+.blog-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('hero-background.jpg'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px) brightness(0.7); /* Blurred and darkened for focus on content */
+    z-index: 0;
+    transform: scale(1.2); /* Slight zoom for parallax effect */
+}
+
+/* Hero Content */
+.blog-hero-content {
+    position: relative;
+    z-index: 2; /* Ensure content is above the background */
+    max-width: 800px;
+    color: #FFFFFF; /* White text */
+}
+
+.blog-hero-content h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #FFD700; /* Gold for standout heading */
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5); /* Subtle depth effect */
+}
+
+.blog-hero-content p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #FFFFFF; /* White supporting text */
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Call-to-Action Buttons */
+.blog-hero-content .cta-buttons {
+    display: flex;
+    flex-direction: row; /* Horizontal alignment on desktop */
+    gap: 20px; /* Space between buttons */
+    justify-content: center; /* Center the buttons */
+    width: 100%; /* Ensure buttons stretch across their container */
+    max-width: 1200px; /* Prevent excessive stretching */
+    margin: 0 auto;
+}
+
+.blog-hero-content .cta-button {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FFFFFF; /* White text */
+    background: #FF5733; /* Outrageous Orange */
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%; /* Full width by default */
+    max-width: 300px; /* Matches blog card width on desktop */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blog-hero-content .cta-button:hover {
+    background: #FFD700; /* Gold */
+    color: #023047; /* Dark Blue */
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Decorative Layer */
+.blog-hero-decorative {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to top, #023047, transparent); /* Dark Blue fade at bottom */
+    z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .blog-hero-content .cta-buttons {
+        flex-direction: column; /* Stack buttons vertically on mobile */
+        gap: 15px; /* Reduce spacing for smaller screens */
+    }
+
+
+    .blog-hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .blog-hero-content p {
+        font-size: 1rem;
+    }
+
+    .blog-hero-content .cta-buttons {
+        gap: 10px; /* Reduce gap between buttons */
+    }
+
+    .blog-hero-content .cta-button {
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
+        padding: 10px 16px; /* Adjust padding for a compact look */
+        width: 90%; /* Match blog card width on mobile */
+        max-width: none; /* Allow full width on mobile */
+        align-self: center; /* Ensure buttons stay centered */
+    }
+}
+
+/* Footer CTA Section */
+.footer-cta-section {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Adjust height as needed */
+    background: linear-gradient(to top right, #023047, #00CC99); /* Dark Blue to Caribbean Green */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%); /* Angled top for unique look */
+}
+
+/* Background Overlay */
+.footer-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('footer-background.jpg'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px) brightness(0.7); /* Blur and darken the image */
+    z-index: 0;
+    transform: scale(1.2); /* Slight zoom effect for parallax */
+}
+
+/* CTA Content */
+.footer-cta-content {
+    position: relative;
+    z-index: 1; /* Ensure content is above the background */
+    max-width: 800px;
+    color: #FFFFFF; /* White text */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for text readability */
+}
+
+.footer-cta-content h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #FFD700; /* Gold for standout heading */
+}
+
+.footer-cta-content p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* CTA Button */
+.footer-cta-content .cta-button {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FFFFFF; /* White text */
+    background: #FF5733; /* Outrageous Orange */
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-cta-content .cta-button:hover {
+    background: #FFD700; /* Gold */
+    color: #023047; /* Dark Blue on hover */
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-cta-section {
+        height: auto; /* Allow height to adjust */
+        clip-path: none; /* Remove angled top on smaller screens */
+    }
+
+    .footer-cta-content h2 {
+        font-size: 2rem;
+    }
+
+    .footer-cta-content p {
+        font-size: 1rem;
+    }
+
+    .footer-cta-content .cta-button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+

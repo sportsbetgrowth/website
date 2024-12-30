@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logic for index.html - Populate Latest Blogs
     const latestBlogsContainer = document.querySelector('.latest-blogs .blogs-grid');
     if (latestBlogsContainer) {
-        fetchBlogs('http://172.20.10.6:5000/blogs')
+        fetchBlogs('http://192.168.10.43:5000/blogs')
             .then(blogs => {
                 const latestBlogs = blogs.slice(0, 3); // Only the first 3 blogs
                 latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logic for blog.html - Populate All Blogs
     const blogsContainer = document.getElementById('blogs-container');
     if (blogsContainer) {
-        fetch('http://172.20.10.6:5000/blogs') // Replace with your backend URL
+        fetch('http://192.168.10.43:5000/blogs') // Replace with your backend URL
             .then(response => {
                 if (!response.ok) throw new Error('Failed to fetch blogs.');
                 return response.json();
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const blogId = parseInt(urlParams.get('id'), 10); // Get blog ID from the URL query
     
         if (blogId) {
-            fetch('http://172.20.10.6:5000/blogs') // Replace with your backend URL
+            fetch('http://192.168.10.43:5000/blogs') // Replace with your backend URL
                 .then(response => {
                     if (!response.ok) throw new Error('Failed to fetch blogs.');
                     return response.json();
