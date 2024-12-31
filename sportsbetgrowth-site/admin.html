@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+    <title>Admin - Blog Management</title>
+</head>
+<body>
+    <h1>Blog Management</h1>
+
+    <!-- Blog Table -->
+    <section>
+        <h2>All Blogs</h2>
+        <table id="blog-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Blogs will be dynamically loaded here -->
+            </tbody>
+        </table>
+        <button id="add-blog-btn">Add New Blog</button>
+    </section>
+
+    <!-- Blog Form -->
+    <section id="blog-form-section" style="display: none;">
+        <h2 id="form-title">Add/Edit Blog</h2>
+        <form id="blog-form">
+            <label for="title">Title:</label>
+            <input type="text" id="title" required>
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+
+            <label for="content">Content:</label>
+            <textarea id="content" rows="5" required></textarea>
+
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" required>
+
+            <button id="save-btn" type="submit">Save</button>
+            <button id="cancel-btn" type="button">Cancel</button>
+        </form>
+    </section>
+</body>
+</html>
