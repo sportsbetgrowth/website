@@ -333,44 +333,93 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const blogTable = document.querySelector('#blog-table tbody');
-    const addBlogBtn = document.querySelector('#add-blog-btn');
     const blogFormSection = document.querySelector('#blog-form-section');
     const blogForm = document.querySelector('#blog-form');
+    const addBlogBtn = document.querySelector('#add-blog-btn');
     const saveBtn = document.querySelector('#save-btn');
     const cancelBtn = document.querySelector('#cancel-btn');
+    const formTitle = document.querySelector('#form-title');
+    let blogs = [];
+    let currentEditingId = null; // Track the blog being edited
+
+    // Modal for displaying blog content
+    const viewModal = document.createElement('div');
+    viewModal.id = 'view-modal';
+    viewModal.style.display = 'none';
+    viewModal.style.position = 'fixed';
+    viewModal.style.top = '50%';
+    viewModal.style.left = '50%';
+    viewModal.style.transform = 'translate(-50%, -50%)';
+    viewModal.style.backgroundColor = '#fff';
+    viewModal.style.padding = '20px';
+    viewModal.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+    document.body.appendChild(viewModal);
 
     // Fetch and display blogs
     function fetchBlogs() {
         fetch('/blogs')
             .then(response => response.json())
             .then(data => {
-                blogTable.innerHTML = data.map(blog => `
-                    <tr>
-                        <td>${blog.id}</td>
-                        <td>${blog.title}</td>
-                        <td>${blog.author}</td>
-                        <td>${blog.date}</td>
-                        <td>
-                            <button data-id="${blog.id}" class="delete-btn">Delete</button>
-                        </td>
-                    </tr>
-                `).join('');
+                blogs = data;
+                populateBlogTable();
             })
-            .catch(error => console.error('Error loading blogs:', error));
+            .catch(error => console.error('Error fetching blogs:', error));
     }
 
-    // Show blog form
-    addBlogBtn.addEventListener('click', () => {
-        blogForm.reset();
-        blogFormSection.style.display = 'block';
+    function populateBlogTable() {
+        blogTable.innerHTML = blogs.map(blog => `
+            <tr>
+                <td>${blog.id}</td>
+                <td>${blog.title}</td>
+                <td>${blog.author}</td>
+                <td>${blog.date}</td>
+                <td>
+                    <button class="view-btn" data-id="${blog.id}">View</button>
+                    <button class="edit-btn" data-id="${blog.id}">Edit</button>
+                    <button class="delete-btn" data-id="${blog.id}">Delete</button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    // Show blog form for adding or editing
+    blogTable.addEventListener('click', (event) => {
+        if (event.target.classList.contains('edit-btn')) {
+            const blogId = event.target.getAttribute('data-id');
+            const blog = blogs.find(b => b.id == blogId);
+            if (blog) {
+                formTitle.textContent = `Edit Blog - ID: ${blog.id}`;
+                blogForm.querySelector('#title').value = blog.title;
+                blogForm.querySelector('#author').value = blog.author;
+                blogForm.querySelector('#date').value = blog.date;
+                blogForm.querySelector('#content').value = blog.content;
+                blogForm.querySelector('#image').value = blog.image;
+                blogFormSection.style.display = 'block';
+                currentEditingId = blog.id; // Track the ID of the blog being edited
+            }
+        }
+
+        if (event.target.classList.contains('view-btn')) {
+            const blogId = event.target.getAttribute('data-id');
+            const blog = blogs.find(b => b.id == blogId);
+            if (blog) {
+                viewModal.innerHTML = `
+                    <h2>${blog.title}</h2>
+                    <p><strong>Author:</strong> ${blog.author}</p>
+                    <p><strong>Date:</strong> ${blog.date}</p>
+                    <p>${blog.content}</p>
+                    <button id="close-modal">Close</button>
+                `;
+                viewModal.style.display = 'block';
+
+                document.querySelector('#close-modal').addEventListener('click', () => {
+                    viewModal.style.display = 'none';
+                });
+            }
+        }
     });
 
-    // Hide blog form
-    cancelBtn.addEventListener('click', () => {
-        blogFormSection.style.display = 'none';
-    });
-
-    // Add a new blog
+    // Submit form for adding or editing a blog
     blogForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
@@ -382,31 +431,31 @@ document.addEventListener('DOMContentLoaded', () => {
             image: document.querySelector('#image').value,
         };
 
-        fetch('/blogs', {
-            method: 'POST',
+        const method = currentEditingId ? 'PUT' : 'POST';
+        const url = currentEditingId ? `/blogs/${currentEditingId}` : '/blogs';
+
+        fetch(url, {
+            method,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(blogData),
         })
             .then(() => {
                 blogFormSection.style.display = 'none';
+                currentEditingId = null; // Reset the ID after saving
                 fetchBlogs(); // Reload blogs
             })
-            .catch(error => console.error('Error adding blog:', error));
+            .catch(error => console.error('Error saving blog:', error));
     });
 
-    // Delete a blog
-    blogTable.addEventListener('click', (event) => {
-        if (event.target.classList.contains('delete-btn')) {
-            const blogId = event.target.getAttribute('data-id');
-            fetch(`/blogs/${blogId}`, { method: 'DELETE' })
-                .then(() => fetchBlogs()) // Reload blogs
-                .catch(error => console.error('Error deleting blog:', error));
-        }
+    // Hide the form
+    cancelBtn.addEventListener('click', () => {
+        blogFormSection.style.display = 'none';
+        currentEditingId = null;
     });
 
-    // Initial fetch
-    fetchBlogs();
+    fetchBlogs(); // Initial load
 });
+
 
 function initializeTestimonials() {
     const testimonials = document.querySelectorAll('.testimonial-card');
