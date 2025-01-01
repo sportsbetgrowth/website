@@ -231,10 +231,9 @@ document.addEventListener('DOMContentLoaded', () => {
             latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
                 <div class="blog-item">
                     <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
-                    <h3 class="blog-title">${blog.title}</h3>
+                    <a href="/blog-detail?id=${blog.id}" class="blog-title">${blog.title}</a>
                     <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
                     <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
-                    <a href="/blog-detail?id=${blog.id}" class="read-more">Read More</a>
                 </div>
             `).join('');
         })
@@ -253,10 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 blogsContainer.innerHTML = blogs.map(blog => `
                     <div class="blog-item">
                         <img src="${blog.image}" alt="${blog.title}" class="blog-banner-img">
-                        <h2 class="blog-title">${blog.title}</h2>
+                        <a href="/blog-detail?id=${blog.id}" class="blog-title">${blog.title}</a>
                         <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
                         <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
-                        <a href="/blog-detail?id=${blog.id}" class="read-more">Read More</a>
                     </div>
                 `).join('');
             })

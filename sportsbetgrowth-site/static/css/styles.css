@@ -1711,3 +1711,23 @@ footer a:hover {
     text-align: center;
 }
 
+.blog-item {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Center text */
+    padding: 15px; /* Add padding inside the card */
+    border: 1px solid #ddd; /* Optional: Add a border for styling */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow */
+}
+
+.blog-author-img {
+    display: block;
+    margin: 0 auto; /* Center the image */
+    width: 100px; /* Consistent size */
+    height: 100px; /* Consistent size */
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Scale and crop the image */
+    margin-bottom: 15px; /* Add spacing below the image */
+}
