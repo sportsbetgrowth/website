@@ -51,3 +51,15 @@ button:hover {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
+#content {
+    width: 100%;
+    min-height: 150px; /* Sets a minimum height */
+    max-height: 400px; /* Prevents the textarea from growing too tall */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Allow manual resizing in height */
+    box-sizing: border-box; /* Ensures padding is included in width/height calculations */
+}

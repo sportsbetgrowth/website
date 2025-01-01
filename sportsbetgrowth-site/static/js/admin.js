@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogFormSection = document.querySelector('#blog-form-section');
     const blogForm = document.querySelector('#blog-form');
     const cancelBtn = document.querySelector('#cancel-btn');
+    const contentField = document.querySelector('#content');
+    const wordCounter = document.getElementById('word-counter'); // Add a word counter element in your HTML
+
     let editingBlogId = null;
 
     // Fetch and display blogs
@@ -48,7 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
         blogFormSection.style.display = 'none';
     });
 
-    // Edit a blog
+    // Word counter for blog content
+    if (contentField && wordCounter) {
+        contentField.addEventListener('input', () => {
+            const words = contentField.value.trim().split(/\s+/).filter(Boolean).length;
+            wordCounter.textContent = `${words} words`;
+        });
+    } else {
+        console.warn('Content field or word counter not found.');
+    }
+
     function editBlog(id) {
         fetch(`/blogs`)
             .then(response => response.json())
@@ -62,6 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelector('#content').value = blog.content;
                     document.querySelector('#image').value = blog.image;
                     blogFormSection.style.display = 'block';
+    
+                    // Update word counter when editing a blog
+                    const words = blog.content.trim().split(/\s+/).filter(Boolean).length;
+                    wordCounter.textContent = `${words} words`;
                 }
             })
             .catch(error => console.error('Error fetching blog:', error));
@@ -98,3 +114,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch initial blogs
     fetchBlogs();
 });
+
