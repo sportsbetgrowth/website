@@ -5,9 +5,7 @@ import json
 app = Flask(__name__)
 CORS(app)  # Enable Cross-Origin Resource Sharing
 
-@app.route('/<path:filename>')
-def serve_static_files(filename):
-    return send_from_directory('.', filename)
+
 
 # Load blogs from JSON file
 def load_blogs():
@@ -37,6 +35,10 @@ def blog_detail():
 def admin():
     return send_from_directory('.', 'admin.html')
 
+@app.route('/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('.', filename)
+
 # API Endpoints
 @app.route('/blogs', methods=['GET'])
 def get_blogs():
@@ -58,16 +60,6 @@ def delete_blog(id):
     save_blogs(blogs)
     return {"message": "Blog deleted"}, 200
 
-@app.route('/blogs/<int:id>', methods=['PUT'])
-def update_blog(id):
-    blogs = load_blogs()
-    updated_blog = request.json
-    for i, blog in enumerate(blogs):
-        if blog['id'] == id:
-            blogs[i].update(updated_blog)  # Update only the provided fields
-            save_blogs(blogs)
-            return jsonify(blogs[i]), 200
-    return {"error": "Blog not found"}, 404
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
