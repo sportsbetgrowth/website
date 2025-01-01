@@ -61,7 +61,7 @@ function loadHTML(selector, filePath, callback = null) {
 // Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
     // Dynamically load the header and footer
-    loadHTML('header', 'header.html', () => {
+    loadHTML('header', 'header-footer/header.html', () => {
         const hamburger = document.querySelector('.hamburger');
         const navLinksContainer = document.querySelector('.nav-links-container');
         const navLinks = document.querySelectorAll('.nav-links a');
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    loadHTML('footer', 'footer.html'); // Load footer if needed
+    loadHTML('footer', 'header-footer/footer.html'); // Load footer if needed
 });
 
 // Google Analytics Initialization
@@ -215,33 +215,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logic for index.html - Populate Latest Blogs
     const latestBlogsContainer = document.querySelector('.latest-blogs .blogs-grid');
     if (latestBlogsContainer) {
-        fetchBlogs('http://192.168.10.43:5000/blogs')
-            .then(blogs => {
-                const latestBlogs = blogs.slice(0, 3); // Only the first 3 blogs
-                latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
-                    <div class="blog-item">
-                        <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
-                        <h3 class="blog-title">${blog.title}</h3>
-                        <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
-                        <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
-                        <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
-                    </div>
-                `).join('');
-            })
-            .catch(error => {
-                console.error('Error fetching blogs:', error);
-                latestBlogsContainer.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
-            });
+        fetch('/blogs')
+        .then(response => response.json())
+        .then(blogs => {
+            const latestBlogs = blogs.slice(0, 3); // Display only the first 3 blogs
+            latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
+                <div class="blog-item">
+                    <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
+                    <h3 class="blog-title">${blog.title}</h3>
+                    <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
+                    <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
+                    <a href="/blog-detail?id=${blog.id}" class="read-more">Read More</a>
+                </div>
+            `).join('');
+        })
+        .catch(error => {
+            console.error('Error fetching blogs:', error);
+            latestBlogsContainer.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
+        });
     }
 
     // Logic for blog.html - Populate All Blogs
     const blogsContainer = document.getElementById('blogs-container');
     if (blogsContainer) {
-        fetch('http://192.168.10.43:5000/blogs') // Replace with your backend URL
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to fetch blogs.');
-                return response.json();
-            })
+        fetch('/blogs')
+            .then(response => response.json())
             .then(blogs => {
                 blogsContainer.innerHTML = blogs.map(blog => `
                     <div class="blog-item">
@@ -249,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h2 class="blog-title">${blog.title}</h2>
                         <p class="blog-summary">${blog.content.substring(0, 200)}...</p>
                         <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
-                        <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
+                        <a href="/blog-detail?id=${blog.id}" class="read-more">Read More</a>
                     </div>
                 `).join('');
             })
@@ -260,75 +258,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Logic for blog-detail.html - Populate Blog Details
-    if (window.location.pathname.includes('blog-detail.html')) {
+    if (window.location.pathname.includes('blog-detail')) {
         const urlParams = new URLSearchParams(window.location.search);
-        const blogId = parseInt(urlParams.get('id'), 10); // Get blog ID from the URL query
+        const blogId = parseInt(urlParams.get('id'), 10); // Extract the blog ID from the URL
+    
+        console.log('Blog ID from URL:', blogId); // Debugging log
     
         if (blogId) {
-            fetch('http://192.168.10.43:5000/blogs') // Replace with your backend URL
+            fetch('/blogs')
                 .then(response => {
-                    if (!response.ok) throw new Error('Failed to fetch blogs.');
+                    if (!response.ok) throw new Error(`Error fetching blogs: ${response.status}`);
                     return response.json();
                 })
                 .then(blogs => {
-                    // Find the current blog
-                    const currentBlogIndex = blogs.findIndex(blog => blog.id === blogId);
-                    if (currentBlogIndex === -1) {
+                    console.log('Fetched blogs:', blogs); // Debugging log
+                    const currentBlog = blogs.find(blog => blog.id === blogId);
+                    if (!currentBlog) {
                         throw new Error('Blog not found.');
                     }
-                    const currentBlog = blogs[currentBlogIndex];
     
-                    // Populate blog details
+                    // Populate the blog content
                     document.querySelector('.blog-banner-img').src = currentBlog.image;
-                    document.querySelector('.blog-banner-img').alt = currentBlog.title;
                     document.querySelector('.blog-title').textContent = currentBlog.title;
                     document.querySelector('.blog-author').textContent = currentBlog.author;
                     document.querySelector('.blog-date').textContent = currentBlog.date;
                     document.querySelector('.blog-content').innerHTML = `<p>${currentBlog.content}</p>`;
     
-                    // Handle Previous and Next Post Links
+                    // Populate Previous Post
+                    const currentIndex = blogs.findIndex(blog => blog.id === blogId);
                     const prevPostLink = document.querySelector('.prev-post');
-                    const nextPostLink = document.querySelector('.next-post');
-    
-                    // Previous Post
-                    if (currentBlogIndex > 0) {
-                        const prevBlog = blogs[currentBlogIndex - 1];
-                        prevPostLink.href = `blog-detail.html?id=${prevBlog.id}`;
+                    if (currentIndex > 0) {
+                        const prevBlog = blogs[currentIndex - 1];
+                        prevPostLink.href = `/blog-detail?id=${prevBlog.id}`;
                         prevPostLink.textContent = `← ${prevBlog.title}`;
                     } else {
-                        prevPostLink.style.display = 'none'; // Hide if no previous blog
+                        prevPostLink.style.display = 'none';
                     }
     
-                    // Next Post
-                    if (currentBlogIndex < blogs.length - 1) {
-                        const nextBlog = blogs[currentBlogIndex + 1];
-                        nextPostLink.href = `blog-detail.html?id=${nextBlog.id}`;
+                    // Populate Next Post
+                    const nextPostLink = document.querySelector('.next-post');
+                    if (currentIndex < blogs.length - 1) {
+                        const nextBlog = blogs[currentIndex + 1];
+                        nextPostLink.href = `/blog-detail?id=${nextBlog.id}`;
                         nextPostLink.textContent = `${nextBlog.title} →`;
                     } else {
-                        nextPostLink.style.display = 'none'; // Hide if no next blog
+                        nextPostLink.style.display = 'none';
                     }
     
-                    // Handle Related Posts
+                    // Populate Related Posts
                     const relatedGrid = document.querySelector('.related-grid');
                     if (relatedGrid) {
-                        // Filter blogs to exclude the current blog
-                        const relatedBlogs = blogs.filter(blog => blog.id !== blogId).slice(0, 2); // Show up to 2 related blogs
+                        const relatedBlogs = blogs.filter(blog => blog.id !== blogId).slice(0, 2);
                         relatedGrid.innerHTML = relatedBlogs.map(blog => `
                             <div class="related-item">
                                 <h3>${blog.title}</h3>
-                                <a href="blog-detail.html?id=${blog.id}" class="read-more">Read More</a>
+                                <a href="/blog-detail?id=${blog.id}" class="read-more">Read More</a>
                             </div>
                         `).join('');
                     }
                 })
                 .catch(error => {
-                    console.error('Error fetching blogs:', error);
-                    document.body.innerHTML = '<p>Blog not found or failed to load.</p>';
+                    console.error('Error loading blog:', error);
+                    document.body.innerHTML = '<p>Failed to load blog content. Please try again later.</p>';
                 });
         } else {
+            console.error('No blog ID provided in the URL.');
             document.body.innerHTML = '<p>No blog ID provided in the URL.</p>';
         }
-    }    
+    }
+
 });
 
 document.addEventListener('DOMContentLoaded', () => {

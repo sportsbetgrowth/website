@@ -81,7 +81,7 @@
 
 /* On hover, switch to the inverse logo */
 .logo:hover .logo-image {
-    content: url('images/Sportsbetgrowth-inverse.png');
+    content: url('static/images/Logos/Sportsbetgrowth-inverse.png');
 }
 
 /* General Styles */
