@@ -187,7 +187,7 @@ body {
 }
 
 .highlights-text-container h2{
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
     padding: 0 15px;
     margin: 0 auto;
@@ -245,7 +245,6 @@ body {
 
 .image-section .cta-button {
     align-items: center;
-    padding: 20px;
 }
 
 /* Home Page - Our Work Highlight Section */
@@ -261,7 +260,7 @@ body {
 }
 
 #our-work h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
     padding: 0 15px;
     margin: 0 auto;
@@ -271,7 +270,6 @@ body {
 #our-work p {
     font-size: 1.1rem;
     margin-bottom: 30px;
-    color: #555;
 }
 
 #our-work .work-gallery {
@@ -460,7 +458,7 @@ body {
 }
 
 .contact-section h2{
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
     padding: 0 15px;
     margin: 0 auto;
@@ -769,7 +767,6 @@ footer a:hover {
 
     .image-section .cta-button {
         align-items: center;
-        padding: 20px;
     }
 
     .testimonial-card {
@@ -844,14 +841,11 @@ footer a:hover {
 
 .services-post h3 {
     font-size: 1.5em;
-    color: #00cc99;
-    font-family: 'Poppins';
     text-align: center;
 }
   
 .services-post p {
     text-align: center;
-    /* color:  #023047; */
     font-family: 'Raleway'
 }
   
@@ -1151,10 +1145,8 @@ footer a:hover {
 
 /* Blog Title Styling */
 .latest-blogs .blog-title {
-    font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #023047; /* Dark Blue */
     margin-bottom: 10px;
     text-align: center;
     line-height: 1.4;
@@ -1709,25 +1701,4 @@ footer a:hover {
     margin-top: 40px; /* Add spacing between grid and button */
     width: 100%; /* Ensure it spans the full section */
     text-align: center;
-}
-
-.blog-item {
-    display: flex;
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center horizontally */
-    text-align: center; /* Center text */
-    padding: 15px; /* Add padding inside the card */
-    border: 1px solid #ddd; /* Optional: Add a border for styling */
-    border-radius: 8px; /* Optional: Add rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow */
-}
-
-.blog-author-img {
-    display: block;
-    margin: 0 auto; /* Center the image */
-    width: 100px; /* Consistent size */
-    height: 100px; /* Consistent size */
-    border-radius: 50%; /* Make it circular */
-    object-fit: cover; /* Scale and crop the image */
-    margin-bottom: 15px; /* Add spacing below the image */
 }

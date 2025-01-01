@@ -1,17 +1,21 @@
 // scripts.js
 // Navigation Menu Scroll Effect
-window.addEventListener('scroll', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
+
     if (navbar) {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
     } else {
         console.warn('Navbar element not found. Scroll effect skipped.');
     }
 });
+
 
 // Smooth Scroll for Anchor Links Only
 const navLinks = document.querySelectorAll('.nav-links a');
