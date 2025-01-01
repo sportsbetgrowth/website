@@ -1,5 +1,4 @@
 // scripts.js
-
 // Navigation Menu Scroll Effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
@@ -91,6 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.error('Hamburger or nav-links-container not found.');
         }
+
+        // Highlight active navigation link
+        const currentPath = window.location.pathname;
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
     });
 
     loadHTML('footer', 'header-footer/footer.html'); // Load footer if needed

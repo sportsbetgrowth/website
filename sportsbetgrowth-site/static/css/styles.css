@@ -1698,3 +1698,10 @@ footer a:hover {
     }
 }
 
+.nav-link.active {
+    color: #00cc99; /* Highlight color */
+    font-weight: bold;
+    border-bottom: 2px solid #00cc99; /* Optional underline effect */
+}
+
+
