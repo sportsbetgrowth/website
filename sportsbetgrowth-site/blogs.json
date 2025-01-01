@@ -46,5 +46,13 @@
         "content": "Today is a great day because the CMS is working.",
         "image": "blog7.jpg",
         "id": 7
+    },
+    {
+        "title": "What I Learnt Working in the Gambling Industry",
+        "author": "Gerard McNally",
+        "date": "2025-01-01",
+        "content": "It was a difficult time. ",
+        "image": "blog8.jpg",
+        "id": 8
     }
 ]
