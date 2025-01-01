@@ -62,5 +62,13 @@
         "content": "I have decided to take on the challenge to write 100 blog posts in 100 days in 2025. Hopefully this will help build the site with some great content.",
         "image": "blog9.jpg",
         "id": 9
+    },
+    {
+        "title": "Maria is Great",
+        "author": "Gerard McNally",
+        "date": "2025-01-01",
+        "content": "A story about why she is not great... At all. She might be great it's hard to know.",
+        "image": "blog9.jpg",
+        "id": 10
     }
 ]
