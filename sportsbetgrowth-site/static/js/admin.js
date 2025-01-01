@@ -4,68 +4,97 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogFormSection = document.querySelector('#blog-form-section');
     const blogForm = document.querySelector('#blog-form');
     const cancelBtn = document.querySelector('#cancel-btn');
+    let editingBlogId = null;
 
-    if (addBlogBtn && blogTable && blogFormSection && blogForm && cancelBtn) {
-        console.log('Admin page detected. Initializing blog management.');
+    // Fetch and display blogs
+    function fetchBlogs() {
+        fetch('/blogs')
+            .then(response => response.json())
+            .then(data => {
+                blogTable.innerHTML = data.map(blog => `
+                    <tr>
+                        <td>${blog.id}</td>
+                        <td>${blog.title}</td>
+                        <td>${blog.author}</td>
+                        <td>${blog.date}</td>
+                        <td>
+                            <button data-id="${blog.id}" class="edit-btn">Edit</button>
+                            <button data-id="${blog.id}" class="delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
 
-        // Fetch and display blogs
-        function fetchBlogs() {
-            fetch('/blogs')
-                .then(response => response.json())
-                .then(data => {
-                    blogTable.innerHTML = data.map(blog => `
-                        <tr>
-                            <td>${blog.id}</td>
-                            <td>${blog.title}</td>
-                            <td>${blog.author}</td>
-                            <td>${blog.date}</td>
-                            <td>
-                                <button data-id="${blog.id}" class="delete-btn">Delete</button>
-                            </td>
-                        </tr>
-                    `).join('');
-                })
-                .catch(error => console.error('Error loading blogs:', error));
-        }
+                // Attach event listeners for edit and delete buttons
+                document.querySelectorAll('.edit-btn').forEach(button => {
+                    button.addEventListener('click', () => editBlog(button.dataset.id));
+                });
 
-        // Show blog form
-        addBlogBtn.addEventListener('click', () => {
-            blogForm.reset();
-            blogFormSection.style.display = 'block';
-        });
-
-        // Hide blog form
-        cancelBtn.addEventListener('click', () => {
-            blogFormSection.style.display = 'none';
-        });
-
-        // Add a new blog
-        blogForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            const blogData = {
-                title: document.querySelector('#title').value,
-                author: document.querySelector('#author').value,
-                date: document.querySelector('#date').value,
-                content: document.querySelector('#content').value,
-                image: document.querySelector('#image').value,
-            };
-
-            fetch('/blogs', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(blogData),
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', () => deleteBlog(button.dataset.id));
+                });
             })
-                .then(() => {
-                    blogFormSection.style.display = 'none';
-                    fetchBlogs(); // Reload blogs
-                })
-                .catch(error => console.error('Error adding blog:', error));
-        });
-
-        // Initial blog fetch
-        fetchBlogs();
-    } else {
-        console.warn('Admin elements not found. Skipping admin-specific logic.');
+            .catch(error => console.error('Error loading blogs:', error));
     }
+
+    // Show blog form
+    addBlogBtn.addEventListener('click', () => {
+        editingBlogId = null; // Clear editing state
+        blogForm.reset();
+        blogFormSection.style.display = 'block';
+    });
+
+    // Hide blog form
+    cancelBtn.addEventListener('click', () => {
+        blogFormSection.style.display = 'none';
+    });
+
+    // Edit a blog
+    function editBlog(id) {
+        fetch(`/blogs`)
+            .then(response => response.json())
+            .then(blogs => {
+                const blog = blogs.find(b => b.id == id);
+                if (blog) {
+                    editingBlogId = id;
+                    document.querySelector('#title').value = blog.title;
+                    document.querySelector('#author').value = blog.author;
+                    document.querySelector('#date').value = blog.date;
+                    document.querySelector('#content').value = blog.content;
+                    document.querySelector('#image').value = blog.image;
+                    blogFormSection.style.display = 'block';
+                }
+            })
+            .catch(error => console.error('Error fetching blog:', error));
+    }
+
+    // Submit the blog form
+    blogForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const blogData = {
+            title: document.querySelector('#title').value,
+            author: document.querySelector('#author').value,
+            date: document.querySelector('#date').value,
+            content: document.querySelector('#content').value,
+            image: document.querySelector('#image').value,
+        };
+
+        const method = editingBlogId ? 'PUT' : 'POST';
+        const endpoint = editingBlogId ? `/blogs/${editingBlogId}` : '/blogs';
+
+        fetch(endpoint, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(blogData),
+        })
+            .then(() => {
+                blogFormSection.style.display = 'none';
+                editingBlogId = null; // Clear editing state
+                fetchBlogs(); // Reload blogs
+            })
+            .catch(error => console.error(`Error ${editingBlogId ? 'updating' : 'adding'} blog:`, error));
+    });
+
+    // Fetch initial blogs
+    fetchBlogs();
 });
