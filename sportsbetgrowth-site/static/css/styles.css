@@ -1197,7 +1197,7 @@ footer a:hover {
 /* Responsive Enhancements */
 @media (max-width: 768px) {
     .latest-blogs .blogs-grid {
-        grid-template-columns: 1fr; /* Single-column layout on mobile */
+        grid-template-columns: 1fr;
     }
 
     .latest-blogs .blog-title {
