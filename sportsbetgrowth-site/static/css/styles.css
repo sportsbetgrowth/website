@@ -247,7 +247,7 @@ body {
     align-items: center;
 }
 
-/* Home Page - Our Work Highlight Section */
+
 /* Wrapper for Our Work Section */
 #our-work-wrapper {
     background-color: #f4f4f4; /* Full-width white background */
@@ -1689,4 +1689,67 @@ footer a:hover {
     border-radius: 8px; /* Optional: Add rounded corners */
 }
 
-/* New Styling /*
+#our-work-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+#our-work {
+    text-align: center;
+}
+  
+#our-work .services-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Ensure all cards are the same height */
+    gap: 20px;
+}
+  
+#our-work .services-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 30%; /* Ensure all cards have the same width */
+    background-color: #f9f9f9; /* Optional background */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in the card size */
+}
+  
+#our-work .services-post img {
+    max-width: 100%; /* Ensure the image fits within the container */
+    max-height: 100px; /* Fix maximum height for uniformity */
+    object-fit: contain; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space between the image and the heading */
+}
+  
+#our-work .services-post h3 {
+    margin: 0 0 10px; /* Consistent spacing above and below */
+}
+  
+#our-work .services-post p {
+    margin: 0; /* Remove extra margin for consistency */
+}
+  
+@media (max-width: 768px) {
+#our-work .services-grid {
+      flex-direction: column;
+      gap: 20px; /* Adjust gap for smaller screens */
+}
+  
+#our-work .services-post {
+      width: 100%; /* Make cards full width on smaller screens */
+}
+}
+  
+#services-highlights-wrapper {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    text-align: center; /* Align text within the content block */
+    min-height: 300px; /* Set a minimum height to ensure vertical centering */
+    padding: 40px 15px; /* Add some padding for spacing */
+    box-sizing: border-box; /* Include padding in dimensions */
+}
