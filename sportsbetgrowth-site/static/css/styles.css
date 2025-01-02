@@ -248,72 +248,55 @@ body {
 }
 
 /* Home Page - Our Work Highlight Section */
+/* Wrapper for Our Work Section */
+#our-work-wrapper {
+    background-color: #f4f4f4; /* Full-width white background */
+    width: 100%; /* Ensure the wrapper spans the full width of the viewport */
+    margin: 0; /* Remove any default margin */
+    padding: 40px 0; /* Add vertical spacing for consistency */
+    box-sizing: border-box; /* Include padding in dimensions */
+}
+
+
+/* Our Work Section */
 #our-work {
-    padding: 50px 0;
-    background-color: #f9f9f9;
+    max-width: 1200px; /* Constrain the content width */
+    margin: 0 auto; /* Center the section within the wrapper */
+    padding: 0 15px; /* Add horizontal padding for inner content */
+    box-sizing: border-box; /* Include padding in dimensions */
 }
 
-#our-work .container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Our Work Grid */
+#our-work .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 40px auto;
     text-align: center;
 }
 
-#our-work h2 {
-    font-size: 2rem;
-    text-align: center;
-    padding: 0 15px;
-    margin: 0 auto;
-    padding-bottom: 15px;
-}
-
-#our-work p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-}
-
-#our-work .work-gallery {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: space-between;
-    gap: 20px; 
-}
-
-#our-work .work-item {
-    flex: 1 1 calc(33.333% - 20px);
+/* Work Items Styling (Matches Services Post) */
+#our-work .services-post {
     background: #fff;
+    border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#our-work .work-item:hover {
+#our-work .services-post:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-#our-work .work-item img {
-    width: auto;
-    height: 120px; 
-    max-width: 100%; 
-    object-fit: contain; 
-}
 
-#our-work .work-item:hover img {
-    opacity: 0.9;
-}
-
-#our-work .work-item h3 {
-    font-size: 1.25rem;
-    margin: 15px 0 5px;
-    color: #333;
-}
-
-#our-work .work-item p {
-    font-size: 0.95rem;
-    color: #666;
-    margin: 0 15px 15px;
+/* Call-to-Action Button */
+#our-work .services-cta {
+    text-align: center;
+    margin-top: 20px;
 }
 
 /* Testimonials Sections */
@@ -327,11 +310,6 @@ body {
     max-width: 1000px;
     margin: 0 auto;
 }
-
-  .testimonials h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
 
 .testimonial-slider {
     display: flex;
@@ -471,18 +449,6 @@ body {
 }
 
 /* Home Page - Latest Blogs Styling */
-.latest-blogs .section-heading {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.latest-blogs .blogs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
 .latest-blogs .blog-item {
     background: #fff;
     padding: 1.5rem;
@@ -493,10 +459,12 @@ body {
 }
 
 .latest-blogs .blog-author-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-bottom: 0.5rem;
+    display: block;
+    margin: 0 auto 15px; /* Center horizontally and add spacing below */
+    border-radius: 50%; /* Optional: Make the image circular */
+    width: 80px; /* Set a consistent width */
+    height: 80px; /* Match height for a circular effect */
+    object-fit: cover; /* Ensure the image maintains aspect ratio */
 }
 
 .latest-blogs .blog-title {
@@ -825,6 +793,7 @@ footer a:hover {
     overflow: hidden;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
 }
   
 .services-post img {
@@ -985,17 +954,16 @@ footer a:hover {
 }
 
 /* Styles specific to blogs.html */
-
 /* Blog Container Styling */
 .blogs-section .blogs-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible columns */
-    gap: 20px; /* Proper spacing between cards */
-    padding: 20px; /* Internal spacing for the container */
-    margin: 0 auto; /* Center the container */
-    width: 100%; /* Ensure container fits within the viewport */
-    max-width: 1200px; /* Optional: Set a max-width for larger screens */
-    box-sizing: border-box; /* Include padding in width calculation */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px; 
+    padding: 20px; 
+    margin: 0 auto; 
+    width: 100%; 
+    max-width: 1200px; 
+    box-sizing: border-box; 
 }
 
 /* Blog Card Styling */
@@ -1020,7 +988,6 @@ footer a:hover {
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Blog Image Styling */
 .blogs-section .blog-banner-img {
     width: 100%;
     height: 200px;
@@ -1033,7 +1000,6 @@ footer a:hover {
     transform: scale(1.05);
 }
 
-/* Blog Content Styling */
 .blogs-section .blog-title {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
@@ -1061,7 +1027,6 @@ footer a:hover {
     text-align: center;
 }
 
-/* Call-to-Action Button */
 .blogs-section .read-more {
     display: inline-block;
     font-family: 'Poppins', sans-serif;
@@ -1104,13 +1069,12 @@ footer a:hover {
 /* Latest Blogs Container Styling */
 .latest-blogs .blogs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible columns */
-    gap: 20px; /* Ensure proper spacing between cards */
-    padding: 20px;
-    background-color: #F4F4F4; /* White Smoke */
-    border-radius: 12px;
-    width: 100%; /* Ensure container respects parent width */
-    box-sizing: border-box; /* Prevent padding from affecting layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Same column structure as other grids */
+    gap: 20px; /* Consistent spacing between items */
+    margin: 40px auto; /* Center the grid and add spacing */
+    text-align: center;
+    max-width: 1200px; /* Align with other sections' width */
+    padding: 0 15px; /* Inner padding for alignment */
 }
 
 /* Blog Card Styling */
@@ -1123,7 +1087,7 @@ footer a:hover {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 3px solid #00CC99; /* Caribbean Green */
+    /* border: 1px solid #00CC99;  */
     padding: 20px;
     height: 100%; /* Allow cards to stretch uniformly */
     width: 100%; /* Ensure cards fit within the grid columns */
@@ -1197,7 +1161,7 @@ footer a:hover {
 /* Responsive Enhancements */
 @media (max-width: 768px) {
     .latest-blogs .blogs-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single-column layout on mobile */
     }
 
     .latest-blogs .blog-title {
@@ -1239,7 +1203,7 @@ footer a:hover {
 
 /* Center the "Read All Blogs" Link */
 .latest-blogs {
-    text-align: center; /* Center align the link within the section */
+    text-align: center; 
 }
 
 /* Hero Section Styling */
@@ -1724,3 +1688,5 @@ footer a:hover {
     margin: 15px 0;
     border-radius: 8px; /* Optional: Add rounded corners */
 }
+
+/* New Styling /*
