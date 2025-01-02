@@ -92,7 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
             author: document.querySelector('#author').value,
             date: document.querySelector('#date').value,
             content: document.querySelector('#content').value,
-            image: document.querySelector('#image').value,
+            "image": document.querySelector('#image').value,  // Backward compatibility
+            "author-image": document.querySelector('#author-image').value || document.querySelector('#image').value,
+            "blog-image": document.querySelector('#blog-image').value || document.querySelector('#image').value,
         };
 
         const method = editingBlogId ? 'PUT' : 'POST';

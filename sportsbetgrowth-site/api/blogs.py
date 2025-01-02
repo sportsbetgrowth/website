@@ -24,6 +24,9 @@ def add_blog():
     blogs = load_blogs()
     new_blog = request.json
     new_blog['id'] = max([blog['id'] for blog in blogs], default=0) + 1
+    # Add new fields with fallback to 'image'
+    new_blog['author-image'] = new_blog.get('author-image', new_blog.get('image', ''))
+    new_blog['blog-image'] = new_blog.get('blog-image', new_blog.get('image', ''))
     blogs.append(new_blog)
     save_blogs(blogs)
     return jsonify(new_blog), 201
@@ -35,6 +38,11 @@ def edit_blog(id):
     updated_blog = request.json
     for blog in blogs:
         if blog['id'] == id:
+            # Update all fields with priority for new ones
+            blog.update({
+                "author-image": updated_blog.get('author-image', blog.get('author-image', blog['image'])),
+                "blog-image": updated_blog.get('blog-image', blog.get('blog-image', blog['image']))
+            })
             blog.update(updated_blog)
             save_blogs(blogs)
             return jsonify(blog), 200

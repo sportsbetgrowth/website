@@ -248,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Logic for blog.html - Populate All Blogs
+    // Logic for blog.html - Populate All Blogs
     const blogsContainer = document.getElementById('blogs-container');
     if (blogsContainer) {
         fetch('/blogs')
@@ -255,7 +256,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(blogs => {
                 blogsContainer.innerHTML = blogs.map(blog => `
                     <div class="blog-item">
-                        <img src="${blog.image}" alt="${blog.title}" class="blog-banner-img">
+                        <!-- Fallback to 'image' if 'blog-image' is not present -->
+                        <img src="${blog['blog-image'] || blog['image']}" alt="${blog.title}" class="blog-banner-img">
                         <a href="/blog-detail?id=${blog.id}" class="blog-title">${blog.title}</a>
                         <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
                         <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
@@ -267,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 blogsContainer.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
             });
     }
+
 
     // Logic for blog-detail.html - Populate Blog Details
     if (window.location.pathname.includes('blog-detail')) {
