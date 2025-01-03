@@ -224,6 +224,7 @@ function fetchBlogs(url) {
         });
 }
 
+// Function to populate latest blogs
 document.addEventListener('DOMContentLoaded', () => {
     // Logic for index.html - Populate Latest Blogs
     const latestBlogsContainer = document.querySelector('.latest-blogs .blogs-grid');
@@ -342,7 +343,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 });
- 
+
+// Function to serve latest testimonials
 function initializeTestimonials() {
     const testimonials = document.querySelectorAll('.testimonial-card');
     const indicators = document.querySelectorAll('.indicator');

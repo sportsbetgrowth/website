@@ -401,6 +401,7 @@ body {
 .contact-section {
     padding: 40px;
     text-align: center;
+    background: #fff
 }
 
 .contact-section form {
@@ -414,21 +415,21 @@ body {
     color: #023047;
     width: 300px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #00CC99;
     border-radius: 5px;
     text-align: center;
     font-size: 16px; 
-    background-color: #FFFFFF;
+    background-color: #f4f4f4;
     font-family: 'Raleway'
 }
 
 .contact-section textarea {
     color: #023047;
     width: 300px;
-    background-color: #FFFFFF;
+    background-color: #f4f4f4;
     height: 100px;  
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #00CC99;
     border-radius: 5px;
     text-align: center;
     font-size: 16px;
@@ -441,11 +442,12 @@ body {
     padding: 0 15px;
     margin: 0 auto;
     padding-bottom: 15px;
+    
 }
 
 .latest-blogs {
     padding: 2rem 1rem;
-    background-color: #f9f9f9;
+    background-color: #f4f4f4;
 }
 
 /* Home Page - Latest Blogs Styling */
