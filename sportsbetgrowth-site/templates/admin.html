@@ -34,17 +34,14 @@
                 <input id="title" type="text" placeholder="Blog Title" required>
                 <input id="author" type="text" placeholder="Author" required>
                 <input id="date" type="date" placeholder="Date" required>
-                
-                <!-- Updated Blog Content Field with Note -->
-                <label for="content">Blog Content</label>
-                <textarea id="content" placeholder="Enter your blog content here..." required></textarea>
-                <p class="note">You can use basic HTML tags like <code>&lt;h1&gt;</code>, <code>&lt;strong&gt;</code>, and <code>&lt;img&gt;</code> to format your blog content.</p>
-                
+                <textarea id="content" placeholder="Content" required rows="50" style="resize: vertical;"></textarea>
+                <p id="word-counter">0 words</p>
                 <input id="image" type="text" placeholder="Image URL">
+                <input id="author-image" type="text" placeholder="Author Image URL">
+                 <input id="blog-image" type="text" placeholder="Blog Image URL">
                 <button id="save-btn" type="submit">Save</button>
                 <button id="cancel-btn" type="button">Cancel</button>
             </form>
-            
         </section>        
 </body>
 </html>
