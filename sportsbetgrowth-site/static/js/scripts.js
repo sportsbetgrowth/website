@@ -300,11 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.blog-title').textContent = currentBlog.title;
                 document.querySelector('.blog-author').textContent = currentBlog.author;
                 document.querySelector('.blog-date').textContent = currentBlog.date;
-                document.querySelector('.blog-content').innerHTML = currentBlog.content
-                    .split('\n')
-                    .map(line => `<p>${line.trim()}</p>`)
-                    .join('');
-
+                document.querySelector('.blog-content').innerHTML = currentBlog.content;
+                
                 // Populate navigation links
                 const prevPostLink = document.querySelector('.prev-post');
                 const nextPostLink = document.querySelector('.next-post');

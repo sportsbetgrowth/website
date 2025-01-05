@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelector('#title').value = blog.title;
                     document.querySelector('#author').value = blog.author;
                     document.querySelector('#date').value = blog.date;
-                    document.querySelector('#content').value = blog.content;
+                    document.querySelector('#content').value = blog.content.replace(/<\/?[^>]+(>|$)/g, '');
                     document.querySelector('#image').value = blog.image;
                     blogFormSection.style.display = 'block';
     
