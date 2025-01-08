@@ -17,27 +17,19 @@
     <!-- Main Highlight Section -->
     <section id="main-highlight-a" class="image-section section-padding">
         <div class="text-container">
-            <h2 class="section-heading">Your Playbook for Smarter Betting Decisions</h2>
-            <p>SportsBetGrowth provides the tools and insights you need to make smarter decisions and maximize your betting opportunities.</p>
-            <!-- Button to Open Modal -->
-            <button class="cta-button" onclick="openModal()">Join Our Newsletter</button>
+            <h2 class="section-heading">Your Insider's Guide to Smarter Betting</h2>
+            <p>Subscribe for proven strategies and expert tips to outsmart the odds.</p>
+            
+            <!-- Email Signup Form -->
+            <form id="newsletter-form" action="/subscribe" method="POST" class="stacked-form">
+                <input type="email" id="emailInput" name="email" placeholder="Enter Your Email to Get Started" required>
+                <button type="submit" class="cta-button">Join the Experts</button>
+            </form>
         </div>
         <div class="image-container">
             <img src="/static/images/main-highlight.png" alt="Sports Highlight">
         </div>
     </section>
-
-    <!-- Modal -->
-    <div id="subscribeModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2>Subscribe to Our Newsletter</h2>
-            <form id="newsletter-form" action="/subscribe" method="POST">
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-                <button type="submit" class="cta-button">Subscribe</button>
-            </form>
-        </div>
-    </div>
 
     <!-- Services Highlights Section -->
     <div id="services-highlights-wrapper">

@@ -144,7 +144,7 @@ body {
 }
 
 #main-highlight-a h2{
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     margin-bottom: 10px;
 }
 
@@ -1787,32 +1787,57 @@ footer a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
+/* Stacked Form Styling */
+.stacked-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
     width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    max-width: 400px;
+    margin: 20px auto;
 }
 
-.modal-content {
-    background-color: #F4F4F4;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+/* Ensure Input and Button Have Same Dimensions */
+.stacked-form input[type="email"],
+.stacked-form .cta-button {
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 25px;
+    box-sizing: border-box; /* Ensures padding is included in the width/height */
 }
 
-.close-button {
-    color: #333;
-    float: right;
-    font-size: 24px;
+/* Email Input Field Styling */
+/* Center the placeholder and entered text in the input field */
+.stacked-form input[type="email"] {
+    text-align: center; /* Center the text inside the input */
+    padding: 0 15px;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    border: 2px solid #00CC99;
+    border-radius: 25px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+
+.stacked-form input[type="email"]:focus {
+    border-color: #FF5733; /* Outrageous Orange */
+}
+
+/* Button Styling */
+.stacked-form .cta-button {
+    background-color: #00CC99;
+    color: #FFFFFF;
+    border: none;
     cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.stacked-form .cta-button:hover {
+    background-color: #FF5733; /* Outrageous Orange */
 }
