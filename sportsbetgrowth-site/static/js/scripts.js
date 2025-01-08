@@ -383,5 +383,13 @@ function initializeTestimonials() {
     }
 }
 
+function openModal() {
+    document.getElementById('subscribeModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('subscribeModal').style.display = 'none';
+}
+
 // Call the function
 initializeTestimonials();
