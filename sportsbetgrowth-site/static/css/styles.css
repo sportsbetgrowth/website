@@ -1841,3 +1841,28 @@ footer a:hover {
 .stacked-form .cta-button:hover {
     background-color: #FF5733; /* Outrageous Orange */
 }
+
+/* Success and Error Feedback Styles */
+.form-feedback {
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-feedback.success {
+    background-color: #00CC99;
+    color: #FFFFFF;
+}
+
+.form-feedback.error {
+    background-color: #FF5733;
+    color: #FFFFFF;
+}
+
+/* Button Animation on Submit */
+.cta-button:active {
+    transform: scale(0.98);
+}

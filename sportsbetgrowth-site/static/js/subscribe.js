@@ -3,27 +3,26 @@ document.getElementById('newsletter-form').addEventListener('submit', async func
 
     const emailInput = document.getElementById('emailInput');
     const form = document.getElementById('newsletter-form');
-    const feedback = document.createElement('p');
-    feedback.id = 'form-feedback';
-    feedback.style.marginTop = '10px';
-    feedback.style.fontSize = '14px';
+    let feedback = document.getElementById('form-feedback');
 
-    // Remove any existing feedback
-    const existingFeedback = document.getElementById('form-feedback');
-    if (existingFeedback) {
-        existingFeedback.remove();
+    if (!feedback) {
+        feedback = document.createElement('p');
+        feedback.id = 'form-feedback';
+        form.appendChild(feedback);
     }
 
-    // Simple email format validation
+    feedback.className = '';
+    feedback.textContent = '';
+
+    // Real-time validation
     const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if (!emailRegex.test(emailInput.value)) {
         feedback.textContent = 'Please enter a valid email address.';
-        feedback.style.color = '#FF5733';
-        form.appendChild(feedback);
+        feedback.className = 'form-feedback error';
         return;
     }
 
-    // Show loading indicator
+    // Show loading state
     const submitButton = form.querySelector('button');
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting...';
@@ -38,16 +37,13 @@ document.getElementById('newsletter-form').addEventListener('submit', async func
         });
 
         const result = await response.json();
-
-        // Display feedback to the user
         feedback.textContent = result.message;
-        feedback.style.color = result.success ? '#00CC99' : '#FF5733'; // Green for success, Orange for errors
-        form.appendChild(feedback);
+        feedback.className = result.success ? 'form-feedback success' : 'form-feedback error';
 
-        // Reset the form and button state
         if (result.success) {
             emailInput.value = '';
         }
+
         submitButton.disabled = false;
         submitButton.textContent = 'Join Our Newsletter';
 
@@ -57,8 +53,7 @@ document.getElementById('newsletter-form').addEventListener('submit', async func
         }, 5000);
     } catch (error) {
         feedback.textContent = 'An error occurred. Please try again later.';
-        feedback.style.color = '#FF5733';
-        form.appendChild(feedback);
+        feedback.className = 'form-feedback error';
 
         submitButton.disabled = false;
         submitButton.textContent = 'Join Our Newsletter';
