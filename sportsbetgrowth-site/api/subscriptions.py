@@ -30,10 +30,10 @@ def subscribe():
     email = request.form.get('email')
 
     if not email:
-        return jsonify({'error': 'Email is required'}), 400
+        return jsonify({'success': False, 'message': 'Email is required'}), 400
 
     if not is_valid_email(email):
-        return jsonify({'error': 'Invalid email format'}), 400
+        return jsonify({'success': False, 'message': 'Invalid email format'}), 400
 
     try:
         # Insert the email into the database
@@ -43,30 +43,32 @@ def subscribe():
         conn.commit()
         conn.close()
 
-        return jsonify({'message': 'Thank you for subscribing!'}), 201
+        return jsonify({'success': True, 'message': 'Thank you for subscribing!'}), 201
     except sqlite3.IntegrityError:
-        return jsonify({'error': 'Email already subscribed'}), 400
+        return jsonify({'success': False, 'message': 'Email already subscribed'}), 400
     except Exception as e:
-        return jsonify({'error': 'Could not save email'}), 500
+        return jsonify({'success': False, 'message': 'Could not save email'}), 500
 
-# Route to fetch subscribers with a basic security check
 @subscriptions_bp.route('/subscribers', methods=['GET'])
 def get_subscribers():
     # Simple security check using an API key
     api_key = request.args.get('api_key')
     if api_key != 'BOSE_123_BHT':
-        return jsonify({'error': 'Unauthorized'}), 403
+        return jsonify({'success': False, 'message': 'Unauthorized'}), 403
 
     try:
+        # Connect to the database
         conn = sqlite3.connect('subscribers.db')
+        conn.row_factory = sqlite3.Row  # To return rows as dictionaries
         c = conn.cursor()
-        c.execute('SELECT * FROM subscribers')
-        subscribers = c.fetchall()
+        c.execute('SELECT id, email, subscribed_at FROM subscribers')
+        subscribers = [dict(row) for row in c.fetchall()]  # Convert rows to dictionaries
         conn.close()
 
-        return jsonify(subscribers)
+        return jsonify({'success': True, 'subscribers': subscribers})
     except Exception as e:
-        return jsonify({'error': 'Could not fetch subscribers'}), 500
+        return jsonify({'success': False, 'message': f'Could not fetch subscribers: {str(e)}'}), 500
+
 
 # Script to initialize the database if run directly
 if __name__ == '__main__':
