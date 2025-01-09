@@ -3,12 +3,34 @@ document.getElementById('newsletter-form').addEventListener('submit', async func
 
     const emailInput = document.getElementById('emailInput');
     const form = document.getElementById('newsletter-form');
+    const honeypot = form.querySelector('input[name="honeypot"]');
 
     // Reset form styles
     form.classList.remove('success', 'error');
     emailInput.placeholder = 'Your email address here';
 
+    // 🛠 Honeypot Spam Protection
+    if (honeypot && honeypot.value) {
+        return; // If the honeypot is filled, likely a bot, so do nothing
+    }
+
+    // 🛠 Prevent Empty Email Submission
+    if (emailInput.value.trim() === '') {
+        form.classList.add('error');
+        emailInput.placeholder = 'Please enter your email address.';
+        return;
+    }
+
+    // 🛠 Handle Offline Submissions
+    if (!navigator.onLine) {
+        form.classList.add('error');
+        emailInput.value = '';
+        emailInput.placeholder = 'You appear to be offline. Please check your connection.';
+        return;
+    }
+
     try {
+        // Show loading state (optional)
         const response = await fetch('/subscribe', {
             method: 'POST',
             headers: {
@@ -19,16 +41,16 @@ document.getElementById('newsletter-form').addEventListener('submit', async func
 
         const result = await response.json();
 
+        // 🛠 Success Feedback
         if (result.success) {
-            // Success feedback
             form.classList.add('success');
             emailInput.value = '';
             emailInput.placeholder = "You're all signed up!";
         } else {
-            // Error feedback
+            // 🛠 Error Feedback
             form.classList.add('error');
             emailInput.value = '';
-            emailInput.placeholder = "You're already subscribed!";
+            emailInput.placeholder = result.message || "You're already subscribed!";
         }
 
         // Reset form styles after 5 seconds
