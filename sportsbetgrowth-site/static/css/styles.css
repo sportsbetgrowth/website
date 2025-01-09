@@ -1842,27 +1842,24 @@ footer a:hover {
     background-color: #FF5733; /* Outrageous Orange */
 }
 
-/* Success and Error Feedback Styles */
-.form-feedback {
-    padding: 10px;
-    margin-top: 15px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
+/* Success Feedback Styling */
+.stacked-form.success input {
+    background-color: #00CC99; /* Caribbean Green */
+    color: #FFFFFF;
+    border: none;
 }
 
-.form-feedback.success {
-    background-color: #00CC99;
+.stacked-form.success input::placeholder {
     color: #FFFFFF;
 }
 
-.form-feedback.error {
-    background-color: #FF5733;
+/* Error Feedback Styling */
+.stacked-form.error input {
+    background-color: #FF5733; /* Outrageous Orange */
     color: #FFFFFF;
+    border: none;
 }
 
-/* Button Animation on Submit */
-.cta-button:active {
-    transform: scale(0.98);
+.stacked-form.error input::placeholder {
+    color: #FFFFFF;
 }

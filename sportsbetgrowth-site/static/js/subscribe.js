@@ -3,29 +3,10 @@ document.getElementById('newsletter-form').addEventListener('submit', async func
 
     const emailInput = document.getElementById('emailInput');
     const form = document.getElementById('newsletter-form');
-    let feedback = document.getElementById('form-feedback');
 
-    if (!feedback) {
-        feedback = document.createElement('p');
-        feedback.id = 'form-feedback';
-        form.appendChild(feedback);
-    }
-
-    feedback.className = '';
-    feedback.textContent = '';
-
-    // Real-time validation
-    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    if (!emailRegex.test(emailInput.value)) {
-        feedback.textContent = 'Please enter a valid email address.';
-        feedback.className = 'form-feedback error';
-        return;
-    }
-
-    // Show loading state
-    const submitButton = form.querySelector('button');
-    submitButton.disabled = true;
-    submitButton.textContent = 'Submitting...';
+    // Reset form styles
+    form.classList.remove('success', 'error');
+    emailInput.placeholder = 'Your email address here';
 
     try {
         const response = await fetch('/subscribe', {
@@ -37,25 +18,28 @@ document.getElementById('newsletter-form').addEventListener('submit', async func
         });
 
         const result = await response.json();
-        feedback.textContent = result.message;
-        feedback.className = result.success ? 'form-feedback success' : 'form-feedback error';
 
         if (result.success) {
+            // Success feedback
+            form.classList.add('success');
             emailInput.value = '';
+            emailInput.placeholder = "You're all signed up!";
+        } else {
+            // Error feedback
+            form.classList.add('error');
+            emailInput.value = '';
+            emailInput.placeholder = "You're already subscribed!";
         }
 
-        submitButton.disabled = false;
-        submitButton.textContent = 'Join Our Newsletter';
-
-        // Auto-hide feedback after 5 seconds
+        // Reset form styles after 5 seconds
         setTimeout(() => {
-            feedback.remove();
+            form.classList.remove('success', 'error');
+            emailInput.placeholder = 'Your email address here';
         }, 5000);
     } catch (error) {
-        feedback.textContent = 'An error occurred. Please try again later.';
-        feedback.className = 'form-feedback error';
-
-        submitButton.disabled = false;
-        submitButton.textContent = 'Join Our Newsletter';
+        form.classList.add('error');
+        emailInput.value = '';
+        emailInput.placeholder = 'An error occurred. Please try again.';
     }
 });
+
