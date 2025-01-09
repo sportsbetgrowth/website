@@ -1,10 +1,12 @@
 from flask import Flask, render_template, send_from_directory
 from api.blogs import blogs_bp
+from api.subscriptions import subscriptions_bp
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
 # Register the blogs Blueprint
 app.register_blueprint(blogs_bp)
+app.register_blueprint(subscriptions_bp)
 
 # Serve the main templates
 @app.route('/')
