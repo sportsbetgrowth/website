@@ -233,7 +233,7 @@ function generateTableOfContents() {
     // Create TOC container
     const tocContainer = document.createElement('div');
     tocContainer.classList.add('table-of-contents');
-    tocContainer.innerHTML = '<h2>Table of Contents</h2>';
+    tocContainer.innerHTML = '<h2>Contents</h2>';
     const tocList = document.createElement('ul');
     tocContainer.appendChild(tocList);
 
