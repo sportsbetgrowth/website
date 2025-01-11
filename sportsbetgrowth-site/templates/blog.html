@@ -21,9 +21,11 @@
       <div class="blog-hero-content">
           <h1>Explore the Winning Edge</h1>
           <p>Your ultimate guide to strategies, insights, and tools for sports betting success.</p>
-          <div class="cta-buttons">
-              <a href="#subscribe" class="cta-button">Join Our Newsletter</a>
-          </div>
+          <form id="newsletter-form" action="/subscribe" method="POST" class="stacked-form">
+            <input type="text" name="honeypot" style="display: none;">
+            <input type="email" id="emailInput" name="email" placeholder="Your email address here" required>
+            <button type="submit" class="cta-button">Join Our Newsletter</button>
+          </form>
       </div>
       <div class="blog-hero-decorative"></div>
     </section>
@@ -43,7 +45,11 @@
     <div class="footer-cta-content">
         <h2>Stay Connected</h2>
         <p>Join our newsletter for the latest updates, insights, and strategies in sports betting.</p>
-        <a href="#subscribe" class="cta-button">Subscribe Now</a>
+        <form id="newsletter-form" action="/subscribe" method="POST" class="stacked-form">
+          <input type="text" name="honeypot" style="display: none;">
+          <input type="email" id="emailInput" name="email" placeholder="Your email address here" required>
+          <button type="submit" class="cta-button">Join Our Newsletter</button>
+        </form>
     </div>
   </section>
 

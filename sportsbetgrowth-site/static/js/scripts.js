@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
 // Smooth Scroll for Anchor Links Only
 const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -224,6 +223,35 @@ function fetchBlogs(url) {
         });
 }
 
+function generateTableOfContents() {
+    const contentSection = document.querySelector('.blog-content');
+    if (!contentSection) return;
+
+    const headings = contentSection.querySelectorAll('h2, h3');
+    if (headings.length === 0) return;
+
+    // Create TOC container
+    const tocContainer = document.createElement('div');
+    tocContainer.classList.add('table-of-contents');
+    tocContainer.innerHTML = '<h2>Table of Contents</h2>';
+    const tocList = document.createElement('ul');
+    tocContainer.appendChild(tocList);
+
+    // Generate TOC items
+    headings.forEach((heading, index) => {
+        const id = `heading-${index}`;
+        heading.id = id;
+
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `<a href="#${id}">${heading.textContent}</a>`;
+        tocList.appendChild(listItem);
+    });
+
+    // Insert TOC at the top of the content
+    contentSection.prepend(tocContainer);
+}
+
+
 // Function to populate latest blogs
 document.addEventListener('DOMContentLoaded', () => {
     // Logic for index.html - Populate Latest Blogs
@@ -248,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Logic for blog.html - Populate All Blogs
     // Logic for blog.html - Populate All Blogs
     const blogsContainer = document.getElementById('blogs-container');
     if (blogsContainer) {
@@ -339,7 +366,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.innerHTML = `<p class="error-message">Failed to load blog content. Please try again later.</p>`;
             });
     }
+    if (window.location.pathname.includes('blog-detail')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const blogId = parseInt(urlParams.get('id'), 10);
+    
+        if (!blogId || isNaN(blogId)) {
+            document.body.innerHTML = '<p class="error-message">Invalid blog ID. Please go back to the <a href="/blog">blog page</a>.</p>';
+            return;
+        }
+    
+        fetch('/blogs')
+            .then(response => response.json())
+            .then(blogs => {
+                const currentBlog = blogs.find(blog => blog.id === blogId);
+                if (!currentBlog) {
+                    document.body.innerHTML = '<p class="error-message">Blog not found. Please return to the <a href="/blog">blog page</a>.</p>';
+                    return;
+                }
+    
+                // Populate blog content
+                document.querySelector('.blog-banner-img').src = currentBlog['blog-image'];
+                document.querySelector('.blog-title').textContent = currentBlog.title;
+                document.querySelector('.blog-author').textContent = currentBlog.author;
+                document.querySelector('.blog-date').textContent = currentBlog.date;
+                document.querySelector('.blog-content').innerHTML = currentBlog.content;
+    
+                // Generate Table of Contents
+                generateTableOfContents();
+            })
+            .catch(error => {
+                console.error('Error loading blog:', error);
+                document.body.innerHTML = `<p class="error-message">Failed to load blog content. Please try again later.</p>`;
+            });
+    }
+    
 });
+
 
 // Function to serve latest testimonials
 function initializeTestimonials() {
@@ -382,3 +444,4 @@ function initializeTestimonials() {
         console.warn('Testimonial section not found. Skipping testimonial functionality.');
     }
 }
+
