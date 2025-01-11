@@ -43,13 +43,20 @@
       </div>
     </section>
 
-    <section class="footer-cta-section">
-      <div class="footer-cta-content">
-          <h2>Stay Connected</h2>
-          <p>Join our newsletter for the latest updates, insights, and strategies in sports betting.</p>
-          <a href="#subscribe" class="cta-button">Subscribe Now</a>
+    <section id="main-highlight-a" class="image-section section-padding">
+      <div class="text-container">
+          <h2 class="section-heading">Stay connected</h2>
+          <p>Join our newsletter for the latest updates, 
+            insights, and strategies in sports betting</p>
+          <!-- Email Signup Form -->
+          <form id="newsletter-form" action="/subscribe" method="POST" class="stacked-form">
+              <input type="text" name="honeypot" style="display: none;">
+              <input type="email" id="emailInput" name="email" placeholder="Your email address here" required>
+              <button type="submit" class="cta-button">Join Our Newsletter</button>
+          </form>
       </div>
     </section>
+
 
     <footer></footer>
 
