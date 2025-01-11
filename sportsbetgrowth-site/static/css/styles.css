@@ -92,7 +92,6 @@ body {
     color: #333;
 }
 
-
 .cta-button {
     display: inline-block;
     padding: 15px 30px;
@@ -104,7 +103,7 @@ body {
     letter-spacing: 1px;
     text-decoration: none;
     border: none;
-    border-radius: 50px;
+    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease; 
     cursor: pointer;
@@ -126,7 +125,7 @@ body {
     letter-spacing: 1px; 
     text-decoration: none; 
     border: none;
-    border-radius: 50px; 
+    border-radius: 8px; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     transition: all 0.3s ease; 
     cursor: pointer; 
@@ -976,7 +975,7 @@ footer a:hover {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 3px solid #00CC99; 
+    border: 2px solid #00CC99; 
     padding: 20px;
     height: 100%; 
     box-sizing: border-box; 
@@ -1650,10 +1649,11 @@ footer a:hover {
     height: 50px;
     font-size: 16px;
     border: 2px solid #00CC99;
-    border-radius: 25px;
+    border-radius: 8px;
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.3s ease;
+    max-width: 365px
 }
 
 
@@ -1663,11 +1663,18 @@ footer a:hover {
 
 /* Button Styling */
 .stacked-form .cta-button {
-    background-color: #00CC99;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
     color: #FFFFFF;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    background: #00CC99;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 365px; /* Adjust based on your blog card width */
 }
 
 .stacked-form .cta-button:hover {
