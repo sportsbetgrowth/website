@@ -179,7 +179,8 @@ function fetchBlogDetail() {
         fetch('/blogs')
             .then(response => response.json())
             .then(blogs => {
-                const currentBlog = blogs.find(blog => blog.id === blogId);
+                const currentBlogIndex = blogs.findIndex(blog => blog.id === blogId);
+                const currentBlog = blogs[currentBlogIndex];
                 if (!currentBlog) {
                     document.body.innerHTML = '<p class="error-message">Blog not found. Please return to the <a href="/blog">blog page</a>.</p>';
                     return;
@@ -191,6 +192,29 @@ function fetchBlogDetail() {
                 document.querySelector('.blog-author').textContent = currentBlog.author;
                 document.querySelector('.blog-date').textContent = currentBlog.date;
                 document.querySelector('.blog-content').innerHTML = currentBlog.content;
+
+                // Update the page title for SEO
+                document.title = `${currentBlog.title} | Sports Bet Growth`;
+
+                // Populate previous and next post links
+                const prevPostLink = document.querySelector('.prev-post');
+                const nextPostLink = document.querySelector('.next-post');
+
+                if (currentBlogIndex > 0) {
+                    const prevBlog = blogs[currentBlogIndex - 1];
+                    prevPostLink.href = `/blog-detail?id=${prevBlog.id}`;
+                    prevPostLink.textContent = `← ${prevBlog.title}`;
+                } else {
+                    prevPostLink.style.display = 'none'; // Hide if no previous post
+                }
+
+                if (currentBlogIndex < blogs.length - 1) {
+                    const nextBlog = blogs[currentBlogIndex + 1];
+                    nextPostLink.href = `/blog-detail?id=${nextBlog.id}`;
+                    nextPostLink.textContent = `${nextBlog.title} →`;
+                } else {
+                    nextPostLink.style.display = 'none'; // Hide if no next post
+                }
             })
             .catch(error => {
                 console.error('Error loading blog:', error);
@@ -229,7 +253,7 @@ function setupPagination(totalPages, currentPage = 1) {
 // Fetch initial blogs and setup pagination
 fetchBlogs().then(data => {
     renderBlogs(data.blogs);
-    const totalPages = Math.ceil(data.total / 9); // Assuming 9 blogs per page
+    const totalPages = Math.ceil(data.total / 9); // Assuming  blogs per page
     setupPagination(totalPages);
 });
 
