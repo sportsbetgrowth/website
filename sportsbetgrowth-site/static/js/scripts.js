@@ -114,178 +114,17 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'YOUR_TRACKING_ID');
 
-// Function to send email using EmailJS with improvements
-let emailCooldown = false;
-
-function sendEmail() {
-    if (emailCooldown) {
-        showAlert('Please wait 60 seconds before sending another message.', 'warning');
-        return;
-    }
-
-    const contactForm = document.getElementById('contact-form');
-    const name = contactForm.name.value.trim();
-    const email = contactForm.email.value.trim();
-    const message = contactForm.message.value.trim();
-
-    // Check if all fields are filled
-    if (!name || !email || !message) {
-        showAlert('Please fill in all fields before sending the message.', 'info');
-        return;
-    }
-
-    emailjs.send("service_dbir5n9", "template_xgdhzf6", {
-        from_name: name,
-        message: message,
-        reply_to: email,
-    })
-    .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
-        // Display a nicely formatted alert
-        showAlert('Message sent successfully! Thank you for contacting us.', 'success');
-        // Clear the form fields
-        contactForm.reset();
-        // Start cooldown
-        emailCooldown = true;
-        setTimeout(() => {
-            emailCooldown = false;
-        }, 60000); // 60 seconds cooldown
-        
-        // Add user contact to Google Sheets
-        addToGoogleSheet(name, email, message);
-    }, (error) => {
-        console.error('FAILED...', error);
-        showAlert('There was an error sending your message. Please try again later.', 'error');
-    });
-}
-
-// Function to show custom alert messages with better formatting
-let alertActive = false; // Track if an alert is currently visible
-
-function showAlert(message, type = 'error') {
-    if (alertActive) {
-        return; // Exit if an alert is already active
-    }
-
-    // Set the alert as active
-    alertActive = true;
-
-    // Locate the contact section and the "Contact Us" heading
-    const contactSection = document.querySelector('.contact-section');
-    const contactHeading = contactSection.querySelector('h2'); // The "Contact Us" heading
-
-    // Create the alert element
-    const alertBox = document.createElement('div');
-    alertBox.className = `custom-alert ${type}`; // Add specific class (e.g., error, success)
-    alertBox.textContent = message;
-
-    // Insert the alert box just above the "Contact Us" heading
-    contactSection.insertBefore(alertBox, contactHeading);
-
-    // Automatically remove the alert after 5 seconds
-    setTimeout(() => {
-        alertBox.remove();
-        alertActive = false; // Reset the alert state
-    }, 5000);
-}
-
-// Function to add user contacts to Google Sheets
-function addToGoogleSheet(name, email, message) {
-    // Replace with your actual Google Apps Script Web App URL
-    const googleScriptURL = "https://script.google.com/macros/s/AKfycbzYDoxKbsFyqDr1RntWwJHjwciMLYpSplWoWohVxHUZVEcQu32hwElIKWHi0Tt1vUeo/exec";
-
-    // Make a POST request to the Google Apps Script
-    fetch(googleScriptURL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: name,
-            email: email,
-            message: message
-        }),
-        mode: 'no-cors' // Add this line to disable CORS check
-    })
-    .then(response => {
-        console.log('Request sent. Response status is opaque due to no-cors mode.');
-    })
-    .catch(error => {
-        console.error('Error adding to Google Sheets:', error);
-    });    
-}
-
-function fetchBlogs(url) {
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-            return response.json();
-        });
-}
-
-function generateTableOfContents() {
-    const contentSection = document.querySelector('.blog-content');
-    if (!contentSection) return;
-
-    const headings = contentSection.querySelectorAll('h2, h3');
-    if (headings.length === 0) return;
-
-    // Create TOC container
-    const tocContainer = document.createElement('div');
-    tocContainer.classList.add('table-of-contents');
-    tocContainer.innerHTML = '<h2>Contents</h2>';
-    const tocList = document.createElement('ul');
-    tocContainer.appendChild(tocList);
-
-    // Generate TOC items
-    headings.forEach((heading, index) => {
-        const id = `heading-${index}`;
-        heading.id = id;
-
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `<a href="#${id}">${heading.textContent}</a>`;
-        tocList.appendChild(listItem);
-    });
-
-    // Insert TOC at the top of the content
-    contentSection.prepend(tocContainer);
-}
-
-
-// Function to populate latest blogs
-document.addEventListener('DOMContentLoaded', () => {
-    // Logic for index.html - Populate Latest Blogs
+// Fetch blogs for index.html
+function fetchLatestBlogs() {
     const latestBlogsContainer = document.querySelector('.latest-blogs .blogs-grid');
     if (latestBlogsContainer) {
         fetch('/blogs')
-        .then(response => response.json())
-        .then(blogs => {
-            const latestBlogs = blogs.slice(0, 3); // Display only the first 3 blogs
-            latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
-                <div class="blog-item">
-                    <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
-                    <a href="/blog-detail?id=${blog.id}" class="blog-title">${blog.title}</a>
-                    <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
-                    <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
-                </div>
-            `).join('');
-        })
-        .catch(error => {
-            console.error('Error fetching blogs:', error);
-            latestBlogsContainer.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
-        });
-    }
-
-    // Logic for blog.html - Populate All Blogs
-    const blogsContainer = document.getElementById('blogs-container');
-    if (blogsContainer) {
-        fetch('/blogs')
             .then(response => response.json())
             .then(blogs => {
-                blogsContainer.innerHTML = blogs.map(blog => `
+                const latestBlogs = blogs.slice(0, 3); // Display only the first 3 blogs
+                latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
                     <div class="blog-item">
-                        <!-- Fallback to 'image' if 'blog-image' is not present -->
-                        <img src="${blog['blog-image'] || blog['image']}" alt="${blog.title}" class="blog-banner-img">
+                        <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
                         <a href="/blog-detail?id=${blog.id}" class="blog-title">${blog.title}</a>
                         <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
                         <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
@@ -294,12 +133,40 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Error fetching blogs:', error);
-                blogsContainer.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
+                latestBlogsContainer.innerHTML = '<p>Failed to load blogs. Please try again later.</p>';
             });
     }
+}
 
+// Function to fetch paginated blogs
+function fetchBlogs(page = 1, perPage = 9) {
+    return fetch(`/blogs/paginated?page=${page}&per_page=${perPage}`)
+        .then(response => response.json())
+        .catch(error => {
+            console.error('Error fetching blogs:', error);
+            return { blogs: [] };
+        });
+}
 
-    // Logic for blog-detail.html - Populate Blog Details
+// Function to render blogs on the blog.html page
+function renderBlogs(blogs) {
+    const blogsContainer = document.getElementById('blogs-container');
+    blogsContainer.innerHTML = ''; // Clear previous content
+    blogs.forEach(blog => {
+        const blogItem = document.createElement('div');
+        blogItem.className = 'blog-item';
+        blogItem.innerHTML = `
+            <img src="${blog['blog-image'] || blog.image}" alt="${blog.title}" class="blog-banner-img">
+            <a href="/blog-detail?id=${blog.id}" class="blog-title">${blog.title}</a>
+            <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
+            <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
+        `;
+        blogsContainer.appendChild(blogItem);
+    });
+}
+
+// Function to fetch and render blog details for blog-detail.html
+function fetchBlogDetail() {
     if (window.location.pathname.includes('blog-detail')) {
         const urlParams = new URLSearchParams(window.location.search);
         const blogId = parseInt(urlParams.get('id'), 10);
@@ -309,72 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fetch('/blogs')
-            .then(response => {
-                if (!response.ok) throw new Error(`Error fetching blogs: ${response.status}`);
-                return response.json();
-            })
-            .then(blogs => {
-                const currentBlogIndex = blogs.findIndex(blog => blog.id === blogId);
-                const currentBlog = blogs[currentBlogIndex];
-                if (!currentBlog) {
-                    document.body.innerHTML = '<p class="error-message">Blog not found. Please return to the <a href="/blog">blog page</a>.</p>';
-                    return;
-                }
-
-                // Populate blog content
-                document.querySelector('.blog-banner-img').src = currentBlog.image;
-                document.querySelector('.blog-title').textContent = currentBlog.title;
-                document.querySelector('.blog-author').textContent = currentBlog.author;
-                document.querySelector('.blog-date').textContent = currentBlog.date;
-                document.querySelector('.blog-content').innerHTML = currentBlog.content;
-                
-                // Populate navigation links
-                const prevPostLink = document.querySelector('.prev-post');
-                const nextPostLink = document.querySelector('.next-post');
-
-                if (currentBlogIndex > 0) {
-                    const prevBlog = blogs[currentBlogIndex - 1];
-                    prevPostLink.href = `/blog-detail?id=${prevBlog.id}`;
-                    prevPostLink.textContent = `← ${prevBlog.title}`;
-                } else {
-                    prevPostLink.style.display = 'none'; // Hide if no previous post
-                }
-
-                if (currentBlogIndex < blogs.length - 1) {
-                    const nextBlog = blogs[currentBlogIndex + 1];
-                    nextPostLink.href = `/blog-detail?id=${nextBlog.id}`;
-                    nextPostLink.textContent = `${nextBlog.title} →`;
-                } else {
-                    nextPostLink.style.display = 'none'; // Hide if no next post
-                }
-
-                // Populate related posts
-                const relatedGrid = document.querySelector('.related-grid');
-                if (relatedGrid) {
-                    const relatedBlogs = blogs.filter(blog => blog.id !== blogId).slice(0, 2); // Exclude current blog and limit to 2
-                    relatedGrid.innerHTML = relatedBlogs.map(blog => `
-                        <div class="related-item">
-                            <h3>${blog.title}</h3>
-                            <a href="/blog-detail?id=${blog.id}" class="read-more">Read More</a>
-                        </div>
-                    `).join('');
-                }
-            })
-            .catch(error => {
-                console.error('Error loading blog:', error.message);
-                document.body.innerHTML = `<p class="error-message">Failed to load blog content. Please try again later.</p>`;
-            });
-    }
-    if (window.location.pathname.includes('blog-detail')) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const blogId = parseInt(urlParams.get('id'), 10);
-    
-        if (!blogId || isNaN(blogId)) {
-            document.body.innerHTML = '<p class="error-message">Invalid blog ID. Please go back to the <a href="/blog">blog page</a>.</p>';
-            return;
-        }
-    
         fetch('/blogs')
             .then(response => response.json())
             .then(blogs => {
@@ -383,27 +184,56 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.body.innerHTML = '<p class="error-message">Blog not found. Please return to the <a href="/blog">blog page</a>.</p>';
                     return;
                 }
-    
+
                 // Populate blog content
                 document.querySelector('.blog-banner-img').src = currentBlog['blog-image'];
                 document.querySelector('.blog-title').textContent = currentBlog.title;
                 document.querySelector('.blog-author').textContent = currentBlog.author;
                 document.querySelector('.blog-date').textContent = currentBlog.date;
                 document.querySelector('.blog-content').innerHTML = currentBlog.content;
-    
-                // Generate Table of Contents
-                generateTableOfContents();
             })
             .catch(error => {
                 console.error('Error loading blog:', error);
-                document.body.innerHTML = `<p class="error-message">Failed to load blog content. Please try again later.</p>`;
+                document.body.innerHTML = '<p class="error-message">Failed to load blog content. Please try again later.</p>';
             });
     }
-    
+}
+
+// Setup pagination with page numbers
+function setupPagination(totalPages, currentPage = 1) {
+    const paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.className = 'page-btn';
+        pageButton.textContent = i;
+        if (i === currentPage) {
+            pageButton.classList.add('active');
+        }
+        pageButton.addEventListener('click', () => {
+            fetchBlogs(i).then(data => {
+                renderBlogs(data.blogs);
+                setupPagination(totalPages, i);
+            });
+        });
+        paginationContainer.appendChild(pageButton);
+    }
+
+    const blogsSection = document.querySelector('.blogs-section .container');
+    const existingPagination = document.querySelector('.pagination');
+    if (existingPagination) existingPagination.remove();
+    blogsSection.appendChild(paginationContainer);
+}
+
+// Fetch initial blogs and setup pagination
+fetchBlogs().then(data => {
+    renderBlogs(data.blogs);
+    const totalPages = Math.ceil(data.total / 9); // Assuming 9 blogs per page
+    setupPagination(totalPages);
 });
 
-
-// Function to serve latest testimonials
+// Testimonials slider logic
 function initializeTestimonials() {
     const testimonials = document.querySelectorAll('.testimonial-card');
     const indicators = document.querySelectorAll('.indicator');
@@ -445,3 +275,104 @@ function initializeTestimonials() {
     }
 }
 
+// Function to send email using EmailJS with improvements
+let emailCooldown = false;
+
+function sendEmail() {
+    if (emailCooldown) {
+        showAlert('Please wait 60 seconds before sending another message.', 'warning');
+        return;
+    }
+
+    const contactForm = document.getElementById('contact-form');
+    const name = contactForm.name.value.trim();
+    const email = contactForm.email.value.trim();
+    const message = contactForm.message.value.trim();
+
+    // Check if all fields are filled
+    if (!name || !email || !message) {
+        showAlert('Please fill in all fields before sending the message.', 'info');
+        return;
+    }
+
+    emailjs.send("service_dbir5n9", "template_xgdhzf6", {
+        from_name: name,
+        message: message,
+        reply_to: email,
+    })
+    .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        // Display a nicely formatted alert
+        showAlert('Message sent successfully! Thank you for contacting us.', 'success');
+        // Clear the form fields
+        contactForm.reset();
+        // Start cooldown
+        emailCooldown = true;
+        setTimeout(() => {
+            emailCooldown = false;
+        }, 60000); // 60 seconds cooldown
+        
+        // Add user contact to Google Sheets
+        addToGoogleSheet(name, email, message);
+    })
+    .catch(error => {
+        console.error('FAILED...', error);
+        showAlert('There was an error sending your message. Please try again later.', 'error');
+    });
+}
+
+// Function to show custom alert messages with better formatting
+let alertActive = false;
+
+function showAlert(message, type = 'error') {
+    if (alertActive) {
+        return;
+    }
+
+    alertActive = true;
+
+    const contactSection = document.querySelector('.contact-section');
+    const contactHeading = contactSection.querySelector('h2');
+
+    const alertBox = document.createElement('div');
+    alertBox.className = `custom-alert ${type}`;
+    alertBox.textContent = message;
+
+    contactSection.insertBefore(alertBox, contactHeading);
+
+    setTimeout(() => {
+        alertBox.remove();
+        alertActive = false;
+    }, 5000);
+}
+
+// Function to add user contacts to Google Sheets
+function addToGoogleSheet(name, email, message) {
+    const googleScriptURL = "https://script.google.com/macros/s/AKfycbzYDoxKbsFyqDr1RntWwJHjwciMLYpSplWoWohVxHUZVEcQu32hwElIKWHi0Tt1vUeo/exec";
+
+    fetch(googleScriptURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message
+        }),
+        mode: 'no-cors'
+    })
+    .then(response => {
+        console.log('Request sent. Response status is opaque due to no-cors mode.');
+    })
+    .catch(error => {
+        console.error('Error adding to Google Sheets:', error);
+    });
+}
+
+// Run necessary functions on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    fetchLatestBlogs();
+    fetchBlogDetail();
+    initializeTestimonials();
+});

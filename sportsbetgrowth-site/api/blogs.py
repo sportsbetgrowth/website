@@ -24,7 +24,6 @@ def add_blog():
     blogs = load_blogs()
     new_blog = request.json
     new_blog['id'] = max([blog['id'] for blog in blogs], default=0) + 1
-    # Add new fields with fallback to 'image'
     new_blog['author-image'] = new_blog.get('author-image', new_blog.get('image', ''))
     new_blog['blog-image'] = new_blog.get('blog-image', new_blog.get('image', ''))
     blogs.append(new_blog)
@@ -38,7 +37,6 @@ def edit_blog(id):
     updated_blog = request.json
     for blog in blogs:
         if blog['id'] == id:
-            # Update all fields with priority for new ones
             blog.update({
                 "author-image": updated_blog.get('author-image', blog.get('author-image', blog['image'])),
                 "blog-image": updated_blog.get('blog-image', blog.get('blog-image', blog['image']))
@@ -47,3 +45,21 @@ def edit_blog(id):
             save_blogs(blogs)
             return jsonify(blog), 200
     return jsonify({"error": "Blog not found"}), 404
+
+# Get blogs with pagination
+@blogs_bp.route('/blogs/paginated', methods=['GET'])
+def get_paginated_blogs():
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 6))
+
+    blogs = load_blogs()
+    start = (page - 1) * per_page
+    end = start + per_page
+    paginated_blogs = blogs[start:end]
+
+    return jsonify({
+        "blogs": paginated_blogs,
+        "total": len(blogs),
+        "page": page,
+        "per_page": per_page
+    })
