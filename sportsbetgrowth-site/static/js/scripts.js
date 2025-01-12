@@ -151,6 +151,11 @@ function fetchBlogs(page = 1, perPage = 9) {
 // Function to render blogs on the blog.html page
 function renderBlogs(blogs) {
     const blogsContainer = document.getElementById('blogs-container');
+    if (!blogsContainer) {
+        console.warn('No blogs container found. Skipping renderBlogs function.');
+        return;
+    }
+
     blogsContainer.innerHTML = ''; // Clear previous content
     blogs.forEach(blog => {
         const blogItem = document.createElement('div');
@@ -165,65 +170,136 @@ function renderBlogs(blogs) {
     });
 }
 
-// Function to fetch and render blog details for blog-detail.html
-function fetchBlogDetail() {
-    if (window.location.pathname.includes('blog-detail')) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const blogId = parseInt(urlParams.get('id'), 10);
+// Function to get the blog ID from the URL
+function getBlogIdFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return parseInt(urlParams.get('id'), 10);
+}
 
-        if (!blogId || isNaN(blogId)) {
-            document.body.innerHTML = '<p class="error-message">Invalid blog ID. Please go back to the <a href="/blog">blog page</a>.</p>';
-            return;
-        }
-
-        fetch('/blogs')
-            .then(response => response.json())
-            .then(blogs => {
-                const currentBlogIndex = blogs.findIndex(blog => blog.id === blogId);
-                const currentBlog = blogs[currentBlogIndex];
-                if (!currentBlog) {
-                    document.body.innerHTML = '<p class="error-message">Blog not found. Please return to the <a href="/blog">blog page</a>.</p>';
-                    return;
-                }
-
-                // Populate blog content
-                document.querySelector('.blog-banner-img').src = currentBlog['blog-image'];
-                document.querySelector('.blog-title').textContent = currentBlog.title;
-                document.querySelector('.blog-author').textContent = currentBlog.author;
-                document.querySelector('.blog-date').textContent = currentBlog.date;
-                document.querySelector('.blog-content').innerHTML = currentBlog.content;
-
-                // Update the page title for SEO
-                document.title = `${currentBlog.title} | Sports Bet Growth`;
-
-                // Populate previous and next post links
-                const prevPostLink = document.querySelector('.prev-post');
-                const nextPostLink = document.querySelector('.next-post');
-
-                if (currentBlogIndex > 0) {
-                    const prevBlog = blogs[currentBlogIndex - 1];
-                    prevPostLink.href = `/blog-detail?id=${prevBlog.id}`;
-                    prevPostLink.textContent = `← ${prevBlog.title}`;
-                } else {
-                    prevPostLink.style.display = 'none'; // Hide if no previous post
-                }
-
-                if (currentBlogIndex < blogs.length - 1) {
-                    const nextBlog = blogs[currentBlogIndex + 1];
-                    nextPostLink.href = `/blog-detail?id=${nextBlog.id}`;
-                    nextPostLink.textContent = `${nextBlog.title} →`;
-                } else {
-                    nextPostLink.style.display = 'none'; // Hide if no next post
-                }
-            })
-            .catch(error => {
-                console.error('Error loading blog:', error);
-                document.body.innerHTML = '<p class="error-message">Failed to load blog content. Please try again later.</p>';
-            });
+// Function to fetch blogs data from the server
+async function fetchBlogsData() {
+    try {
+        const response = await fetch('/blogs');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching blogs:', error);
+        document.body.innerHTML = '<p class="error-message">Failed to load blog content. Please try again later.</p>';
+        throw error;
     }
 }
 
-// Setup pagination with page numbers
+// Function to populate the blog content on the page
+function populateBlogContent(blog) {
+    const bannerImg = document.querySelector('.blog-banner-img');
+    const titleElem = document.querySelector('.blog-title');
+    const authorElem = document.querySelector('.blog-author');
+    const dateElem = document.querySelector('.blog-date');
+    const contentElem = document.querySelector('.blog-content');
+
+    if (bannerImg) bannerImg.src = blog['blog-image'];
+    if (titleElem) titleElem.textContent = blog.title;
+    if (authorElem) authorElem.textContent = blog.author;
+    if (dateElem) dateElem.textContent = new Date(blog.date).toLocaleDateString();
+    if (contentElem) contentElem.innerHTML = blog.content;
+}
+
+// Function to add SEO elements (title, meta description, structured data)
+function addSEOElements(blog) {
+    // Update the page title
+    document.title = `${blog.title} | Sports Bet Growth`;
+
+    // Add meta description
+    const metaDescription = document.createElement('meta');
+    metaDescription.name = 'description';
+    metaDescription.content = blog.content.substring(0, 160) + '...';
+    document.head.appendChild(metaDescription);
+
+    // Add structured data (Schema Markup)
+    const schemaScript = document.createElement('script');
+    schemaScript.type = 'application/ld+json';
+
+    // Use production URL if running locally
+    const url = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
+        ? `https://yourwebsite.com${window.location.pathname}`
+        : `${window.location.origin}${window.location.pathname}`;
+
+    schemaScript.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": blog.title,
+        "image": blog['blog-image'],
+        "url": url,
+        "author": {
+            "@type": "Person",
+            "name": blog.author,
+            "url": `https://yourwebsite.com/profile/${blog.author.replace(/\s+/g, '').toLowerCase()}`
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Sports Bet Growth"
+        },
+        "datePublished": new Date(blog.date).toISOString(),
+        "dateModified": new Date(blog.date).toISOString()
+    });
+    document.head.appendChild(schemaScript);
+}
+
+// Function to setup previous and next navigation links
+function setupNavigationLinks(blogs, currentBlogIndex) {
+    const prevPostLink = document.querySelector('.prev-post');
+    const nextPostLink = document.querySelector('.next-post');
+
+    if (currentBlogIndex > 0) {
+        const prevBlog = blogs[currentBlogIndex - 1];
+        if (prevPostLink) {
+            prevPostLink.href = `/blog-detail?id=${prevBlog.id}`;
+            prevPostLink.textContent = `← ${prevBlog.title}`;
+        }
+    } else if (prevPostLink) {
+        prevPostLink.style.display = 'none';
+    }
+
+    if (currentBlogIndex < blogs.length - 1) {
+        const nextBlog = blogs[currentBlogIndex + 1];
+        if (nextPostLink) {
+            nextPostLink.href = `/blog-detail?id=${nextBlog.id}`;
+            nextPostLink.textContent = `${nextBlog.title} →`;
+        }
+    } else if (nextPostLink) {
+        nextPostLink.style.display = 'none';
+    }
+}
+
+// Main function to fetch and render blog details
+async function fetchBlogDetail() {
+    if (!window.location.pathname.includes('blog-detail')) return;
+
+    const blogId = getBlogIdFromURL();
+    if (!blogId || isNaN(blogId)) {
+        document.body.innerHTML = '<p class="error-message">Invalid blog ID. Please go back to the <a href="/blog">blog page</a>.</p>';
+        return;
+    }
+
+    try {
+        const blogs = await fetchBlogsData();
+        const currentBlogIndex = blogs.findIndex(blog => blog.id === blogId);
+        const currentBlog = blogs[currentBlogIndex];
+
+        if (!currentBlog) {
+            document.body.innerHTML = '<p class="error-message">Blog not found. Please return to the <a href="/blog">blog page</a>.</p>';
+            return;
+        }
+
+        populateBlogContent(currentBlog);
+        addSEOElements(currentBlog);
+        setupNavigationLinks(blogs, currentBlogIndex);
+    } catch (error) {
+        console.error('Error loading blog:', error);
+        document.body.innerHTML = '<p class="error-message">Failed to load blog content. Please try again later.</p>';
+    }
+}
+
+// Function to setup pagination on the blog.html page
 function setupPagination(totalPages, currentPage = 1) {
     const paginationContainer = document.createElement('div');
     paginationContainer.className = 'pagination';
@@ -245,6 +321,11 @@ function setupPagination(totalPages, currentPage = 1) {
     }
 
     const blogsSection = document.querySelector('.blogs-section .container');
+    if (!blogsSection) {
+        console.warn('No blogs section found. Skipping pagination setup.');
+        return;
+    }
+
     const existingPagination = document.querySelector('.pagination');
     if (existingPagination) existingPagination.remove();
     blogsSection.appendChild(paginationContainer);
