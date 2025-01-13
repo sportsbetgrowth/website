@@ -51,7 +51,11 @@ if (imageSectionButton) {
 
 // Load the header and footer dynamically
 function loadHTML(selector, filePath, callback = null) {
-    fetch(filePath)
+    // Adjust filePath based on the current URL structure
+    const pathDepth = window.location.pathname.split('/').length - 2;
+    const adjustedFilePath = `${'../'.repeat(pathDepth)}${filePath}`;
+
+    fetch(adjustedFilePath)
         .then(response => response.text())
         .then(data => {
             document.querySelector(selector).innerHTML = data;
@@ -59,6 +63,16 @@ function loadHTML(selector, filePath, callback = null) {
         })
         .catch(error => console.error('Error loading HTML:', error));
 }
+
+// Ensure all DOM elements are loaded before running scripts
+document.addEventListener('DOMContentLoaded', () => {
+    // Dynamically load the header and footer
+    loadHTML('header', 'header-footer/header.html', () => {
+        setupNavigation();
+    });
+    loadHTML('footer', 'header-footer/footer.html');
+});
+
 
 // Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
@@ -121,11 +135,11 @@ function fetchLatestBlogs() {
         fetch('/blogs')
             .then(response => response.json())
             .then(blogs => {
-                const latestBlogs = blogs.slice(0, 3); // Display only the first 3 blogs
+                const latestBlogs = blogs.slice(0, 3);
                 latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
                     <div class="blog-item">
                         <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
-                        <a href="/blog-detail?id=${blog.id}" class="blog-title">${blog.title}</a>
+                        <a href="/blog-detail/${blog.slug}" class="blog-title">${blog.title}</a>
                         <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
                         <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
                     </div>
@@ -137,6 +151,7 @@ function fetchLatestBlogs() {
             });
     }
 }
+
 
 // Function to fetch paginated blogs
 function fetchBlogs(page = 1, perPage = 9) {
@@ -162,7 +177,7 @@ function renderBlogs(blogs) {
         blogItem.className = 'blog-item';
         blogItem.innerHTML = `
             <img src="${blog['blog-image'] || blog.image}" alt="${blog.title}" class="blog-banner-img">
-            <a href="/blog-detail?id=${blog.id}" class="blog-title">${blog.title}</a>
+            <a href="/blog-detail/${blog.slug}" class="blog-title">${blog.title}</a>
             <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
             <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
         `;
@@ -170,10 +185,11 @@ function renderBlogs(blogs) {
     });
 }
 
+
 // Function to get the blog ID from the URL
-function getBlogIdFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return parseInt(urlParams.get('id'), 10);
+function getBlogSlugFromURL() {
+    const pathParts = window.location.pathname.split('/');
+    return pathParts[pathParts.length - 1];  // The last part of the URL path is the slug
 }
 
 // Function to fetch blogs data from the server
@@ -249,20 +265,22 @@ function setupNavigationLinks(blogs, currentBlogIndex) {
     const prevPostLink = document.querySelector('.prev-post');
     const nextPostLink = document.querySelector('.next-post');
 
+    // Previous Post
     if (currentBlogIndex > 0) {
         const prevBlog = blogs[currentBlogIndex - 1];
         if (prevPostLink) {
-            prevPostLink.href = `/blog-detail?id=${prevBlog.id}`;
+            prevPostLink.href = `/blog-detail/${prevBlog.slug}`;
             prevPostLink.textContent = `← ${prevBlog.title}`;
         }
     } else if (prevPostLink) {
         prevPostLink.style.display = 'none';
     }
 
+    // Next Post
     if (currentBlogIndex < blogs.length - 1) {
         const nextBlog = blogs[currentBlogIndex + 1];
         if (nextPostLink) {
-            nextPostLink.href = `/blog-detail?id=${nextBlog.id}`;
+            nextPostLink.href = `/blog-detail/${nextBlog.slug}`;
             nextPostLink.textContent = `${nextBlog.title} →`;
         }
     } else if (nextPostLink) {
@@ -270,20 +288,21 @@ function setupNavigationLinks(blogs, currentBlogIndex) {
     }
 }
 
+
 // Main function to fetch and render blog details
+// Update the fetchBlogDetail function to use the slug
 async function fetchBlogDetail() {
     if (!window.location.pathname.includes('blog-detail')) return;
 
-    const blogId = getBlogIdFromURL();
-    if (!blogId || isNaN(blogId)) {
-        document.body.innerHTML = '<p class="error-message">Invalid blog ID. Please go back to the <a href="/blog">blog page</a>.</p>';
+    const blogSlug = getBlogSlugFromURL();
+    if (!blogSlug) {
+        document.body.innerHTML = '<p class="error-message">Invalid blog slug. Please go back to the <a href="/blog">blog page</a>.</p>';
         return;
     }
 
     try {
         const blogs = await fetchBlogsData();
-        const currentBlogIndex = blogs.findIndex(blog => blog.id === blogId);
-        const currentBlog = blogs[currentBlogIndex];
+        const currentBlog = blogs.find(blog => blog.slug === blogSlug);
 
         if (!currentBlog) {
             document.body.innerHTML = '<p class="error-message">Blog not found. Please return to the <a href="/blog">blog page</a>.</p>';
@@ -292,7 +311,7 @@ async function fetchBlogDetail() {
 
         populateBlogContent(currentBlog);
         addSEOElements(currentBlog);
-        setupNavigationLinks(blogs, currentBlogIndex);
+        setupNavigationLinks(blogs, blogs.indexOf(currentBlog));
     } catch (error) {
         console.error('Error loading blog:', error);
         document.body.innerHTML = '<p class="error-message">Failed to load blog content. Please try again later.</p>';

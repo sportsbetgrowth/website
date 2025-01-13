@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 import json
+import re
 
 # Blueprint for blogs
 blogs_bp = Blueprint('blogs', __name__)
@@ -13,6 +14,16 @@ def save_blogs(blogs):
     with open('blogs.json', 'w') as f:
         json.dump(blogs, f, indent=4)
 
+# Function to generate a unique slug
+def generate_slug(title, existing_slugs):
+    slug = re.sub(r'[^a-zA-Z0-9]+', '-', title.lower()).strip('-')
+    original_slug = slug
+    counter = 1
+    while slug in existing_slugs:
+        slug = f"{original_slug}-{counter}"
+        counter += 1
+    return slug
+
 # Fetch all blogs
 @blogs_bp.route('/blogs', methods=['GET'])
 def get_blogs():
@@ -24,6 +35,11 @@ def add_blog():
     blogs = load_blogs()
     new_blog = request.json
     new_blog['id'] = max([blog['id'] for blog in blogs], default=0) + 1
+
+    # Generate a unique slug
+    existing_slugs = {blog['slug'] for blog in blogs}
+    new_blog['slug'] = generate_slug(new_blog['title'], existing_slugs)
+
     new_blog['author-image'] = new_blog.get('author-image', new_blog.get('image', ''))
     new_blog['blog-image'] = new_blog.get('blog-image', new_blog.get('image', ''))
     blogs.append(new_blog)
@@ -37,6 +53,10 @@ def edit_blog(id):
     updated_blog = request.json
     for blog in blogs:
         if blog['id'] == id:
+            # Update slug if title changes
+            if 'title' in updated_blog and updated_blog['title'] != blog['title']:
+                existing_slugs = {b['slug'] for b in blogs if b['id'] != id}
+                updated_blog['slug'] = generate_slug(updated_blog['title'], existing_slugs)
             blog.update({
                 "author-image": updated_blog.get('author-image', blog.get('author-image', blog['image'])),
                 "blog-image": updated_blog.get('blog-image', blog.get('blog-image', blog['image']))

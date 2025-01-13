@@ -1,5 +1,5 @@
 from flask import Flask, render_template, send_from_directory
-from api.blogs import blogs_bp
+from api.blogs import blogs_bp, load_blogs
 from api.subscriptions import subscriptions_bp
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
@@ -17,9 +17,13 @@ def index():
 def blog():
     return render_template('blog.html')
 
-@app.route('/blog-detail')
-def blog_detail():
-    return render_template('blog-detail.html')
+@app.route('/blog-detail/<slug>')
+def blog_detail(slug):
+    blogs = load_blogs()
+    blog = next((b for b in blogs if b['slug'] == slug), None)
+    if not blog:
+        return "Blog not found", 404
+    return render_template('blog-detail.html', blog=blog)
 
 @app.route('/services')
 def services():
