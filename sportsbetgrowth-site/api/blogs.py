@@ -18,14 +18,22 @@ def get_blogs():
     conn.close()
     return jsonify([dict(blog) for blog in blogs])
 
-# Fetch a single blog by ID
-@blogs_bp.route('/blogs/<int:id>', methods=['GET'])
-def get_blog_by_id(id):
+# Fetch a single blog by ID or slug
+@blogs_bp.route('/blogs/<identifier>', methods=['GET'])
+def get_blog(identifier):
     conn = get_db_connection()
-    blog = conn.execute('SELECT * FROM blogs WHERE id = ?', (id,)).fetchone()
+
+    # Check if the identifier is an integer (ID) or a string (slug)
+    if identifier.isdigit():
+        blog = conn.execute('SELECT * FROM blogs WHERE id = ?', (int(identifier),)).fetchone()
+    else:
+        blog = conn.execute('SELECT * FROM blogs WHERE slug = ?', (identifier,)).fetchone()
+
     conn.close()
+
     if blog is None:
         return jsonify({'error': 'Blog not found'}), 404
+
     return jsonify(dict(blog))
 
 # Add a new blog
