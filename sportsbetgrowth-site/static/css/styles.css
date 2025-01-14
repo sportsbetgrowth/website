@@ -411,7 +411,6 @@ body {
 }
 
 .contact-section input {
-    color: #023047;
     width: 300px;
     padding: 10px;
     border: 2px solid #00CC99;
@@ -423,7 +422,6 @@ body {
 }
 
 .contact-section textarea {
-    color: #023047;
     width: 300px;
     background-color: #f4f4f4;
     height: 100px;  
@@ -1064,28 +1062,6 @@ footer a:hover {
     }
 }
 
-/* "Read All Blogs" Link Styling */
-.read-all-blogs {
-    display: inline-block;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #FFFFFF !important;
-    background: #00CC99; 
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    margin: 40px auto 20px;
-    text-align: center;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.read-all-blogs:hover {
-    background: #FFD700; 
-    color: #023047 !important; 
-    transform: scale(1.05);
-}
 
 /* Center the "Read All Blogs" Link */
 .latest-blogs {
@@ -1484,6 +1460,8 @@ footer a:hover {
 
 .stacked-form input[type="email"]:focus {
     border-color: #FF5733;
+    outline: none;
+    box-shadow: 0 0 5px #FF5733;
 }
 
 /* Button Styling */
@@ -1515,37 +1493,6 @@ footer a:hover {
     color: #FFFFFF;
 }
 
-.table-of-contents {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-.table-of-contents h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.table-of-contents ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.table-of-contents li {
-    margin-bottom: 8px;
-}
-
-.table-of-contents a {
-    text-decoration: none;
-    color: #0073e6;
-}
-
-.table-of-contents a:hover {
-    text-decoration: underline;
-}
-
 .blog-detail .container {
     text-align: left;
     align-items: flex-start;
@@ -1559,4 +1506,18 @@ footer a:hover {
     .blog-hero-toc {
         display: block;
     }
+}
+
+.reading-time {
+    font-size: 1rem;
+    color: #FFFFFF;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    border-color: #FF5733;
+    outline: none;
+    box-shadow: 0 0 5px #FF5733;
 }

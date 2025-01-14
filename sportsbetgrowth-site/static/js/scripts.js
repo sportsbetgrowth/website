@@ -67,9 +67,6 @@ function loadHTML(selector, filePath, callback = null) {
 // Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
     // Dynamically load the header and footer
-    loadHTML('header', 'header-footer/header.html', () => {
-        setupNavigation();
-    });
     loadHTML('footer', 'header-footer/footer.html');
 });
 
@@ -350,6 +347,35 @@ function setupPagination(totalPages, currentPage = 1) {
     blogsSection.appendChild(paginationContainer);
 }
 
+// Calculate the length of time it would take to read a blog
+function calculateReadingTime(content) {
+    const wordsPerMinute = 200; // Average reading speed
+    const wordCount = content.split(/\s+/).length;
+    const readingTime = Math.ceil(wordCount / wordsPerMinute);
+    return `${readingTime} min read`;
+}
+
+// Display the reading time on the
+function displayReadingTime() {
+    const contentElement = document.querySelector('.blog-content');
+    if (contentElement) {
+        const contentText = contentElement.textContent || contentElement.innerText;
+        const readingTimeText = calculateReadingTime(contentText);
+
+        // Create a new element to display the reading time
+        const readingTimeElement = document.createElement('p');
+        readingTimeElement.className = 'reading-time';
+        readingTimeElement.textContent = readingTimeText;
+
+        // Insert the reading time element before the blog content
+        const blogHero = document.querySelector('.blog-hero');
+        if (blogHero) {
+            blogHero.appendChild(readingTimeElement);
+        }
+    }
+}
+
+
 // Fetch initial blogs and setup pagination
 fetchBlogs().then(data => {
     renderBlogs(data.blogs);
@@ -497,6 +523,8 @@ function addToGoogleSheet(name, email, message) {
 // Run necessary functions on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     fetchLatestBlogs();
-    fetchBlogDetail();
+    fetchBlogDetail().then(() => {
+        displayReadingTime();
+    });
     initializeTestimonials();
 });
