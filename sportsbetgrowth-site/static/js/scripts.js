@@ -125,7 +125,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'YOUR_TRACKING_ID');
 
-// Fetch blogs for index.html
+// Update: Fetch Latest Blogs from the Flask API
 function fetchLatestBlogs() {
     const latestBlogsContainer = document.querySelector('.latest-blogs .blogs-grid');
     if (latestBlogsContainer) {
@@ -135,7 +135,7 @@ function fetchLatestBlogs() {
                 const latestBlogs = blogs.slice(0, 3);
                 latestBlogsContainer.innerHTML = latestBlogs.map(blog => `
                     <div class="blog-item">
-                        <img src="${blog.image}" alt="${blog.title}" class="blog-author-img">
+                        <img src="${blog.author_image}" alt="${blog.author}" class="blog-author-img">
                         <a href="/blog-detail/${blog.slug}" class="blog-title">${blog.title}</a>
                         <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
                         <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
@@ -148,7 +148,6 @@ function fetchLatestBlogs() {
             });
     }
 }
-
 
 // Function to fetch paginated blogs
 function fetchBlogs(page = 1, perPage = 9) {
@@ -173,7 +172,7 @@ function renderBlogs(blogs) {
         const blogItem = document.createElement('div');
         blogItem.className = 'blog-item';
         blogItem.innerHTML = `
-            <img src="${blog['blog-image'] || blog.image}" alt="${blog.title}" class="blog-banner-img">
+            <img src="${blog.blog_image}" alt="${blog.title}" class="blog-banner-img">
             <a href="/blog-detail/${blog.slug}" class="blog-title">${blog.title}</a>
             <p class="blog-summary">${blog.content.substring(0, 100)}...</p>
             <p class="blog-meta">By <span class="blog-author">${blog.author}</span> | <span class="blog-date">${blog.date}</span></p>
@@ -201,7 +200,7 @@ async function fetchBlogsData() {
     }
 }
 
-// Function to populate the blog content on the page
+// Update: Populate Blog Content Dynamically
 function populateBlogContent(blog) {
     const bannerImg = document.querySelector('.blog-banner-img');
     const titleElem = document.querySelector('.blog-title');
@@ -257,37 +256,48 @@ function addSEOElements(blog) {
     document.head.appendChild(schemaScript);
 }
 
-// Function to setup previous and next navigation links
-function setupNavigationLinks(blogs, currentBlogIndex) {
-    const prevPostLink = document.querySelector('.prev-post');
-    const nextPostLink = document.querySelector('.next-post');
+// Updated setupNavigationLinks to use API data
+async function setupNavigationLinks(currentSlug) {
+    try {
+        // Fetch all blogs from the API
+        const response = await fetch('/blogs');
+        const blogs = await response.json();
 
-    // Previous Post
-    if (currentBlogIndex > 0) {
-        const prevBlog = blogs[currentBlogIndex - 1];
-        if (prevPostLink) {
-            prevPostLink.href = `/blog-detail/${prevBlog.slug}`;
-            prevPostLink.textContent = `← ${prevBlog.title}`;
-        }
-    } else if (prevPostLink) {
-        prevPostLink.style.display = 'none';
-    }
+        // Find the index of the current blog
+        const currentIndex = blogs.findIndex(blog => blog.slug === currentSlug);
 
-    // Next Post
-    if (currentBlogIndex < blogs.length - 1) {
-        const nextBlog = blogs[currentBlogIndex + 1];
-        if (nextPostLink) {
-            nextPostLink.href = `/blog-detail/${nextBlog.slug}`;
-            nextPostLink.textContent = `${nextBlog.title} →`;
+        // Select navigation elements
+        const prevPostLink = document.querySelector('.prev-post');
+        const nextPostLink = document.querySelector('.next-post');
+
+        // Setup Previous Post link
+        if (currentIndex > 0) {
+            const prevBlog = blogs[currentIndex - 1];
+            if (prevPostLink) {
+                prevPostLink.href = `/blog-detail/${prevBlog.slug}`;
+                prevPostLink.textContent = `← ${prevBlog.title}`;
+            }
+        } else if (prevPostLink) {
+            prevPostLink.style.display = 'none';
         }
-    } else if (nextPostLink) {
-        nextPostLink.style.display = 'none';
+
+        // Setup Next Post link
+        if (currentIndex < blogs.length - 1) {
+            const nextBlog = blogs[currentIndex + 1];
+            if (nextPostLink) {
+                nextPostLink.href = `/blog-detail/${nextBlog.slug}`;
+                nextPostLink.textContent = `${nextBlog.title} →`;
+            }
+        } else if (nextPostLink) {
+            nextPostLink.style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Error setting up navigation links:', error);
     }
 }
 
-
-// Main function to fetch and render blog details
-// Update the fetchBlogDetail function to use the slug
+// Update: Fetch Blog Details by Slug from the Flask API
+// Update the fetchBlogDetail function
 async function fetchBlogDetail() {
     if (!window.location.pathname.includes('blog-detail')) return;
 
@@ -298,22 +308,23 @@ async function fetchBlogDetail() {
     }
 
     try {
-        const blogs = await fetchBlogsData();
-        const currentBlog = blogs.find(blog => blog.slug === blogSlug);
+        const response = await fetch(`/blogs/${blogSlug}`);
+        const blog = await response.json();
 
-        if (!currentBlog) {
+        if (blog.error) {
             document.body.innerHTML = '<p class="error-message">Blog not found. Please return to the <a href="/blog">blog page</a>.</p>';
-            return;
+        } else {
+            populateBlogContent(blog);
+            addSEOElements(blog);
+            // ✅ Call setupNavigationLinks
+            setupNavigationLinks(blog.slug);
         }
-
-        populateBlogContent(currentBlog);
-        addSEOElements(currentBlog);
-        setupNavigationLinks(blogs, blogs.indexOf(currentBlog));
     } catch (error) {
         console.error('Error loading blog:', error);
         document.body.innerHTML = '<p class="error-message">Failed to load blog content. Please try again later.</p>';
     }
 }
+
 
 // Function to setup pagination on the blog.html page
 function setupPagination(totalPages, currentPage = 1) {

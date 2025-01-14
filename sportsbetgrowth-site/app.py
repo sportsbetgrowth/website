@@ -1,12 +1,19 @@
 from flask import Flask, render_template, send_from_directory
-from api.blogs import blogs_bp, load_blogs
+from api.blogs import blogs_bp
 from api.subscriptions import subscriptions_bp
+import sqlite3
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
 # Register the blogs Blueprint
 app.register_blueprint(blogs_bp)
 app.register_blueprint(subscriptions_bp)
+
+# Function to connect to the SQLite database
+def get_db_connection():
+    conn = sqlite3.connect('blogs.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 # Serve the main templates
 @app.route('/')
@@ -19,11 +26,12 @@ def blog():
 
 @app.route('/blog-detail/<slug>')
 def blog_detail(slug):
-    blogs = load_blogs()
-    blog = next((b for b in blogs if b['slug'] == slug), None)
+    conn = get_db_connection()
+    blog = conn.execute('SELECT * FROM blogs WHERE slug = ?', (slug,)).fetchone()
+    conn.close()
     if not blog:
         return "Blog not found", 404
-    return render_template('blog-detail.html', blog=blog)
+    return render_template('blog-detail.html', blog=dict(blog))
 
 @app.route('/services')
 def services():
