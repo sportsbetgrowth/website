@@ -411,7 +411,8 @@ body {
 }
 
 .contact-section input {
-    width: 300px;
+    width: 100%;
+    max-width: 365px;
     padding: 10px;
     border: 2px solid #00CC99;
     border-radius: 5px;
@@ -422,7 +423,8 @@ body {
 }
 
 .contact-section textarea {
-    width: 300px;
+    width: 100%;
+    max-width: 365px;
     background-color: #f4f4f4;
     height: 100px;  
     padding: 10px;
