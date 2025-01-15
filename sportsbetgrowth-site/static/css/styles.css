@@ -551,24 +551,24 @@ body {
 
 /* Specific alert types */
 .custom-alert.warning {
-    background-color: #ffc107; 
-    color: black; 
-    border: 1px solid #e0a800;
+    background-color: #FF5733; 
+    color: #FFFFFF; 
+    border: 1px solid #00CC99;
 }
 
 .custom-alert.info {
-    background-color: #17a2b8; 
-    border: 1px solid #117a8b; 
+    background-color: #023047; 
+    border: 1px solid #00CC99; 
 }
 
 .custom-alert.success {
-    background-color: #28a745; 
-    border: 1px solid #218838; 
+    background-color: #00CC99; 
+    /* border: 1px solid #FF5733;  */
 }
 
 .custom-alert.error {
-    background-color: #dc3545; 
-    border: 1px solid #c82333; 
+    background-color: #FF5733; 
+    border: 1px solid #00CC99; 
 }
 
 /* Footer Page HTML */

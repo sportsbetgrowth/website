@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Smooth Scroll for Anchor Links Only
 const navLinks = document.querySelectorAll('.nav-links a');
-
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
@@ -67,13 +66,6 @@ function loadHTML(selector, filePath, callback = null) {
 // Ensure all DOM elements are loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
     // Dynamically load the header and footer
-    loadHTML('footer', 'header-footer/footer.html');
-});
-
-
-// Ensure all DOM elements are loaded before running scripts
-document.addEventListener('DOMContentLoaded', () => {
-    // Dynamically load the header and footer
     loadHTML('header', 'header-footer/header.html', () => {
         const hamburger = document.querySelector('.hamburger');
         const navLinksContainer = document.querySelector('.nav-links-container');
@@ -118,12 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadHTML('footer', 'header-footer/footer.html'); // Load footer if needed
 });
-
-// Google Analytics Initialization
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'YOUR_TRACKING_ID');
 
 // Update: Fetch Latest Blogs from the Flask API
 function fetchLatestBlogs() {
@@ -180,7 +166,6 @@ function renderBlogs(blogs) {
         blogsContainer.appendChild(blogItem);
     });
 }
-
 
 // Function to get the blog ID from the URL
 function getBlogSlugFromURL() {
@@ -297,7 +282,6 @@ async function setupNavigationLinks(currentSlug) {
 }
 
 // Update: Fetch Blog Details by Slug from the Flask API
-// Update the fetchBlogDetail function
 async function fetchBlogDetail() {
     if (!window.location.pathname.includes('blog-detail')) return;
 
@@ -324,7 +308,6 @@ async function fetchBlogDetail() {
         document.body.innerHTML = '<p class="error-message">Failed to load blog content. Please try again later.</p>';
     }
 }
-
 
 // Function to setup pagination on the blog.html page
 function setupPagination(totalPages, currentPage = 1) {
@@ -366,7 +349,7 @@ function calculateReadingTime(content) {
     return `${readingTime} min read`;
 }
 
-// Display the reading time on the
+// Display the reading time on the blog
 function displayReadingTime() {
     const contentElement = document.querySelector('.blog-content');
     if (contentElement) {
@@ -385,7 +368,6 @@ function displayReadingTime() {
         }
     }
 }
-
 
 // Fetch initial blogs and setup pagination
 fetchBlogs().then(data => {
@@ -438,7 +420,6 @@ function initializeTestimonials() {
 
 // Function to send email using EmailJS with improvements
 let emailCooldown = false;
-
 function sendEmail() {
     if (emailCooldown) {
         showAlert('Please wait 60 seconds before sending another message.', 'warning');
@@ -530,6 +511,12 @@ function addToGoogleSheet(name, email, message) {
         console.error('Error adding to Google Sheets:', error);
     });
 }
+
+// Google Analytics Initialization
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'YOUR_TRACKING_ID');
 
 // Run necessary functions on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
