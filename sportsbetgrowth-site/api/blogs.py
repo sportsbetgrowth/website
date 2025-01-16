@@ -42,16 +42,16 @@ def add_blog():
     new_blog = request.json
     conn = get_db_connection()
     conn.execute('''
-        INSERT INTO blogs (title, slug, author, date, content, tags, media)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO blogs (title, slug, author, date, content, blog_image, author_image)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
     ''', (
-        new_blog['title'],
-        new_blog['slug'],
-        new_blog['author'],
-        new_blog['date'],
-        new_blog['content'],
-        ','.join(new_blog.get('tags', [])),
-        json.dumps(new_blog.get('media', []))
+    new_blog['title'],
+    new_blog['slug'],
+    new_blog['author'],
+    new_blog['date'],
+    new_blog['content'],
+    new_blog.get('blog_image', ''),
+    new_blog.get('author_image', '')
     ))
     conn.commit()
     conn.close()
@@ -63,18 +63,18 @@ def edit_blog(id):
     updated_blog = request.json
     conn = get_db_connection()
     conn.execute('''
-        UPDATE blogs
-        SET title = ?, slug = ?, author = ?, date = ?, content = ?, tags = ?, media = ?
-        WHERE id = ?
+    UPDATE blogs
+    SET title = ?, slug = ?, author = ?, date = ?, content = ?, blog_image = ?, author_image = ?
+    WHERE id = ?
     ''', (
-        updated_blog['title'],
-        updated_blog['slug'],
-        updated_blog['author'],
-        updated_blog['date'],
-        updated_blog['content'],
-        ','.join(updated_blog.get('tags', [])),
-        json.dumps(updated_blog.get('media', [])),
-        id
+    updated_blog['title'],
+    updated_blog['slug'],
+    updated_blog['author'],
+    updated_blog['date'],
+    updated_blog['content'],
+    updated_blog.get('blog_image', ''),
+    updated_blog.get('author_image', ''),
+    id
     ))
     conn.commit()
     conn.close()

@@ -83,16 +83,14 @@ async function handleFormSubmit(event) {
     event.preventDefault();
 
     const blogForm = document.querySelector('#blog-form');
-    const blogFormSection = document.querySelector('#blog-form-section');
-
     const blogData = {
         title: document.querySelector('#title').value,
         slug: generateSlug(document.querySelector('#title').value),
         author: document.querySelector('#author').value,
         date: document.querySelector('#date').value,
         content: document.querySelector('#content').value,
-        author_image: document.querySelector('#author-image').value || null,
-        blog_image: document.querySelector('#blog-image').value || null
+        blog_image: document.querySelector('#blog-image').value || '',
+        author_image: document.querySelector('#author-image').value || ''
     };
 
     const method = blogForm.dataset.id ? 'PUT' : 'POST';
@@ -104,7 +102,7 @@ async function handleFormSubmit(event) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(blogData)
         });
-        blogFormSection.style.display = 'none';
+        document.querySelector('#blog-form-section').style.display = 'none';
         blogForm.removeAttribute('data-id');
         fetchBlogs();
     } catch (error) {
@@ -133,8 +131,8 @@ async function editBlog(id) {
         blogForm.querySelector('#author').value = blog.author || '';
         blogForm.querySelector('#date').value = blog.date || '';
         blogForm.querySelector('#content').value = blog.content || '';
-        blogForm.querySelector('#author-image').value = blog.author_image || '';
         blogForm.querySelector('#blog-image').value = blog.blog_image || '';
+        blogForm.querySelector('#author-image').value = blog.author_image || '';
 
         document.querySelector('#blog-form-section').style.display = 'block';
         blogForm.setAttribute('data-id', id);
