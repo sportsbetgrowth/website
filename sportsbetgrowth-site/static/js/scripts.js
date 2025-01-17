@@ -193,15 +193,12 @@ function populateBlogContent(blog) {
     const dateElem = document.querySelector('.blog-date');
     const contentElem = document.querySelector('.blog-content');
 
-    if (bannerImg) bannerImg.src = blog['blog_image'];
+    if (bannerImg) bannerImg.src = blog['blog-image'];
     if (titleElem) titleElem.textContent = blog.title;
     if (authorElem) authorElem.textContent = blog.author;
     if (dateElem) dateElem.textContent = new Date(blog.date).toLocaleDateString();
     if (contentElem) contentElem.innerHTML = blog.content;
-
-    // Add dynamic author image
 }
-
 
 // Function to add SEO elements (title, meta description, structured data)
 function addSEOElements(blog) {
