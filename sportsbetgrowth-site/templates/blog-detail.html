@@ -23,8 +23,9 @@
             <div class="blog-hero">
               <h1 class="blog-title">Loading...</h1>
               <div class="blog-meta">
-                <img src="/static/images/index/Review-One.png" alt="Author Image" class="blog-author-img" />
-                <p>By <span class="blog-author"></span> | <span class="blog-date"></span></p>
+                <img src="/{{ blog.author_image }}" alt="{{ blog.author }}" class="blog-author-img">
+                <p>By <span class="blog-author">{{ blog.author }}</span></p>
+                <p class="blog-date">{{ blog.date }}</p>
               </div>
             <img src="" alt="Blog Banner" class="blog-banner-img" />
         </div>
